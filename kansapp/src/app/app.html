@@ -1,0 +1,22 @@
+<ion-menu [content]="NAV">
+    <ion-header>
+    </ion-header>
+    <ion-content style="background-color: white" class="getstarToggle">
+      <img style="background: transparent; width: 120%;" src="assets/imgs/menuToogle.png" alt="">
+      <br>
+      <br>
+      <br>
+      <br>
+      <ion-list>
+        <button class="btn-cb" ion-item *ngFor="let page of pages" (click)="goToPage(page.component)" menuClose>
+          <img src="assets/imgs/{{ page.icon }}" style="width: 17% ;padding-right: 5%"> {{ page.titulo }}
+        </button>
+  
+        <button class="btn-cb" ion-item (click)="Logout()" menuClose>
+          <img src="assets/imgs/iconoSalir.png" style="width: 17% ; padding-right: 5%"> Cerrar Sesión
+        </button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-nav id="nav" #NAV [root]="rootPage"></ion-nav>

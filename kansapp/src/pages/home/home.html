@@ -1,0 +1,59 @@
+<ion-content padding style="background-image: url('assets/imgs/fondologuin.png')" class="getstar">
+    <form (ngSubmit)="onSubmit()">
+      <br>
+  
+      <div style="width: 60%; margin-left: 20%;">
+        <img id="imganeTitulo" src="assets/imgs/logokans.png" style="width: 180%;">
+      </div>
+      <div class="formLogin">
+  
+        <br>
+        
+        
+       <p style ="text-align : center; font-size: 100%; color: white">LOGIN</p>
+        
+        <div style="top:0; bottom: 0;" class="item item-block">
+          
+          <input placeholder="USERNAME" type="email" #email="ngModel" [(ngModel)]="obj.email" name="email" id="email" class="form-control" style="font-size:110%">
+        </div>
+        <br>
+        <div style="top:0; bottom: 0; " class="item item-block">
+          
+          <input placeholder="PASSWORD"   [type]="getType()" #password="ngModel" [(ngModel)]="obj.password" name="password" id="password" class="form-control" style="font-size:110%">
+        </div>
+        <br>
+        <!-- prueba de mostra contrase -->
+        <div class="checkbox" style="margin-left:10%">
+          <label style="color:white">
+            <input  type="checkbox" (click)="toggleTextPassword()">  Show password </label>
+        </div>
+        <br>
+        <input id="btnIngresar" type="submit" value="Go!"  class="btn btn-primary" 
+        style="padding-top:2%; padding-bottom:2%; font-size: 100%; font-weight: bold; "
+          class="form-control">
+        <br>
+      </div>
+    </form>
+
+
+   
+
+
+    <img style=" align-items: center; max-width: 100%; border: none; margin: 0%" src="assets/imgs/lineaDivide.png"
+    />
+
+    <div class="formLogin">
+      <br>
+      <br>
+    <button (click)="onCLick()"  style=" align-items: center; max-width: 60%; padding: 0%;  background-color: transparent; "><img  style="padding-left: 68%" src="assets/imgs/btnRegister.png"
+      /></button>
+    
+      <br>
+      <button (click)="onCLick()"  style=" align-items: center; max-width: 20%; padding: 0%;  background-color: transparent; "><img style="padding-left: 20%"   src="assets/imgs/btnForgot.png"
+        /></button>
+
+        <button (click)="onCLick()"  style="  align-items: center; max-width: 78%; padding: 0%;  background-color: transparent; "><img  style="padding-left: 70%; margin-right: -20%" src="assets/imgs/btnContactanos.png"
+          /></button>
+    </div>
+  </ion-content>
+  

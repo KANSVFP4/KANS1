@@ -1,0 +1,143 @@
+<!-- EL HEADER NO VA EN ANDROID -->
+<!-- <ion-header>
+    <ion-navbar color="colorapp">
+      <ion-title style="text-align: center">Registro</ion-title>
+    </ion-navbar>
+  </ion-header> -->
+
+
+
+
+  <ion-content  class="getstar">
+    
+   
+    <!-- ESTO ACTIVAR PARA ANDROID  -->
+      <button (click)="goBack();" style="border:0;" class="back-button disable-hover bar-button bar-button-md back-button-md bar-button-default bar-button-default-md show-back-button">
+      <ion-icon style="  font-size: 190%; color:white;" name="arrow-back"></ion-icon>
+    </button>   
+    <!-- HASTA AQUI  -->
+    
+  
+    <div class="Aligner-item Aligner-item--top"></div>
+    <img id="imganeTitulo" src="assets/imgs/tituloRegisterVF.png">
+    <div class="Aligner-item Aligner-item--bottom"></div>
+  
+   
+    <form style="margin-top:7%; margin-right: 7%; margin-left: 7%" #FormularioRegistro="ngForm" id="formRegistro">
+      <div id="formRegister">
+        <div style="top:0; bottom: 0;" class="item item-block">
+  
+          <ion-grid>
+            <ion-row>
+              <ion-item no-lines >
+                <ion-icon item-left style="  max-width:10%; margin-top:0%; margin-bottom:0; margin-right:0% ">
+                  <img style=" max-width:90%;left: 0;right: 0; " src="assets/imgs/registroNombre.png">
+                </ion-icon>
+                
+                <input id="nameR" type="text" [(ngModel)]="user_register.nombre" name="nombres" #nombres="ngModel" placeholder="Nombres" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*"
+                  required>
+                <!-- (keyup)="convertirMayuscula(user_register.nombre)"  -->
+              </ion-item>
+              <ion-item *ngIf="nombres.errors && (nombres.dirty || nombres.touched)">
+                <ion-icon name="alert" item-start color="danger"></ion-icon>
+                <p ion-text color="danger" [hidden]="!nombres.errors.pattern">Ingrese sólo caracteres alfabéticos</p>
+                <p ion-text color="danger" [hidden]="!nombres.errors.required">Campo requerido</p>
+              </ion-item>
+            </ion-row>
+            <ion-row>
+              <ion-item no-lines>
+                <ion-icon item-left style="  max-width:10%; margin-top:0%; margin-bottom:0; margin-right:0% ">
+                  <img style=" max-width:90%;left: 0;right: 0; " src="assets/imgs/registroNombre.png">
+                </ion-icon>
+            
+                <input id="nameR" placeholder="Apellidos" #apellidos="ngModel" [(ngModel)]="user_register.apellido" name="apellidos" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ  ]*"
+                  required>
+              </ion-item>
+              <ion-item *ngIf="apellidos.errors && (apellidos.dirty || apellidos.touched)">
+                <ion-icon name="alert" item-start color="danger"></ion-icon>
+                <p ion-text color="danger" [hidden]="!apellidos.errors.pattern">Ingrese sólo caracteres alfabéticos</p>
+                <p ion-text color="danger" [hidden]="!apellidos.errors.required">Campo requerido</p>
+              </ion-item>
+            </ion-row>
+  
+           
+  
+            <ion-row>
+              <ion-item no-lines>
+  
+                <ion-icon item-left style="  max-width:10%; margin-top:0%; margin-bottom:0; margin-right:0% ">
+                  <img style=" max-width:90%;left: 0;right: 0; " src="assets/imgs/correroRegistro.png">
+                </ion-icon>
+  
+                <input id="nameR" placeholder="Correo" #correo="ngModel" [(ngModel)]="user_register.correo" name="correo" required email pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+              </ion-item >
+              <ion-item *ngIf="correo.errors && (correo.dirty || correo.touched)">
+                <ion-icon name="alert" item-start color="danger"></ion-icon>
+                <p ion-text color="danger" [hidden]="!correo.errors.required">Campo requerido &nbsp;</p>
+                <p ion-text color="danger" [hidden]="!correo.errors.email">Correo inválido</p>
+                <p ion-text color="danger" [hidden]="!correo.errors.pattern">Caracteres invalidos</p>
+              </ion-item>
+            </ion-row>
+  
+  
+            <ion-row>
+              <ion-item no-lines>
+                <ion-icon item-left style="  max-width:10%; margin-top:0%; margin-bottom:0; margin-right:0% ">
+                  <img style=" max-width:90%;left: 0;right: 0; " src="assets/imgs/contrasenaRegistro.png">
+                </ion-icon>
+                <input  id="nameR" type="password" placeholder="Contraseña" #contrasena="ngModel" [(ngModel)]="user_register.contrasena" name="contrasena"
+                  required minlength="6">
+              </ion-item>
+              <ion-item *ngIf="contrasena.errors && (contrasena.dirty || contrasena.touched)">
+                <ion-icon name="alert" item-start color="danger"></ion-icon>
+                <p ion-text color="danger" [hidden]="!contrasena.errors.required">Campo requerido &nbsp;</p>
+                <p ion-text color="danger" [hidden]="!contrasena.errors.minlength">Contraseña minima de 6 caracteres</p>
+              </ion-item>
+            </ion-row>
+  
+            <ion-row>
+              <ion-item no-lines>
+                <ion-icon item-left style="  max-width:10%; margin-top:0%; margin-bottom:0; margin-right:0% ">
+                  <img style=" max-width:90%;left: 0;right: 0; " src="assets/imgs/contrasenaRegistro.png">
+                </ion-icon>
+                <input id="nameR" type="password" placeholder="Confirmar Contraseña" #confirmContrasena="ngModel" [(ngModel)]="verificarPassword"
+                  name="confirmContrasena" required [equalTo]="contrasena">
+              </ion-item>
+              <ion-item *ngIf="confirmContrasena.errors && (confirmContrasena.dirty || confirmContrasena.touched)">
+                <ion-icon name="alert" item-start color="danger"></ion-icon>
+                <p ion-text color="danger" [hidden]="!confirmContrasena.errors.required">Campo requerido &nbsp;</p>
+                <p ion-text color="danger" [hidden]="!confirmContrasena.errors.equalTo">La contraseña no coincide</p>
+              </ion-item>
+            </ion-row>
+  
+            <ion-row>
+              <ion-item no-lines>
+                <ion-icon item-left style="  max-width:10%; margin-top:0%; margin-bottom:0; margin-right:0% ">
+                  <img style=" max-width:90%;left: 0;right: 0; " src="assets/imgs/telefonoCelRegistro.png">
+                </ion-icon>
+                <input id="nameR" placeholder="Celular" #telefonoCel="ngModel" [(ngModel)]="user_register.tel_celular" name="telefonoCel" required
+                  digits pattern="[0-9]*" minlength="10" maxlength="10">
+              </ion-item>
+              <ion-item *ngIf="telefonoCel.errors && (telefonoCel.dirty || telefonoCel.touched)">
+                <ion-icon name="alert" item-start color="danger"></ion-icon>
+                <p ion-text color="danger" [hidden]="!telefonoCel.errors.pattern">Ingrese sólo números</p>
+                <p ion-text color="danger" [hidden]="!telefonoCel.errors.minlength">Ingrese una número válido</p>
+                <p ion-text color="danger" [hidden]="!telefonoCel.errors.required">Campo requerido</p>
+              </ion-item>
+            </ion-row>
+  
+            
+          </ion-grid>
+        </div>
+        <br>
+    <button (click)="onRegister()" style="width: 100%; padding: 0%; position:relative; background: transparent"><img src="assets/imgs/btnRegistro.png"
+          /></button>  
+
+         <!-- <input  id="registrar"  (click)="onRegister()" type="submit" value="Register"  class="btn btn-primary" 
+        style="  width: 100%;  padding-top:0.5%; padding-bottom:0.5%; font-size: 110%; font-weight: bold; color: black;"
+          class="form-control">-->
+      </div>
+    </form>
+  
+  </ion-content>
+

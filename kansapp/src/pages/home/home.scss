@@ -1,0 +1,84 @@
+
+
+::-webkit-input-placeholder { /* WebKit browsers */
+  color:black !important;
+  opacity: 0.8;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.8em;
+  }
+  
+
+  #btnIngresar
+  {
+    padding: 2.5%;
+    border-radius: 58px 58px 58px 58px;
+    -moz-border-radius: 58px 58px 58px 58px;
+    -webkit-border-radius: 58px 58px 58px 58px;
+      border: 2px solid #ffffff;
+      background:none;
+      opacity: 0.8;
+      color: white;
+  }
+
+
+.getstart {
+    background-color: #F5A56E;
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .formLogin {
+    display: block;
+    margin: 0 auto;
+    right: 0;
+    left: 10%;
+    width: 80%;
+    height: auto;
+    justify-content: center;
+  }
+  
+  #imganeTitulo {
+    display: block;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    height: auto;
+  }
+  
+  #password
+  {
+    padding: 2.5%;
+    border-radius: 58px 58px 58px 58px;
+    -moz-border-radius: 58px 58px 58px 58px;
+    -webkit-border-radius: 58px 58px 58px 58px;
+      border: 3px solid #ffffff;
+      background:#d1d0cd;
+      opacity: 0.8;
+      
+
+      
+  }
+
+ 
+
+  #email
+  {
+    padding: 2.5%;
+    border-radius: 58px 58px 58px 58px;
+    -moz-border-radius: 58px 58px 58px 58px;
+    -webkit-border-radius: 58px 58px 58px 58px;
+      border: 3px solid #ffffff;
+      background:#d1d0cd;
+      opacity: 0.8;
+  }
