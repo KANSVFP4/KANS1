@@ -8,7 +8,7 @@ var md_auth = require('../middleware/authenticated');
 var api = express.Router(); // esto sirve para crear las rutas 
 api.post('/register',UserController.saveUser);
 api.post('/login',UserController.loginUser);
-
+api.put('/update-user/:id',md_auth.ensureAuth,UserController.updateUser);
 //pruebas
 api.get('/pruebaServicio',md_auth.ensureAuth, UserController.pruebas);
 

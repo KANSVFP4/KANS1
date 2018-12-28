@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar hideBackButton color="colorapp">
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+      New Ofert
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <form  style="margin-right: 5%; margin-left: 5%">
+    <ion-list>
+
+        <ion-label class="title_menu">Links to work:</ion-label>
+        <ion-item class="css-TextArea">
+          <ion-textarea required rows="8" class="textare" #informacion="ngModel" [(ngModel)]="inf_adicional" name="informacion" placeholder="
+          Enter the links of the pages you are going to work with."></ion-textarea>
+        </ion-item>
+
+
+        <ion-label class="title_menu">Category:</ion-label>
+        <ion-item class="css-itemSelec">
+          <ion-select required class="css-select" placeholder="Selection a category" #categoria="ngModel" [(ngModel)]="Categoria" name="categoria">
+            <ion-label>Category</ion-label>
+            <ion-option (ionSelect)="clickMensaje(categoria.categoria);" value="{{ categoria.categoria }}" *ngFor="let categoria of categoriaV">{{ categoria.categoria }}</ion-option>
+          </ion-select>
+        </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

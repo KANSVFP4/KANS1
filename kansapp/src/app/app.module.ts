@@ -13,6 +13,8 @@ import { RegistroPage } from '../pages/registro/registro';
 import { PrincipalPage } from '../pages/principal/principal';
 import { MiCuenta } from '../pages/mi_cuenta/mi_cuenta';
 import { PublicistaPage } from '../pages/publicista/publicista';
+import { NuevaOfertaPage } from '../pages/nueva_oferta/nueva_oferta';
+
 
 @NgModule({
   declarations: [
@@ -21,8 +23,8 @@ import { PublicistaPage } from '../pages/publicista/publicista';
     RegistroPage,
     PrincipalPage,
     MiCuenta,
-    PublicistaPage
-  
+    PublicistaPage,
+    NuevaOfertaPage  
   ],
   imports: [
    
@@ -39,7 +41,8 @@ import { PublicistaPage } from '../pages/publicista/publicista';
     RegistroPage,
     PrincipalPage,
     MiCuenta,
-    PublicistaPage
+    PublicistaPage,
+    NuevaOfertaPage
   ],
   providers: [
     StatusBar,

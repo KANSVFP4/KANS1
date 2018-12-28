@@ -9,9 +9,9 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content  class="getstarPrincipal">
+<ion-content  class="getstarPrincipal" >
 
-  
+
  
  
  
@@ -19,18 +19,20 @@
 
 <ion-footer>
 <ion-segment [(ngModel)]="mymodel">
-      <ion-segment-button value="segment1">
-        <ion-icon name="map"></ion-icon>
+      <ion-segment-button  value="segment1">
+        <ion-icon name="ios-albums">
+
+        </ion-icon>
         <br />
         <span>Botón 1</span>
       </ion-segment-button>
       <ion-segment-button value="segment2">
-        <ion-icon name="feedback"></ion-icon>
+        <ion-icon name="md-globe"></ion-icon>
         <br />
         <span>Botón 2</span>
       </ion-segment-button>
-      <ion-segment-button value="segment3">
-        <ion-icon name="work"></ion-icon>
+      <ion-segment-button  (click)="goToNuevaOferta()" value="segment3">
+        <ion-icon name="add"></ion-icon>
         <br />
         <span>Botón 3</span>
       </ion-segment-button>

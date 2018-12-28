@@ -142,12 +142,138 @@ function loginUser(req, res) {
 }
 
 
+function updateUser(req, res) {
+    var userId = req.params.id; // en este caso e sparametro de ruta es decir el id para todo lo demas req.body
+    var update = req.body;
+
+    if (userId != req.user.sub) {
+        return res.status(500).send({
+            message: "No tiene permiso para actualizar este Usuario."
+        });
+
+    }
+
+
+    if (update.estadoContrasena == '1') {
+      //  console.log("entre para encriptar", update.estadoContrasena);
+        // encriptar contrasena y guardar datos
+        hash = true;
+        bcrypt.hash(update.contrasena, null, null, function (err, hash) {
+            update.contrasena = hash;
+         //   console.log("contrasena nueva encriptada", update.contrasena);
+            update.estadoContrasena == '';
+
+            User.findByIdAndUpdate(userId, update, (err, userUpdate) => {
+
+                if (err) {
+                    res.status(500).send({
+                        message: "Error al actualizar Usuario"
+                    });
+
+                } else {
+                    if (!userUpdate) {
+                        res.status(404).send({
+                            message: "El usuario no ha podido actualizarse."
+                        });
+                    } else {
+                        res.status(200).send({
+                            user: userUpdate
+                        });
+                    }
+                }
+
+            });
+
+        });
+    } else {
+        update.estadoContrasena == '';
+
+
+        User.findOne({
+            '$and': [{  }, { correo: update.correo }]
+        }, (err, users) => {
+            if (err) {
+                res.status(500).send({
+                    message: "Error al Actualizar Usuario"
+                });
+
+            } else {
+                if (users) {
+                        if(users._id!=update._id)
+                        {
+                            res.status(500).send({
+                                message: "El correo que desea ingresar pertenece a otro Usuario"
+                            });
+                        }else
+                        {
+                            User.findByIdAndUpdate(userId, update, (err, userUpdate) => {
+
+                                if (err) {
+                                    res.status(500).send({
+                                        message: "Error al actualizar Usuario."
+                                    });
+                    
+                                } else {
+                                    if (!userUpdate) {
+                                        res.status(404).send({
+                                            message: "El usuario no ha podido actualizarse."
+                                        });
+                                    } else {
+                                        res.status(200).send({
+                                            user: userUpdate
+                                        });
+                                    }
+                                }
+                    
+                            });
+                        }
+
+                 
+                }else
+                {
+                    User.findByIdAndUpdate(userId, update, (err, userUpdate) => {
+
+                        if (err) {
+                            res.status(500).send({
+                                message: "Error al actualizar Usuario."
+                            });
+            
+                        } else {
+                            if (!userUpdate) {
+                                res.status(404).send({
+                                    message: "El usuario no ha podido actualizarse."
+                                });
+                            } else {
+                                res.status(200).send({
+                                    user: userUpdate
+                                });
+                            }
+                        }
+            
+                    });
+                }
+            }
+
+        });
+
+
+
+
+
+        
+
+    }
+
+
+}
+
 
 module.exports = { // para exportar todas las funcoones 
 
     pruebas,
     saveUser,
     loginUser,
+    updateUser
    
     
 };

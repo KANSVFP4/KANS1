@@ -10,6 +10,7 @@ import { UserService } from "../../app/services/user.services";
 
 export class MiCuenta {
   public identity;
+  public estadoContrasena='0';
 
   constructor(
     public navCtrl: NavController,
@@ -67,14 +68,15 @@ export class MiCuenta {
     alert.present();
   }
 
- /* onUpdate() {
+  onUpdate() {
+    console.log("mi JSON esta vacio");
     try {
       if (!this.validarCampos()) {
         console.log("mi JSON esta vacio");
         this.presentAlert();
       } else {
     this.verificarUpdate();
-    this._userService.update_user(this.identity).subscribe(
+    this._userService.update_user(this.identity,this.estadoContrasena).subscribe(
       response => {
    
         if (!response.user) {
@@ -110,7 +112,7 @@ export class MiCuenta {
       //this.showAlert("Verifique que la información sea correcta");
     }
   }
-*/
+
   presentAlert() {
     let alert = this.alertCtrl.create({
       title: "Atención",
@@ -124,17 +126,15 @@ export class MiCuenta {
     var bool_nombres = this.soloLetras(this.identity.nombre);
     var bool_apellidos = this.soloLetras(this.identity.apellido);
     var bool_celular = this.soloNumeros(this.identity.tel_celular);
-    var bool_cedula = this.validarCedula();
+  
     if (
-      this.identity.cedula == "" ||
       this.identity.nombre == "" ||
       this.identity.apellido == "" ||
       this.identity.correo == "" ||
       this.identity.tel_celular == "" ||
       bool_nombres ||
       bool_apellidos ||
-      bool_celular ||
-      !bool_cedula ) {
+      bool_celular) {
       return false;
     } else {
       return true;

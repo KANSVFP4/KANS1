@@ -22,7 +22,7 @@
   <br>
   <br>
   
-  <form #FormularioUpdate="ngForm" (ngSubmit)="onUpdate()" id="formUpdate" >
+  <form #FormularioUpdate="ngForm"   id="formUpdate" >
   
     
     <ion-list>
@@ -79,7 +79,7 @@
     <br>
     <br>
 
-    <input type="submit" id="submit">
+    <input (click)="onUpdate()" type="submit" id="submit">
   </form>
 
 </ion-content>
