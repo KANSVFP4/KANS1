@@ -14,6 +14,11 @@ import { Observable } from "rxjs";
 export class NuevaOfertaPage {
  
     public Categoria;
+    public DescripcionNuevaCategoria;
+
+    public bander = false;
+    
+    public isActiveToggleTextPassword=false;
     
     public categoriaV: any[] = [{ "categoria": "Educacion" },
     { "categoria": "Ciencia" },
@@ -35,10 +40,33 @@ export class NuevaOfertaPage {
 
 
 
-  clickMensaje(Categoria)
+  /*clickMensaje(Categoria)
   {
   console.log(Categoria);
+  if(Categoria=="Otro")
+  {
+    this.bander=true;
   }
+  }*/
+
+
+  activarOtro()
+  {
+  
+  if(this.Categoria=="Otro")
+  {
+    this.bander=true;
+  }else
+  {
+    this.bander=false;
+  }
+  }
+
+  public toggleTextPassword(): void {
+    this.isActiveToggleTextPassword = (this.isActiveToggleTextPassword == true) ? false : true;
+  }
+
+
   goToPublicistaPage() {
     this.navCtrl.push(PublicistaPage);
   }
