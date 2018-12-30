@@ -42,7 +42,7 @@ export class NuevaOfertaPage {
   public precioO;
   public alcanceO;
   public inf_adicional;
-  public OtraRed;
+  public OtraRed = null;
 
   public categoriaV: any[] = [{ "categoria": "Educacion" },
   { "categoria": "Ciencia" },
@@ -194,9 +194,12 @@ export class NuevaOfertaPage {
 
     if (this.btnFaceboock == false && this.btnInstagram == false && this.btnTwiter == false && this.OtraRed==null) {
       this.presentToast("the social network in which you are going to work is not clear yet");
+    }else
+    {
+      this.objNuevaOferta.OtraRed=this.OtraRed;
     }
 
-
+ console.log(this.objNuevaOferta);
 
 
 
