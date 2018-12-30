@@ -6,6 +6,8 @@ import { PublicistaPage } from '../publicista/publicista';
 
 import { Observable } from "rxjs";
 
+
+
 @Component({
   selector: "page-newOfert",
   templateUrl: "nueva_oferta.html"
@@ -13,13 +15,8 @@ import { Observable } from "rxjs";
 
 export class NuevaOfertaPage {
 
-  public Categoria;
-  public DescripcionNuevaCategoria;
-
-  public tiempoO;
-  public precioO;
-  public alcanceO;
-  public inf_adicional;
+  
+ 
 
   public bander = false;
   public banderOtro = false;
@@ -35,6 +32,16 @@ export class NuevaOfertaPage {
   public btnTwiter = false;
   public isActiveToggleTextPassword = false;
 
+  // variables para llenar el objeto
+
+  public links_to_work;
+  public Categoria;
+  public tiempoO;
+  public precioO;
+  public alcanceO;
+  public inf_adicional;
+
+
   public categoriaV: any[] = [{ "categoria": "Educacion" },
   { "categoria": "Ciencia" },
   { "categoria": "Tecnologia" },
@@ -45,6 +52,19 @@ export class NuevaOfertaPage {
   { "categoria": "Otro" },
   ];
 
+
+  public objNuevaOferta = {
+    link:null,
+    categoria:null,
+    faceboock:null,
+    instagram:null,
+    twiter:null,
+    otro:null,
+    tiempo:null,
+    precio:null,
+    alcance:null,
+    inf_extra:null,
+  };
 
 
   @ViewChild('NAV') nav: Nav;
@@ -71,6 +91,7 @@ export class NuevaOfertaPage {
       this.bander = true;
     } else {
       this.bander = false;
+      console.log(this.Categoria);
     }
   }
 
