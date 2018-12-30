@@ -11,56 +11,98 @@
 
 <ion-content>
 
-  <form  style="margin-right: 5%; margin-left: 5%">
+  <form style="margin-right: 5%; margin-left: 5%">
     <ion-list>
 
-        <ion-label class="title_menu">Links to work:</ion-label>
-        <ion-item class="css-TextArea">
-          <ion-textarea required rows="8" class="textare" #informacion="ngModel" [(ngModel)]="inf_adicional" name="informacion" placeholder="
+      <ion-label class="title_menu">Links to work:</ion-label>
+      <ion-item class="css-TextArea">
+        <ion-textarea required rows="8" class="textare" #links="ngModel" [(ngModel)]="links_to_work" name="links" placeholder="
           Enter the links of the pages you are going to work with."></ion-textarea>
+      </ion-item>
+
+
+      <ion-label class="title_menu">Category:</ion-label>
+      <ion-item class="css-itemSelec">
+        <ion-select required class="css-select" placeholder="Selection a category" #categoria="ngModel" [(ngModel)]="Categoria" name="categoria"
+          (ionChange)="activarOtro();">
+          <ion-label>Category</ion-label>
+          <ion-option value="{{ categoria.categoria }}" *ngFor="let categoria of categoriaV">{{ categoria.categoria }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+
+      <hr *ngIf="bander" />
+
+      <div class="list_Exp" style="width: 225%" *ngIf="bander">
+        <ion-label style="margin-left: -4%" class="title_menu">Description of new Categry</ion-label>
+        <ion-item style="width: 100%; margin-left:-4% " class="css-text">
+          <ion-input placeholder="Category" #descripcionC="ngModel" [(ngModel)]="DescripcionNuevaCategoria" name="descripcionC" required></ion-input>
         </ion-item>
 
-
-        <ion-label class="title_menu">Category:</ion-label>
-        <ion-item class="css-itemSelec">
-          <ion-select required class="css-select" placeholder="Selection a category" #categoria="ngModel" [(ngModel)]="Categoria" name="categoria"  (ionChange)="activarOtro();">
-            <ion-label>Category</ion-label>
-            <ion-option  value="{{ categoria.categoria }}" *ngFor="let categoria of categoriaV">{{ categoria.categoria }}</ion-option>
-          </ion-select>
-        </ion-item>
-
-
-         <hr *ngIf="bander" />
-
-      <div class="list_Exp"  style="width: 225%"  *ngIf="bander">
-        <ion-label  style="margin-left: -4%" class="title_menu">Description of new Categry</ion-label>
-        <ion-item   style="width: 100%; margin-left:-4% "  class="css-text" >
-          <ion-input   placeholder="Category" #descripcionC="ngModel" [(ngModel)]="DescripcionNuevaCategoria" name="descripcionC" required></ion-input>
-        </ion-item>
-        
       </div>
       <hr *ngIf="bander" />
 
+
+
       <ion-label class="title_menu">Social Networks:</ion-label>
-      <ion-item>
+      
+<div>
+        <button (click)="activarBotonesredesSociales(1,0,0)" class="btnRedesSociales">
+          <img [hidden]="btnFaceboock" src="../../assets/imgs/btnFaceboock.png">
+          <img [hidden]="btnFaceboockAct" src="../../assets/imgs/btnFaceboockAct.png">
+        </button>
 
-          <button class="btnRedesSociales">
-             <img src="../../assets/imgs/btnFaceboock.png">
-            </button>
-          
-            
-          <button class="btnRedesSociales">
-              <img src="../../assets/imgs/btnInstagram.png">
-             </button>
 
-             <button class="btnRedesSociales">
-                <img src="../../assets/imgs/btnTwiter.png">
-               </button>
+        <button (click)="activarBotonesredesSociales(0,1,0)" class="btnRedesSociales">
+          <img [hidden]="btnInstagram" src="../../assets/imgs/btnInstagram.png">
+          <img style="width:120%"  [hidden]="btnInstagramAct" src="../../assets/imgs/btnInstagramAct.png">
+        </button>
 
-               <label class="btnRedesSociales"> <input type="checkbox" (click)="toggleTextPassword()"> Other</label>
-                  
-          
-      </ion-item>
+        <button  (click)="activarBotonesredesSociales(0,0,1)"  class="btnRedesSociales">
+          <img  [hidden]=" btnTwiter" src="../../assets/imgs/btnTwiter.png">
+          <img [hidden]=" btnTwiterAct" src="../../assets/imgs/btnTwiterAct.png">
+        </button>
+
+        <label style="margin-left:5%"> <input type="checkbox" (click)="toggleTextPassword()"> Other</label>
+
+      </div>
+
+     
+      
+
+      <hr *ngIf="banderOtro" />
+
+        <div class="list_Exp" style="width: 225%" *ngIf="banderOtro">
+          <ion-label style="margin-left: -4%" class="title_menu">Description of other Social Network</ion-label>
+          <ion-item style="width: 100%; margin-left:-4% " class="css-text">
+            <ion-input placeholder="Category" #descripcionOtro="ngModel" [(ngModel)]="DescripcionOtro" name="descripcionOtro" required></ion-input>
+          </ion-item>
+  
+        </div>
+        <hr *ngIf="banderOtro" />
+
+     
+
+        <div class="list_Exp" style="width: 150%">
+            <ion-label style="margin-left: -8%" class="title_menu">Time, Price and Scope</ion-label>
+            <ion-item class="css-text" style="margin-left: -8%">
+              <ion-input  type="number" placeholder="Tiempo in hours" #tiempo="ngModel" [(ngModel)]="tiempoO" name="tiempo" required></ion-input>
+            </ion-item>
+            <ion-item    class="css-text" style="margin-left: 0%" >
+              <ion-input type="number" placeholder="Price in dolars" #precio="ngModel" [(ngModel)]="precioO" name="precio" required></ion-input>
+            </ion-item>
+
+            <ion-item class="css-text" style="margin-left: 0%">
+                <ion-input type="number"  placeholder="Scope" #alcance="ngModel" [(ngModel)]="alcanceO" name="alcance" required></ion-input>
+              </ion-item>
+          </div>
+
+          <ion-label class="title_menu">Extra Information:</ion-label>
+          <ion-item class="css-TextArea">
+            <ion-textarea required rows="8" class="textare" #informacion="ngModel" [(ngModel)]="inf_adicional" name="informacion" placeholder="
+              Enter Extra Information."></ion-textarea>
+          </ion-item>
+       
 
     </ion-list>
   </form>
