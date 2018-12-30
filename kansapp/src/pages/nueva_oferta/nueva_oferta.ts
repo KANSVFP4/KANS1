@@ -5,8 +5,9 @@ import { UserService } from "../../app/services/user.services";
 import { PublicistaPage } from '../publicista/publicista';
 
 import { Observable } from "rxjs";
+import { IfObservable } from 'rxjs/observable/IfObservable';
 
-
+import { ToastController } from 'ionic-angular';
 
 @Component({
   selector: "page-newOfert",
@@ -15,8 +16,8 @@ import { Observable } from "rxjs";
 
 export class NuevaOfertaPage {
 
-  
- 
+
+
 
   public bander = false;
   public banderOtro = false;
@@ -36,11 +37,12 @@ export class NuevaOfertaPage {
 
   public links_to_work;
   public Categoria;
+  public OtraCategoria = null;
   public tiempoO;
   public precioO;
   public alcanceO;
   public inf_adicional;
-
+  public OtraRed;
 
   public categoriaV: any[] = [{ "categoria": "Educacion" },
   { "categoria": "Ciencia" },
@@ -54,22 +56,23 @@ export class NuevaOfertaPage {
 
 
   public objNuevaOferta = {
-    link:null,
-    categoria:null,
-    faceboock:null,
-    instagram:null,
-    twiter:null,
-    otro:null,
-    tiempo:null,
-    precio:null,
-    alcance:null,
-    inf_extra:null,
+    Links_to_work: null,
+    Categoria: null,
+    OtraCategoria: null,
+    Faceboock: null,
+    Instagram: null,
+    Twiter: null,
+    OtraRed: null,
+    Tiempo: null,
+    Precio: null,
+    Alcance: null,
+    Inf_extra: null,
   };
 
 
   @ViewChild('NAV') nav: Nav;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, private toastCtrl: ToastController) {
 
   }
 
@@ -105,14 +108,13 @@ export class NuevaOfertaPage {
 
     if (btnI == '1') {
       this.btnInstagramAct = !this.btnInstagramAct;
-     this.btnInstagram = !this.btnInstagram;
+      this.btnInstagram = !this.btnInstagram;
 
     }
 
-    if(btnT=='1')
-    {
-     this.btnTwiterAct =  !this.btnTwiterAct;
-     this.btnTwiter = !this.btnTwiter;
+    if (btnT == '1') {
+      this.btnTwiterAct = !this.btnTwiterAct;
+      this.btnTwiter = !this.btnTwiter;
 
     }
 
@@ -120,13 +122,11 @@ export class NuevaOfertaPage {
   public toggleTextPassword(): void {
     this.isActiveToggleTextPassword = (this.isActiveToggleTextPassword == true) ? false : true;
 
-    if(this.isActiveToggleTextPassword)
-      {
-        this.banderOtro=true;
-      }else
-      {
-        this.banderOtro=false;
-      }
+    if (this.isActiveToggleTextPassword) {
+      this.banderOtro = true;
+    } else {
+      this.banderOtro = false;
+    }
   }
 
 
@@ -138,4 +138,67 @@ export class NuevaOfertaPage {
   }
 
 
+
+  presentToast(Mensaje) {
+    let toast = this.toastCtrl.create({
+      message: Mensaje,
+      duration: 3000,
+      position: 'botton'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Faltan campos por Llenar');
+    });
+
+    toast.present();
+  }
+
+
+  enviarNuevaOferta() {
+    if (this.links_to_work != null && this.tiempoO && this.precioO && this.alcanceO) {
+      this.objNuevaOferta.Links_to_work = this.links_to_work;
+
+      this.objNuevaOferta.OtraRed = this.OtraRed;
+      this.objNuevaOferta.Tiempo = this.tiempoO;
+      this.objNuevaOferta.Precio = this.precioO;
+      this.objNuevaOferta.Alcance = this.alcanceO;
+      this.objNuevaOferta.Inf_extra = this.inf_adicional;
+    } else {
+      this.presentToast("Complete all the necessary fields");
+    }
+
+    if (this.Categoria != null || this.OtraCategoria !== null) {
+      this.objNuevaOferta.Categoria = this.Categoria;
+      this.objNuevaOferta.OtraCategoria = this.OtraCategoria;
+    } else {
+      this.presentToast("The categories  in which you are going to work is not clear yet");
+    }
+
+    if (this.btnFaceboock == true) {
+      this.objNuevaOferta.Faceboock = "Si";
+    } else {
+      this.objNuevaOferta.Faceboock = "No";
+    }
+
+    if (this.btnInstagram == true) {
+      this.objNuevaOferta.Instagram = "Si";
+    } else {
+      this.objNuevaOferta.Instagram = "No";
+    }
+
+    if (this.btnTwiter == true) {
+      this.objNuevaOferta.Twiter = "Si";
+    } else {
+      this.objNuevaOferta.Twiter = "No";
+    }
+
+    if (this.btnFaceboock == false && this.btnInstagram == false && this.btnTwiter == false && this.OtraRed==null) {
+      this.presentToast("the social network in which you are going to work is not clear yet");
+    }
+
+
+
+
+
+  }
 }

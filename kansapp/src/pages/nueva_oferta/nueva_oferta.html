@@ -17,14 +17,14 @@
       <ion-label class="title_menu">Links to work:</ion-label>
       <ion-item class="css-TextArea">
         <ion-textarea required rows="8" class="textare" #links="ngModel" [(ngModel)]="links_to_work" name="links" placeholder="
-          Enter the links of the pages you are going to work with."></ion-textarea>
+          Enter the links of the pages you are going to work with." required></ion-textarea>
       </ion-item>
 
 
       <ion-label class="title_menu">Category:</ion-label>
       <ion-item class="css-itemSelec">
         <ion-select multiple="true" required class="css-select" placeholder="Selection a category" #categoria="ngModel" [(ngModel)]="Categoria" name="categoria"
-          (ionChange)="activarOtro();">
+          (ionChange)="activarOtro();" required>
           <ion-label>Category</ion-label>
           <ion-option value="{{ categoria.categoria }}" *ngFor="let categoria of categoriaV">{{ categoria.categoria }}</ion-option>
         </ion-select>
@@ -36,7 +36,7 @@
       <div class="list_Exp" style="width: 225%" *ngIf="bander">
         <ion-label style="margin-left: -4%" class="title_menu">Description of new Categry</ion-label>
         <ion-item style="width: 100%; margin-left:-4% " class="css-text">
-          <ion-input placeholder="Category" #descripcionC="ngModel" [(ngModel)]="Categoria" name="descripcionC" required></ion-input>
+          <ion-input placeholder="Category" #descripcionC="ngModel" [(ngModel)]="OtraCategoria" name="descripcionC" required></ion-input>
         </ion-item>
 
       </div>
@@ -75,7 +75,7 @@
         <div class="list_Exp" style="width: 225%" *ngIf="banderOtro">
           <ion-label style="margin-left: -4%" class="title_menu">Description of other Social Network</ion-label>
           <ion-item style="width: 100%; margin-left:-4% " class="css-text">
-            <ion-input placeholder="Category" #descripcionOtro="ngModel" [(ngModel)]="DescripcionOtro" name="descripcionOtro" required></ion-input>
+            <ion-input placeholder="Category" #descripcionOtro="ngModel" [(ngModel)]="OtraRed" name="descripcionOtro" required></ion-input>
           </ion-item>
   
         </div>
@@ -110,5 +110,5 @@
 </ion-content>
 
 <ion-footer>
-    <input (click)="onUpdate()" type="submit" id="submitNO">
+    <input (click)="enviarNuevaOferta()" type="submit" id="submitNO">
 </ion-footer>
