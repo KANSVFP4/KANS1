@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { Platform, Nav, } from 'ionic-angular';
 import { NavController, AlertController } from "ionic-angular";
 import { UserService } from "../../app/services/user.services";
+import { NuevaOfertaService } from "../../app/services/ofertas.services";
 import { PublicistaPage } from '../publicista/publicista';
 
 import { Observable } from "rxjs";
@@ -72,7 +73,7 @@ export class NuevaOfertaPage {
 
   @ViewChild('NAV') nav: Nav;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, private toastCtrl: ToastController) {
+  constructor(public _userService: UserService, public _nuevaOfertaService: NuevaOfertaService, public navCtrl: NavController, public alertCtrl: AlertController, private toastCtrl: ToastController) {
 
   }
 
@@ -154,6 +155,21 @@ export class NuevaOfertaPage {
   }
 
 
+
+
+  showAlertConfirmado() {
+
+    let alert = this.alertCtrl.create({
+      title: "<center><h3>IMPORTANT</h3></center>",
+    
+      message: '<p align="justify">The new offer has been created correctly.</p>',
+      buttons: ["OK"],
+      cssClass: 'customLoader'
+    });
+    alert.present();
+  }
+  
+
   enviarNuevaOferta() {
     if (this.links_to_work != null && this.tiempoO && this.precioO && this.alcanceO) {
       this.objNuevaOferta.Links_to_work = this.links_to_work;
@@ -199,7 +215,43 @@ export class NuevaOfertaPage {
       this.objNuevaOferta.OtraRed=this.OtraRed;
     }
 
+
  console.log(this.objNuevaOferta);
+
+
+ let alert = this.alertCtrl.create({
+  title: '<center><h3>IMPORTANT</h3></center>',
+  subTitle: '<center>¿WISH YOU TO CREATE A NEW OFFER?</center>',
+  message: '<p align="justify">THE NEW OFFER WILL BE CREATED CORRECTLY WAIT FOR CONFIRMATION.</p>',
+  buttons: [
+    {
+      text: 'Cancel',
+      handler: data => {
+        console.log('Solicitud Cancelada');
+      }
+    },
+    {
+      text: 'OK',
+      handler: data => {
+       
+   
+        this._nuevaOfertaService.saveNuevaOferta(this._userService.getToken(), this.objNuevaOferta).subscribe(
+          response => {
+            console.log("hola" + response);
+            
+            this.showAlertConfirmado();
+            this.navCtrl.push(PublicistaPage);
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }
+    }
+  ],
+  cssClass: 'customLoader'
+});
+alert.present();
 
 
 

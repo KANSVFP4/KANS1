@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CustomFormsModule } from 'ng2-validation';
 import { UserService } from './services/user.services';
+import { NuevaOfertaService } from './services/ofertas.services';
 import { FormsModule } from '@angular/forms';
 import { RegistroPage } from '../pages/registro/registro';
 import { PrincipalPage } from '../pages/principal/principal';
@@ -48,6 +49,7 @@ import { NuevaOfertaPage } from '../pages/nueva_oferta/nueva_oferta';
     StatusBar,
     SplashScreen,
     UserService,
+    NuevaOfertaService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
