@@ -25,4 +25,14 @@ public cont =0;
 
 }
 
+
+
+getOfertas(token)
+{
+    let headers = new Headers({ "Content-type": "application/json","Authorization":token });
+    return this._http.get(this.url +"nuevasOfertas", { headers: headers })
+      .map(res => res.json());
+      
+
+}
 }

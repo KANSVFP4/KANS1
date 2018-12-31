@@ -9,11 +9,21 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content  class="getstarPrincipal" >
+  
+<ion-content  class="cards-bg social-cards" >
+
+  <ion-card  *ngFor=" let ofertas of  vectorOfertas">
+    <ion-item>
+      <h2>
+          <b>Datos del Cliente</b>
+        </h2>
+      </ion-item>
+
+    
+ </ion-card>
 
 
- 
- 
+
  
 </ion-content>
 
@@ -26,7 +36,7 @@
         <br />
         <span>Botón 1</span>
       </ion-segment-button>
-      <ion-segment-button value="segment2">
+      <ion-segment-button   (click)="getAllNuevasOfertas()" value="segment2">
         <ion-icon name="md-globe"></ion-icon>
         <br />
         <span>Botón 2</span>
