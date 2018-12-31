@@ -14,7 +14,6 @@ var port = process.env.PORT || 3977;
 mongoose.connect('mongodb://localhost:27017/kansdb', (err, res) => {
     if (err) {
         throw err;
-
     } else {
         console.log("base de datos esta corriendo correctamente");
         app.listen(port, function () {
