@@ -1,4 +1,5 @@
 export class User {
+    
     constructor(
         public _id: String,
         public nombre: String,
@@ -7,5 +8,8 @@ export class User {
         public contrasena: String,
         public tel_celular: String,
         public estado: String
-    ) { }
+    ) { 
+
+
+    }
 }
