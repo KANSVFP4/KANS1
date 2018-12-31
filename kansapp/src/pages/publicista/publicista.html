@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar hideBackButton color="colorapp" >
+  <ion-navbar hideBackButton color="colorapp">
     <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
     </button>
@@ -9,47 +9,61 @@
   </ion-navbar>
 </ion-header>
 
-  
-<ion-content  class="cards-bg social-cards" >
 
-  <ion-card  *ngFor=" let ofertas of  vectorOfertas">
+<ion-content class="cards-bg social-cards">
+
+  <ion-card *ngFor=" let ofertas of  vectorOfertas">
     <ion-item>
-      <h2>
-          <b>Category</b>
-        </h2>
-        <p>{{ofertas.Categoria}}</p>
+     
 
-        <h3>
-            <b>Social Network</b>
-          </h3>
-          <p>Faceboock: {{ofertas.Faceboock}}, Instagram:{{ofertas.Instagram}}, Twiter:{{ofertas.Twiter}}, Another : {{ofertas.OtraRed}}</p>
-      </ion-item>
+        <img  style="width: 20%;  padding: 0%" src="../../assets/imgs/user.png">
+        <h2 align="center" style="margin-top: -12%; margin-left:18%">{{ofertas.emitter.nombre}},{{ofertas.emitter.apellido}}</h2> 
 
+   
+      <br>
+      <p><b>Category: &nbsp;</b>{{ofertas.Categoria}}</p>
+      <br>
+
+      <h3>
+        <b>Social Network</b>
+        <br>
+      </h3>
+      <p> <b>Faceboock:</b> {{ofertas.Faceboock}}, Instagram:{{ofertas.Instagram}}, Twiter:{{ofertas.Twiter}}, Another :
+        {{ofertas.OtraRed}}</p>
+
+<br>
+        <ion-avatar>
+            <img src="../../assets/imgs/time.png"  style="width: 10%">
     
- </ion-card>
+          </ion-avatar>
+    </ion-item>
+
+
+  </ion-card>
 
 
 
- 
+
 </ion-content>
 
 <ion-footer>
-<ion-segment [(ngModel)]="mymodel">
-      <ion-segment-button  value="segment1">
-        <ion-icon name="ios-albums">
+  <ion-segment [(ngModel)]="mymodel">
+    <ion-segment-button value="segment1">
+      <ion-icon name="ios-albums">
 
-        </ion-icon>
-        <br />
-        <span>Botón 1</span>
-      </ion-segment-button>
-      <ion-segment-button   (click)="getAllNuevasOfertas()" value="segment2">
-        <ion-icon name="md-globe"></ion-icon>
-        <br />
-        <span>Botón 2</span>
-      </ion-segment-button>
-      <ion-segment-button  (click)="goToNuevaOferta()" value="segment3">
-        <ion-icon name="add"></ion-icon>
-        <br />
-        <span>Botón 3</span>
-      </ion-segment-button>
-</ion-segment></ion-footer>
+      </ion-icon>
+      <br />
+      <span>Botón 1</span>
+    </ion-segment-button>
+    <ion-segment-button (click)="getAllNuevasOfertas()" value="segment2">
+      <ion-icon name="md-globe"></ion-icon>
+      <br />
+      <span>Botón 2</span>
+    </ion-segment-button>
+    <ion-segment-button (click)="goToNuevaOferta()" value="segment3">
+      <ion-icon name="add"></ion-icon>
+      <br />
+      <span>Botón 3</span>
+    </ion-segment-button>
+  </ion-segment>
+</ion-footer>
