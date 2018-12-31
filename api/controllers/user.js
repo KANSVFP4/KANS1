@@ -224,7 +224,6 @@ function updateUser(req, res) {
                         });
                     }
 
-
                 } else {
                     User.findByIdAndUpdate(userId, update, (err, userUpdate) => {
 
@@ -263,8 +262,7 @@ function updateUser(req, res) {
 }
 
 
-module.exports = { // para exportar todas las funcoones 
-
+module.exports = {          // para exportar todas las funciones de este modulo
     pruebas,
     saveUser,
     loginUser,
