@@ -10,7 +10,7 @@ var Schema = mongoose.Schema;
 
 var UserSchema = Schema({
     nombre: String,
-    apellido: String, 
+    apellido: String,
     correo: String,
     contrasena: String,
     tel_celular: String,
@@ -18,5 +18,5 @@ var UserSchema = Schema({
 });
 
 module.exports = mongoose.model('User', UserSchema); //de esta forma al exportar se podra utilizar el 
-//objeto donde se lo llame con el use strict cuando se necesite este objeto d=tendremos un objeto de tipo 
+//objeto donde se lo llame con el use strict cuando se necesite este objeto d=tendremos un objeto de tipo
 //'User' que tendra un UserSchema al cual se le llamara y se le llenara de datos
