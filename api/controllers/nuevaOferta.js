@@ -21,7 +21,7 @@ function saveNuevaOferta(req, res) {
 
  
      nuevaOferta.Links_to_work = params.Links_to_work;
-     //solicitudEncomienda.estado = params.estado;
+     solicitudEncomienda.estado = params.estado;
      nuevaOferta.emitter=req.user.sub;
      nuevaOferta.Categoria = params.Categoria;
      nuevaOferta.OtraCategoria = params.OtraCategoria;
