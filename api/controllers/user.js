@@ -7,12 +7,10 @@ var jwt = require('../services/jwt');
 
 function pruebas(req, res) {
     res.status(200).send({
-
         message: 'probando una accion del controllador de usuarios del api resto con node ymongo'
     });
 
 }
-
 
 function saveUser(req, res) {
     var user = new User();
@@ -20,25 +18,25 @@ function saveUser(req, res) {
     // console.log(params);
 
     User.findOne({
-        '$and': [{ estado: '0' }, { correo: params.correo }]}, (err, users) => {
+        '$and': [{ estado: '0' }, { correo: params.correo }]
+    }, (err, users) => {
         if (err) {
             res.status(500).send({
                 message: "Error al guardar Usuario"
             });
-
         } else {
             if (users) {
                 return res.status(500).send({
                     message: "El Usuario ya Existe"
                 });
-             } else {
+            } else {
 
                 user.nombre = params.nombre;
                 user.apellido = params.apellido;
                 user.correo = params.correo;
                 user.contrasena = params.contrasena;
                 user.tel_celular = params.tel_celular;
-               
+
                 if (params.contrasena) {
 
                     // encriptar contrasena y guardar datos
@@ -92,7 +90,7 @@ function loginUser(req, res) {
     //console.log(params.getHash);
 
 
-    User.findOne( {correo: correo }, (err, user) => {
+    User.findOne({ correo: correo }, (err, user) => {
         if (err) {
             //console.log("aqui hay un error en la peticion");
             res.status(500).send({
@@ -155,12 +153,12 @@ function updateUser(req, res) {
 
 
     if (update.estadoContrasena == '1') {
-      //  console.log("entre para encriptar", update.estadoContrasena);
+        //  console.log("entre para encriptar", update.estadoContrasena);
         // encriptar contrasena y guardar datos
         hash = true;
         bcrypt.hash(update.contrasena, null, null, function (err, hash) {
             update.contrasena = hash;
-         //   console.log("contrasena nueva encriptada", update.contrasena);
+            //   console.log("contrasena nueva encriptada", update.contrasena);
             update.estadoContrasena == '';
 
             User.findByIdAndUpdate(userId, update, (err, userUpdate) => {
@@ -190,7 +188,7 @@ function updateUser(req, res) {
 
 
         User.findOne({
-            '$and': [{  }, { correo: update.correo }]
+            '$and': [{}, { correo: update.correo }]
         }, (err, users) => {
             if (err) {
                 res.status(500).send({
@@ -199,45 +197,42 @@ function updateUser(req, res) {
 
             } else {
                 if (users) {
-                        if(users._id!=update._id)
-                        {
-                            res.status(500).send({
-                                message: "El correo que desea ingresar pertenece a otro Usuario"
-                            });
-                        }else
-                        {
-                            User.findByIdAndUpdate(userId, update, (err, userUpdate) => {
+                    if (users._id != update._id) {
+                        res.status(500).send({
+                            message: "El correo que desea ingresar pertenece a otro Usuario"
+                        });
+                    } else {
+                        User.findByIdAndUpdate(userId, update, (err, userUpdate) => {
 
-                                if (err) {
-                                    res.status(500).send({
-                                        message: "Error al actualizar Usuario."
+                            if (err) {
+                                res.status(500).send({
+                                    message: "Error al actualizar Usuario."
+                                });
+
+                            } else {
+                                if (!userUpdate) {
+                                    res.status(404).send({
+                                        message: "El usuario no ha podido actualizarse."
                                     });
-                    
                                 } else {
-                                    if (!userUpdate) {
-                                        res.status(404).send({
-                                            message: "El usuario no ha podido actualizarse."
-                                        });
-                                    } else {
-                                        res.status(200).send({
-                                            user: userUpdate
-                                        });
-                                    }
+                                    res.status(200).send({
+                                        user: userUpdate
+                                    });
                                 }
-                    
-                            });
-                        }
+                            }
 
-                 
-                }else
-                {
+                        });
+                    }
+
+
+                } else {
                     User.findByIdAndUpdate(userId, update, (err, userUpdate) => {
 
                         if (err) {
                             res.status(500).send({
                                 message: "Error al actualizar Usuario."
                             });
-            
+
                         } else {
                             if (!userUpdate) {
                                 res.status(404).send({
@@ -249,7 +244,7 @@ function updateUser(req, res) {
                                 });
                             }
                         }
-            
+
                     });
                 }
             }
@@ -260,7 +255,7 @@ function updateUser(req, res) {
 
 
 
-        
+
 
     }
 
@@ -274,6 +269,6 @@ module.exports = { // para exportar todas las funcoones
     saveUser,
     loginUser,
     updateUser
-   
-    
+
+
 };

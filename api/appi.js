@@ -6,6 +6,9 @@ var app = express();
 //Notificaciones
 
 
+
+
+
 //cargar Rutas
 var user_routes = require('./routes/user');
 var nuevaOferta_routes = require('./routes/nuevaOferta');
@@ -14,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); //convertir a json als peticiones
 
 //configurar cabeceras http
-
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
@@ -23,6 +25,7 @@ app.use((req, res, next) => {
  
     next();
 });
+
 // rutas base
 app.use('/api', user_routes);
 app.use('/api', nuevaOferta_routes);
