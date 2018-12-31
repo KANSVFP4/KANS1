@@ -38,12 +38,12 @@ export class NuevaOfertaPage {
 
   public links_to_work;
   public Categoria;
-  public OtraCategoria = null;
+  public OtraCategoria = "No";
   public tiempoO;
   public precioO;
   public alcanceO;
   public inf_adicional;
-  public OtraRed = null;
+  public OtraRed = "No";
 
   public categoriaV: any[] = [{ "categoria": "Educacion" },
   { "categoria": "Ciencia" },

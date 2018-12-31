@@ -15,8 +15,14 @@
   <ion-card  *ngFor=" let ofertas of  vectorOfertas">
     <ion-item>
       <h2>
-          <b>Datos del Cliente</b>
+          <b>Category</b>
         </h2>
+        <p>{{ofertas.Categoria}}</p>
+
+        <h3>
+            <b>Social Network</b>
+          </h3>
+          <p>Faceboock: {{ofertas.Faceboock}}, Instagram:{{ofertas.Instagram}}, Twiter:{{ofertas.Twiter}}, Another : {{ofertas.OtraRed}}</p>
       </ion-item>
 
     

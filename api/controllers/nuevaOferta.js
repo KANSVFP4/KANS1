@@ -4,6 +4,8 @@ var bcrypt = require('bcrypt-nodejs');
 
 var NuevaOferta = require('../models/nuevaOferta'); //importar el modelo del usuario  o lo que son las clases comunes
 var jwt = require('../services/jwt');
+var path = require('path');
+var fs = require('fs');
 
 function saveNuevaOferta(req, res) {
 
@@ -60,7 +62,7 @@ function saveNuevaOferta(req, res) {
    // var message = Viaje.find({ '$and': [ {'$or':[{ estado:0 },{estado:1}]},{
       //receiver: userId
 
-      var message =NuevaOferta.find( (err, messagess) => {
+      var message =NuevaOferta.find().populate({ path: 'emitter'}).exec((err, messagess) => {
       if (err) {
         return res.status(500).send({
             message: 'No se ha podido obtener las ultimas ofertas'
