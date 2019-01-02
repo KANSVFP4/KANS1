@@ -7,9 +7,11 @@ import { UserService } from './services/user.services';
 import { PrincipalPage } from '../pages/principal/principal';
 import { HomePage } from '../pages/home/home';
 import { MiCuenta } from '../pages/mi_cuenta/mi_cuenta';
+
 @Component({
   templateUrl: 'app.html'
 })
+
 export class MyApp {
   rootPage:any = HomePage;
   @ViewChild('NAV') nav: Nav;
@@ -25,10 +27,7 @@ export class MyApp {
       this.rootPage = PrincipalPage;
     } else {
       this.rootPage = HomePage;
-    }
-
-
-    
+    }    
   }
 
 

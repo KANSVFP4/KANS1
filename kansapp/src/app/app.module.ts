@@ -25,10 +25,10 @@ import { NuevaOfertaPage } from '../pages/nueva_oferta/nueva_oferta';
     PrincipalPage,
     MiCuenta,
     PublicistaPage,
-    NuevaOfertaPage  
+    NuevaOfertaPage
   ],
   imports: [
-   
+
     BrowserModule,
     FormsModule,
     CustomFormsModule,
@@ -50,7 +50,7 @@ import { NuevaOfertaPage } from '../pages/nueva_oferta/nueva_oferta';
     SplashScreen,
     UserService,
     NuevaOfertaService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
