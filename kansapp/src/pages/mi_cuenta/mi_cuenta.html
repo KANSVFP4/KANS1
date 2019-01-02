@@ -15,22 +15,22 @@
   </ion-navbar>
 </ion-header>
 <ion-content class="getstarCuenta">
-  
+
   <img style="background: transparent; width: 150%;" src="assets/imgs/fondoMiCuentaVF.png" alt="">
-  
+
   <br>
   <br>
   <br>
-  
-  <form #FormularioUpdate="ngForm"   id="formUpdate" >
-  
-    
+
+  <form #FormularioUpdate="ngForm" id="formUpdate">
+
+
     <ion-list>
 
       <ion-item>
         <ion-label fixed>Nombres:</ion-label>
-        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -15%" #nombres="ngModel" [(ngModel)]="identity.nombre" name="nombres"
-          type="text" value="" pattern="[a-zA-Z ]*" required></ion-input>
+        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -15%" #nombres="ngModel"
+          [(ngModel)]="identity.nombre" name="nombres" type="text" value="" pattern="[a-zA-Z ]*" required></ion-input>
       </ion-item>
       <ion-item *ngIf="nombres.errors && (nombres.dirty || nombres.touched)">
         <ion-icon name="alert" item-start color="danger"></ion-icon>
@@ -40,8 +40,8 @@
 
       <ion-item>
         <ion-label fixed>Apellidos:</ion-label>
-        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -15%" #apellidos="ngModel" [(ngModel)]="identity.apellido" name="apellidos" type="text"
-          value="" pattern="[a-zA-Z ]*" required></ion-input>
+        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -15%" #apellidos="ngModel"
+          [(ngModel)]="identity.apellido" name="apellidos" type="text" value="" pattern="[a-zA-Z ]*" required></ion-input>
       </ion-item>
       <ion-item *ngIf="apellidos.errors && (apellidos.dirty || apellidos.touched)">
         <ion-icon name="alert" item-start color="danger"></ion-icon>
@@ -49,12 +49,10 @@
         <p ion-text color="danger" [hidden]="!apellidos.errors.required">Campo requerido</p>
       </ion-item>
 
-     
-
       <ion-item>
         <ion-label fixed>Correo:</ion-label>
-        <ion-input [disabled]='disableTextbox'style="text-align: left; margin-left: -15%" #correo="ngModel" [(ngModel)]="identity.correo" name="correo" type="text" value=""
-          required email></ion-input>
+        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -15%" #correo="ngModel"
+          [(ngModel)]="identity.correo" name="correo" type="text" value="" required email></ion-input>
       </ion-item>
       <ion-item *ngIf="correo.errors && (correo.dirty || correo.touched)">
         <ion-icon name="alert" item-start color="danger"></ion-icon>
@@ -64,8 +62,9 @@
 
       <ion-item>
         <ion-label fixed>Celular:</ion-label>
-        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -15%" #celular="ngModel" [(ngModel)]="identity.tel_celular" name="celular" type="text" value=""
-          required digits pattern="[0-9]*" minlength="10" maxlength="10"></ion-input>
+        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -15%" #celular="ngModel"
+          [(ngModel)]="identity.tel_celular" name="celular" type="text" value="" required digits pattern="[0-9]*"
+          minlength="10" maxlength="10"></ion-input>
       </ion-item>
       <ion-item *ngIf="celular.errors && (celular.dirty || celular.touched)">
         <ion-icon name="alert" item-start color="danger"></ion-icon>
@@ -78,8 +77,6 @@
 
     <br>
     <br>
-
     <input (click)="onUpdate()" type="submit" id="submit">
   </form>
-
 </ion-content>

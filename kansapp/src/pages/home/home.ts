@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { NavController, LoadingController, AlertController, MenuController  } from "ionic-angular";
+import { NavController, LoadingController, AlertController, MenuController } from "ionic-angular";
 
 import { RegistroPage } from "../registro/registro";
 import { UserService } from "../../app/services/user.services";
@@ -7,15 +7,17 @@ import { User } from "../../app/models/user";
 import { PrincipalPage } from "../principal/principal";
 /*import { ContactosPage } from "../contactanos/contactanos";
 import {TerminosPage} from '../terminos/terminos';*/
+
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
   //providers: [UserService]
 })
+
 export class HomePage implements OnInit {
   isActiveToggleTextPassword: Boolean = true;
   splash = true;
- 
+
   public obj = {
     email: null,
     password: null
@@ -60,7 +62,7 @@ export class HomePage implements OnInit {
   onCLick() {
     this.navCtrl.push(RegistroPage);
   }
- 
+
   public onSubmit() {
     //conseguir losdatos del usuario
     //animacion de carga del sistema
@@ -88,7 +90,7 @@ export class HomePage implements OnInit {
                 // aqui mensaje
                 console.log("el token nose ha generado");
               } else {
-                
+
                 localStorage.setItem("Token", token);
                 setTimeout(() => {
                   this.navCtrl.push(PrincipalPage);
