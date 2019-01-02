@@ -10,7 +10,7 @@ import { UserService } from "../../app/services/user.services";
 
 export class MiCuenta {
   public identity;
-  public estadoContrasena='0';
+  public estadoContrasena = '0';
 
   constructor(
     public navCtrl: NavController,
@@ -75,27 +75,27 @@ export class MiCuenta {
         console.log("mi JSON esta vacio");
         this.presentAlert();
       } else {
-    this.verificarUpdate();
-    this._userService.update_user(this.identity,this.estadoContrasena).subscribe(
-      response => {
-   
-        if (!response.user) {
-          var errorMessage = "El usuario no se actualizo";
-        } else {
-           setTimeout(() => {
-            this.showAlertCorrecto(
-              "Sus datos han sido actualizados correctamente"
-            );
-          }, 3000);
-          localStorage.setItem('identity', JSON.stringify(this.identity))
-        }
-      },
-      err => {
-        var errorMessage = <any>err;
-        if (errorMessage) {
-          console.log(errorMessage);
+        this.verificarUpdate();
+        this._userService.update_user(this.identity, this.estadoContrasena).subscribe(
+          response => {
 
-          try {
+            if (!response.user) {
+              var errorMessage = "El usuario no se actualizo";
+            } else {
+              setTimeout(() => {
+                this.showAlertCorrecto(
+                  "Sus datos han sido actualizados correctamente"
+                );
+              }, 3000);
+              localStorage.setItem('identity', JSON.stringify(this.identity))
+            }
+          },
+          err => {
+            var errorMessage = <any>err;
+            if (errorMessage) {
+              console.log(errorMessage);
+
+              try {
                 var body = JSON.parse(err._body);
                 errorMessage = body.message;
               } catch {
@@ -104,10 +104,10 @@ export class MiCuenta {
               setTimeout(() => {
                 this.showAlert(errorMessage);
               }, 3000);
-        }
+            }
+          }
+        );
       }
-    );
-  }
     } catch (error) {
       //this.showAlert("Verifique que la información sea correcta");
     }
@@ -126,7 +126,7 @@ export class MiCuenta {
     var bool_nombres = this.soloLetras(this.identity.nombre);
     var bool_apellidos = this.soloLetras(this.identity.apellido);
     var bool_celular = this.soloNumeros(this.identity.tel_celular);
-  
+
     if (
       this.identity.nombre == "" ||
       this.identity.apellido == "" ||
