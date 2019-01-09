@@ -58,6 +58,7 @@ export class MiCuenta {
       }
     }
   }
+  
 
   presentAlertCedula() {
     let alert = this.alertCtrl.create({
