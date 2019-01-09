@@ -33,7 +33,6 @@ export class MiCuenta {
   validarCedula() {
     var cad: any = this.identity.cedula;
     var i;
-
     var total = 0;
     var longitud = cad.length;
     var longcheck = longitud - 1;
