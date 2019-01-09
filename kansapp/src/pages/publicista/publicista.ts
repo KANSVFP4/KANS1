@@ -17,6 +17,7 @@ import { NuevaOfertaPage } from '../../pages/nueva_oferta/nueva_oferta';
 export class PublicistaPage {
  
   public vectorOfertas;
+  public banderLinks =false;
   
   @ViewChild('NAV') nav: Nav;
 
@@ -24,6 +25,10 @@ export class PublicistaPage {
   
   }
 
+  mostrarLinks()
+  {
+   this.banderLinks= !this.banderLinks;
+  }
 
   goToNuevaOferta() {
     this.navCtrl.push(NuevaOfertaPage);
