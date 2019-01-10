@@ -19,11 +19,13 @@ export class PublicistaPage {
   public vectorOfertas;
   public vectorMyOfertas;
   public banderLinks =false;
+ public banderMyOffert =false;
+ public banderNewOffert = false;
   
   @ViewChild('NAV') nav: Nav;
 
   constructor(public _userService: UserService, public _nuevaOfertaService : NuevaOfertaService , public navCtrl: NavController, public alertCtrl: AlertController,navParams: NavParams, public modalCtrl: ModalController) {
-  
+  this.getAllNuevasOfertas();
   }
 
   mostrarLinks()
@@ -38,6 +40,9 @@ export class PublicistaPage {
 
   getAllNuevasOfertas()
   {
+    this.vectorMyOfertas=null;
+    this.banderNewOffert= true;
+    this.banderMyOffert=false;
   
     this._nuevaOfertaService.getOfertas(this._userService.getToken()).subscribe(response => {
 
@@ -58,7 +63,9 @@ export class PublicistaPage {
   
   getMyNuevasOfertas()
   {
-  
+  this.vectorOfertas=null;
+  this.banderNewOffert= false;
+  this.banderMyOffert=true;
     this._nuevaOfertaService.getMyOfertas(this._userService.getToken()).subscribe(response => {
 
       console.log("esto iene de la peticion"+ JSON.stringify(response));
