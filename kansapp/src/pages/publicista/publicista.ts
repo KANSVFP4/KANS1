@@ -17,6 +17,7 @@ import { NuevaOfertaPage } from '../../pages/nueva_oferta/nueva_oferta';
 export class PublicistaPage {
  
   public vectorOfertas;
+  public vectorMyOfertas;
   public banderLinks =false;
   
   @ViewChild('NAV') nav: Nav;
@@ -44,12 +45,32 @@ export class PublicistaPage {
       if (response.messagess[0] != undefined) {
         this.vectorOfertas = response.messagess;
         //this.darvuelta();
-        console.log("viajes mios", this.vectorOfertas);
+        console.log("todos los viajes", this.vectorOfertas);
         //localStorage.setItem("vectorViajesMios", JSON.stringify(this.vectorViajes));
 
 
       }
-    }, (err) => { console.log("Existen COmplicaciones Intente mas tarde", err) }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+  }
+
+  
+  getMyNuevasOfertas()
+  {
+  
+    this._nuevaOfertaService.getMyOfertas(this._userService.getToken()).subscribe(response => {
+
+      console.log("esto iene de la peticion"+ JSON.stringify(response));
+      if (response.messagess[0] != undefined) {
+        this.vectorMyOfertas = response.messagess;
+        //this.darvuelta();
+        console.log("viajes mios", this.vectorMyOfertas);
+        //localStorage.setItem("vectorViajesMios", JSON.stringify(this.vectorViajes));
+
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
 
   }
