@@ -8,7 +8,10 @@
   
   #btnIngresar
   {
-    padding: 50%;
+    padding: 1.2%;
+    display: block;
+   
+ 
     border-radius: 58px 58px 58px 58px;
     -moz-border-radius: 58px 58px 58px 58px;
     -webkit-border-radius: 58px 58px 58px 58px;
@@ -16,6 +19,7 @@
       background:none;
       opacity: 0.8;
       color: white;
+      font-weight: bold;
   }
 
 .getstart {
@@ -38,7 +42,7 @@
     display: block;
     margin: 0 auto;
     right: 0;
-    left: 10%;
+    left: 20%;
     margin-left: 37%;
     width: 100%;
     height: auto;
