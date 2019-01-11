@@ -1,14 +1,19 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+  <ion-navbar hideBackButton color="colorapp" >
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>
+      Menú Principal
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
+<ion-content  style="background-image: url('assets/imgs/fondoPaginaPrincipal.png');background-size: cover;">
+  
+  
+  
+  <!--<ion-list>   ///////////////////puede servir para el evento
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-icon [name]="item.icon" item-start></ion-icon>
       {{item.title}}
@@ -19,5 +24,12 @@
   </ion-list>
   <div *ngIf="selectedItem" padding>
     You navigated here from <b>{{selectedItem.title}}</b>
+  </div>////////////////////fin-->
+
+
+
+  <div style="width: 100%; margin-left: 0%; margin-top: 10%">
+    <img id="imganeTitulo" src="assets/imgs/logokans.png" style="width: 40%;">
   </div>
+
 </ion-content>

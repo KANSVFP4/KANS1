@@ -1,0 +1,32 @@
+.rows1 {
+    background-image: url('../../../assets/img/portada.png');
+    /*     background-color: #343a40!important;
+   */
+    background-color: white;
+    background-size: cover;
+    background-position: right center;
+  }
+  
+  
+  
+  .fileContainer [type=file] {
+  
+    display: block;
+  
+    filter: alpha(opacity=0);
+    height: 5%;
+    width: 10%;
+    opacity: 0;
+   
+    
+    text-align: right;
+    
+   
+  }
+  /*
+  .fileContainer
+  {
+    background-color: blue;
+    min-height: 10%;
+    width: 10%;
+  }*/

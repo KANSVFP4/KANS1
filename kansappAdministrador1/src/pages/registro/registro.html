@@ -1,0 +1,108 @@
+<ion-header>
+    <ion-navbar hideBackButton color="colorapp">
+        <button ion-button menuToggle icon-only>
+            <ion-icon name='menu'></ion-icon>
+        </button>
+        <ion-title>
+            Menú Principal
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content style="background-image: url('assets/imgs/fondoPaginaPrincipal.png');background-size: cover;">
+
+    <div class="container">
+        <form #IngreseUsuario="ngForm" (ngSubmit)="onRegisterSecretaria()" novalidate>
+            <div class="row">
+                <div class="col-lg-12">
+                    <img src="../../assets/imgs/imgNuevoUsuario.png" style="display: block; margin-left: 40%; width: 15%;  height:90%; border-radius:50%">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="nombre"> Ingrese el Nombre</label>
+                        <input type="text" required class="form-control" #Nombre="ngModel" [(ngModel)]="secretaria_register.nombre"
+                            name="nombre" id="nombre" pattern="[ A-Za-zñÑ]*">
+                        <div [hidden]="Nombre.valid || Nombre.pristine" class="alert alert-warning" id="ocu">
+                            Ingrese solo letras
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cedula">Ingrese la Cédula</label>
+                        <input type="text" required class="form-control" #Cedula="ngModel" [(ngModel)]="secretaria_register.cedula"
+                            name="cedula" id="cedula" pattern="[0-9]*">
+                        <div [hidden]="Cedula.valid || Cedula.pristine" class="alert alert-warning">
+                            Ingrese solo números
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contrasena">Ingrese la contraseña</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend" (click)="myFunctionUsuario()">
+                                <div class="input-group-text">
+                                    <i class="{{clase_ojoUsuario}}"></i>
+                                </div>
+                            </div>
+                            <input type="{{tipoUsuario}}" required class="form-control" aria-label="Text input with checkbox"
+                                #Password="ngModel" [(ngModel)]="secretaria_register.contrasena" name="contrasena" id="contrasena"
+                                pattern=".{6,}">
+                        </div>
+                        <div [hidden]="Password.valid || Password.pristine" class="alert alert-warning">
+                            Contraseña mínima de 6 caracteres
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="celular">Ingrese numero celular</label>
+                        <input type="text" required class="form-control" #Celular="ngModel" [(ngModel)]="secretaria_register.tel_celular"
+                            name="celular" id="celular" pattern="[0-9]*">
+                        <div [hidden]="Celular.valid || Celular.pristine" class="alert alert-warning">
+                            Ingrese solo números
+                        </div>
+                    </div>
+                    <div class="card-columns">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="apellido">Ingrese el Apellido</label>
+                        <input type="text" required class="form-control" #Apellido="ngModel" [(ngModel)]="secretaria_register.apellido"
+                            name="apellido" id="apellido" pattern="[ A-Za-zñÑ]*">
+                        <div [hidden]="Apellido.valid || Apellido.pristine" class="alert alert-warning">
+                            Ingrese solo letras
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="correo">Ingrese el Correo</label>
+                        <input type="email" required class="form-control" #Correo="ngModel" [(ngModel)]="secretaria_register.correo"
+                            name="correo" id="correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                        <div [hidden]="Correo.valid || Correo.pristine" class="alert alert-warning">
+                            Ingrese un correo electrónico válido
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Ingrese numero telefono</label>
+                        <input type="text" required class="form-control" #Telefono="ngModel" [(ngModel)]="secretaria_register.tel_convencional"
+                            name="telefono" id="telefono" pattern="[0-9]*">
+                        <div [hidden]="Telefono.valid || Telefono.pristine" class="alert alert-warning">
+                            Ingrese solo números
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <hr style="background-color: #e9ecef; width: 50%;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <button type="submit" class="btn btn-primary" [disabled]="!IngreseUsuario.form.valid">Guardar
+                        Usuario
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</ion-content>

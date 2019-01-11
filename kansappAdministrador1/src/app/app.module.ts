@@ -11,11 +11,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AdministradorService } from './services/administrador.services';
 
+//mis paginas
+import { RegistroPage} from '../pages/registro/registro';
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    RegistroPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,8 @@ import { AdministradorService } from './services/administrador.services';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    RegistroPage
   ],
   providers: [
     StatusBar,

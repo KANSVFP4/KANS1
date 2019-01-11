@@ -3,8 +3,11 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { AdministradorService } from './services/administrador.services';
+
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { RegistroPage } from '../pages/registro/registro';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,13 +19,14 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private _administradorService: AdministradorService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'List', component: ListPage },
+      { title: 'registro', component: RegistroPage }
     ];
 
   }
@@ -34,6 +38,12 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    if (this._administradorService.getIdentity()) {
+      this.rootPage = ListPage;
+    } else {
+      this.rootPage = HomePage;
+    }  
   }
 
   openPage(page) {
