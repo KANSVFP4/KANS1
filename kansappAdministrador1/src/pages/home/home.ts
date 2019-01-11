@@ -2,9 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { NavController, LoadingController, AlertController, MenuController } from "ionic-angular";
 
 //import { RegistroPage } from "../registro/registro";
-//import { UserService } from "../../app/services/user.services";
-//import { User } from "../../app/models/user";
-//import { PrincipalPage } from "../principal/principal";
+import { AdministradorService } from "../../app/services/administrador.services";
+import { Administrador } from "../../app/models/administrador";
+import { ListPage } from "../list/list";
 /*import { ContactosPage } from "../contactanos/contactanos";
 import {TerminosPage} from '../terminos/terminos';*/
 
@@ -23,40 +23,40 @@ export class HomePage implements OnInit {
     password: null
   };
 
-  //public user: User;
+  public administrador: Administrador;
 
   public identity;
   public token;
 
   constructor(
     public navCtrl: NavController,
-    //private _userService: UserService,
+    private _administradorService: AdministradorService,
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     public menuCtrl: MenuController
   ) {
-    //this.user = new User("", "", "", "", "", "", "", "");
+    this.administrador = new Administrador("", "", "", "", "", "", "");
   }
 
   ngOnInit() {
-    //this.identity = this._userService.getIdentity();
-    //this.token = this._userService.getToken();
+    this.identity = this._administradorService.getIdentity();
+    this.token = this._administradorService.getToken();
     console.log("las vaibles del Storage");
     console.log(this.identity + this.token);
 
-    //  if(this.identity == null){
-    //    this.menuCtrl.enable(false, 'myMenu');
-    //  }else{
-    //    this.menuCtrl.enable(true, 'myMenu');
-    //  }
+    /* if(this.identity == null){
+        this.menuCtrl.enable(false, 'myMenu');
+    }else{
+       this.menuCtrl.enable(true, 'myMenu');
+     }*/
   }
 
-  /*ionViewDidLoad() {
-    //this.tabBarElement.style.display = 'none';
+ /* ionViewDidLoad() {
+    this.tabBarElement.style.display = 'none';
     setTimeout(() => {
       this.splash = false;
     }, 4000);
-    //this.tabBarElement.style.display = 'none';
+    this.tabBarElement.style.display = 'none';
   }*/
 
   onCLick() {
@@ -64,10 +64,10 @@ export class HomePage implements OnInit {
   }
 
  public onSubmit() {
-   /* //conseguir losdatos del usuario
+    //conseguir losdatos del usuario
     //animacion de carga del sistema
     this.verificarUsuario();
-    this._userService.singup(this.obj, " ").subscribe(
+    this._administradorService.singupAdministrador(this.obj, " ").subscribe(
       response => {
         console.log(response + "esto viene en la respuesta");
         let identity = response.user;
@@ -81,7 +81,7 @@ export class HomePage implements OnInit {
           // crear local storage
           localStorage.setItem("identity", JSON.stringify(identity));
 
-          this._userService.singup(this.obj, "true").subscribe(
+          this._administradorService.singupAdministrador(this.obj, "true").subscribe(
             response => {
               let token = response.token;
               this.token = token;
@@ -93,7 +93,7 @@ export class HomePage implements OnInit {
 
                 localStorage.setItem("Token", token);
                 setTimeout(() => {
-                  this.navCtrl.push(PrincipalPage);
+                  this.navCtrl.push(ListPage);
                 }, 2000);
               }
             },
@@ -128,7 +128,7 @@ export class HomePage implements OnInit {
         }
       }
     );
-*/
+
   }
 
   verificarUsuario() {
