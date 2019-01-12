@@ -1,18 +1,46 @@
 <ion-header>
-  <ion-navbar hideBackButton color="colorapp" >
+  <ion-navbar hideBackButton color="colorapp">
     <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
     </button>
     <ion-title>
       Menú Principal
+
+
+      
+      <button (click)="historial()" style="background: transparent; left:0; right:0; max-width:3%; float: right; margin-right: 5%; display: block; max-height:100%;">
+        <ion-icon item-left>
+          <img src="assets/imgs/notification.png">
+        </ion-icon>
+      </button>
+      
+
+      <li class="nav-item"  style="margin-left:15%; margin-top:-5%;">
+      
+            <div class="input-group" style="width:80% ">
+              <input style="font-size: 80%"  title="Buscardor de usuarios" class="form-control" type="text" placeholder="Buscar"
+                #Buscar="ngModel" [(ngModel)]="buscar" name="buscar">
+              <span class="input-group-append">
+                <button title="Buscardor de usuarios" class="btn" (click)="busqueda()"
+                  type="button">
+                  <ion-icon  style="width: 120%" name="search"></ion-icon>
+                </button>
+              </span>
+            </div>
+         
+        </li>
+        
+      
     </ion-title>
+
+
   </ion-navbar>
 </ion-header>
 
-<ion-content  style="background-image: url('assets/imgs/fondoPaginaPrincipal.png');background-size: cover;">
-  
-  
-  
+<ion-content style="background-image: url('assets/imgs/fondoPaginaPrincipal.png');background-size: cover;">
+
+
+
   <!--<ion-list>   ///////////////////puede servir para el evento
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-icon [name]="item.icon" item-start></ion-icon>
