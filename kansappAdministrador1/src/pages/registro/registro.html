@@ -12,7 +12,7 @@
 <ion-content style="background-image: url('assets/imgs/fondoPaginaPrincipal.png');background-size: cover;">
 
     <div class="container">
-        <form #IngreseUsuario="ngForm" (ngSubmit)="onRegisterSecretaria()" novalidate>
+        <form #IngreseUsuario="ngForm" (ngSubmit)="onRegisterAdministrador()" novalidate>
             <div class="row">
                 <div class="col-lg-12">
                     <img src="../../assets/imgs/imgNuevoUsuario.png" style="display: block; margin-left: 40%; width: 15%;  height:90%; border-radius:50%">
@@ -29,20 +29,13 @@
                             Ingrese solo letras
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="cedula">Ingrese la Cédula</label>
-                        <input type="text" required class="form-control" #Cedula="ngModel" [(ngModel)]="secretaria_register.cedula"
-                            name="cedula" id="cedula" pattern="[0-9]*">
-                        <div [hidden]="Cedula.valid || Cedula.pristine" class="alert alert-warning">
-                            Ingrese solo números
-                        </div>
-                    </div>
+                   
                     <div class="form-group">
                         <label for="contrasena">Ingrese la contraseña</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend" (click)="myFunctionUsuario()">
                                 <div class="input-group-text">
-                                    <i class="{{clase_ojoUsuario}}"></i>
+                                    <i > <ion-icon name="{{clase_ojoUsuario}}"> </ion-icon></i>
                                 </div>
                             </div>
                             <input type="{{tipoUsuario}}" required class="form-control" aria-label="Text input with checkbox"

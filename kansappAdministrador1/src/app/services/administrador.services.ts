@@ -37,7 +37,7 @@ public cont =0;
     console.log(params);
     let headers = new Headers({ "Content-type": "application/json" });
     return this._http
-      .post(this.url + "register", params, { headers: headers })
+      .post(this.url + "registerAdministrador", params, { headers: headers })
       .map(res => res.json());
   }
 
