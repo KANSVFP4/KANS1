@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { SolicitudesService } from "../../app/services/solicitudes.services";
+import { AdministradorService } from "../../app/services/administrador.services";
 
 @Component({
   selector: 'page-list',
@@ -8,30 +10,39 @@ import { NavController, NavParams } from 'ionic-angular';
 export class ListPage {
   selectedItem: any;
   icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  items: Array<{ title: string, note: string, icon: string }>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+  public  vectorMyOfertas: any;
+   public banderNewOffert: any;
+   public banderMyOffert: any;
+   public vectorOfertas: any;
 
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
+  constructor(public _administradorService:AdministradorService, public _solicitudesService: SolicitudesService, public navCtrl: NavController, public navParams: NavParams) {
 
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
   }
 
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
-    });
+
+
+  NuevasSolicitudes() {
+    this.vectorMyOfertas = null;
+    this.banderNewOffert = true;
+    this.banderMyOffert = false;
+
+    this._solicitudesService.getSolicitudes(this._administradorService.getToken()).subscribe(response => {
+
+      console.log("esto iene de la peticion" + JSON.stringify(response));
+      if (response.messagess[0] != undefined) {
+        this.vectorOfertas = response.messagess;
+        //this.darvuelta();
+        console.log("trayendo solicitudes de viajes", this.vectorOfertas);
+        //localStorage.setItem("vectorViajesMios", JSON.stringify(this.vectorViajes));
+
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
   }
 }
+
+
+

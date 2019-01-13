@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AdministradorService } from './services/administrador.services';
+import { SolicitudesService } from './services/solicitudes.services';
 
 //mis paginas
 import { RegistroPage} from '../pages/registro/registro';
@@ -37,6 +38,7 @@ import { RegistroPage} from '../pages/registro/registro';
     StatusBar,
     SplashScreen,
     AdministradorService,
+    SolicitudesService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
