@@ -16,7 +16,7 @@ export class ListPage {
    public banderNewOffert: any;
    public banderMyOffert: any;
    public vectorOfertas: any;
-
+   public arrayDeCadenas: any;
   constructor(public _administradorService:AdministradorService, public _solicitudesService: SolicitudesService, public navCtrl: NavController, public navParams: NavParams) {
 
   }
@@ -33,11 +33,13 @@ export class ListPage {
       console.log("esto iene de la peticion" + JSON.stringify(response));
       if (response.messagess[0] != undefined) {
         this.vectorOfertas = response.messagess;
+       
+       // console.log(arrayDeCadenas);
         //this.darvuelta();
         console.log("trayendo solicitudes de viajes", this.vectorOfertas);
         //localStorage.setItem("vectorViajesMios", JSON.stringify(this.vectorViajes));
-
-
+        
+       
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );

@@ -41,23 +41,85 @@
 
 
 
-  <!--<ion-list>   ///////////////////puede servir para el evento
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>////////////////////fin-->
+
+      <ion-card   *ngFor=" let ofertas of  vectorOfertas">
+          <ion-item>
+      
+          
+            <img style="width: 5%;  padding: 0%" src="../../assets/imgs/user.png">
+          <h2 align="center" style="margin-top: -3%; margin-left:-70%">{{ofertas.emitter.nombre}},{{ofertas.emitter.apellido}}</h2>
+            <h3>
+              <b>Category</b>
+              <br>
+            </h3>
+
+            <div *ngFor="let cadenas of ofertas.Categoria.split(',')">
+           <label  class="checkbox-inline"><input type="checkbox" value="asdasd">{{cadenas}}</label>
+          </div>
+           
+            <p flex>{{ofertas.Categoria}}, Another: {{ofertas.OtraCategoria}}</p>
+            <p></p>
+            <br>
+      
+            <h3>
+              <b>Social Network</b>
+              <br>
+            </h3>
+            <p> <b>Faceboock:</b> {{ofertas.Faceboock}}, <b>Instagram:</b>{{ofertas.Instagram}}, <b>Twiter:</b>{{ofertas.Twiter}},
+              <b>Another
+                :</b>{{ofertas.OtraRed}}</p>
+      
+            <br>
+      
+            <div style=" margin-top:-1% ">
+              <img src="../../assets/imgs/time.png" style="width: 3%; height: 3%;">
+              <p align="center" style="margin-top:-2.5%; margin-left:-75%; font-size: 15pt"> {{ofertas.Tiempo}} H</p>
+            </div>
+      
+            <div style="margin-left:30%; margin-top:0% ">
+              <img src="../../assets/imgs/bills.png" style="width: 5%; height: 5%;">
+              <p align="center" style="margin-top: -5%; margin-left:-40%; font-size: 15pt"> {{ofertas.Precio}} $ </p>
+            </div>
+            <div style="margin-left:65%; margin-top:0% ">
+              <img src="../../assets/imgs/group.png" style="width: 10%; height: 10%;">
+              <p align="center" style=" margin-left:30%; font-size: 15pt"> {{ofertas.Alcance}} </p>
+            </div>
+         <br>
+         <br>
+         <br>
+         <br>
+        
+            <button style="margin-left:45%; background: none" (click)="mostrarLinks()">
+              <ion-icon name="md-arrow-dropdown"></ion-icon>
+            </button>
+      
+      
+           
+      
+          </ion-item>
+      
+         
+          <div *ngIf="banderLinks">
+              <h3><b>Links to Work</b></h3>
+              <ion-textarea value={{ofertas.Links_to_work}}> </ion-textarea>
+            </div>
+      
+          
+      
+      
+      
+        </ion-card>
+
+  
+
 
 
 
   <div style="width: 100%; margin-left: 0%; margin-top: 10%">
     <img id="imganeTitulo" src="assets/imgs/logokans.png" style="width: 40%;">
   </div>
+
+
+
 
 </ion-content>
