@@ -35,10 +35,10 @@
 
   </ion-navbar>
 </ion-header>
-
+<h1 style="text-align: center">New Oferts</h1>
 <ion-content style="background-image: url('assets/imgs/fondoPaginaPrincipal.png');background-size: cover;">
-  <br>
-  <h1 style="text-align: center">New Oferts</h1>
+
+
 
 
   <ion-card *ngFor=" let ofertas of  vectorOfertas">
@@ -65,21 +65,9 @@
       <br>
       <br>
 
-      <h2 style="margin-left: 30%">
-        <b>Category</b>
-        <br>
-        <br>
-      </h2>
 
-      <div style="margin-left: 30%" *ngFor="let cadenas of ofertas.Categoria.split(',')">
-        <label class="checkbox-inline"><input type="checkbox" value="asdasd" checked>{{cadenas}}</label>
-        <br>
-        <br>
 
-      </div>
-      <br>
-
-      <div style="margin-left:50%; margin-top:-15%">
+      <div style="margin-left:10%; ">
         <h2>
           <b>Social Network</b>
           <br>
@@ -103,32 +91,70 @@
         <img src="../../assets/imgs/other.png" style="width: 10%; margin-left: -3%;">
         <p style="margin-left: 7%; margin-top: -4%"><b>Another:</b>{{ofertas.OtraRed}}</p>
 
+
       </div>
 
+      <div style="margin-top:-16%">
+        <h2 style="margin-left: 40%">
+          <b>Category</b>
+          <br>
+          <br>
+        </h2>
+        <h2 style="margin-left: 60%; margin-top:-3%">
+            <b>Links to work</b>
+            <br>
+            <br>
+          </h2>
+
+        
+
+        <div style="margin-left: 40%; margin-top: 0%" *ngFor="let cadenas of ofertas.Categoria.split(',')">
+          <label class="checkbox-inline"><input type="checkbox" value="{{cadenas}}" checked>{{cadenas}}</label>
+          <br>
+          <br>
+
+        </div>
+
+        <label style="margin-left: 40%" class="checkbox-inline"><input type="checkbox" checked value="">Otra:{{ofertas.OtraCategoria}}</label>
+
+
+        <div style="margin-left:60%; ">
+            <textarea rows="4" cols="40">
+                {{ofertas.Links_to_work}}
+                </textarea>
+         </div>
+      </div>
+      <!-- socila networks-->
 
       <br>
-
+      <br>
+      <br>
+      <br>
       <br>
 
-
-      <button style="margin-left:45%; background: none" (click)="mostrarLinks()">
-        <ion-icon name="md-arrow-dropdown"></ion-icon>
-      </button>
-
-
+  
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
     </ion-item>
-
-
-    <div *ngIf="banderLinks">
-      <h3><b>Links to Work</b></h3>
-      <ion-textarea value={{ofertas.Links_to_work}}> </ion-textarea>
+   
+ 
+    <div style="margin-left:55%; margin-top:-25%; float: inherit">
+ 
+      <textarea  rows="5" style="resize: both;  width: 80%;" value={{ofertas.Links_to_work}}>{{ofertas.Links_to_work}}</textarea >
     </div>
+ 
+<br>
+<br>
+<br>
+<br>
 
 
-
-
+   
 
   </ion-card>
 
