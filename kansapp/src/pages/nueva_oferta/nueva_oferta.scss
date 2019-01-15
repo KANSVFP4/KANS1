@@ -1,49 +1,49 @@
 .css-select {
-    font-size: 14px;
-    width: 100% !important;
-    max-width: 100% !important;
-    text-align: center;
-    border: solid 0px #cdced0;
-    justify-content: center;
-    border-radius: 4px;
-    color: rgb(96, 96, 96);
-    margin-left: auto;
-    margin-right: auto;
-    background-color: transparent;
-  }
-  
-.title_menu {
-  color: rgb(126, 126, 126);  
-}
-  
-.css-text {
-  justify-content: center;
-  text-align: center;
   font-size: 14px;
-  width: 25% ;
-  border: solid 1px #cdced0;
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: center;
+  border: solid 0px #cdced0;
+  justify-content: center;
   border-radius: 4px;
   color: rgb(96, 96, 96);
+  margin-left: auto;
+  margin-right: auto;
   background-color: transparent;
 }
 
+.title_menu {
+color: rgb(126, 126, 126);  
+}
+
+.css-text {
+justify-content: center;
+text-align: center;
+font-size: 14px;
+width: 25% ;
+border: solid 1px #cdced0;
+border-radius: 4px;
+color: rgb(96, 96, 96);
+background-color: transparent;
+}
+
 .btnRedesSociales{
-  background-color: transparent;
-  width: 15%;
-  margin-left: 5%
+background-color: transparent;
+width: 15%;
+margin-left: 5%
 }
-  
+
 .btnRedesSocialesAct{
-  background-color: transparent;
-  width: 16%;
-  float: left;
-  margin-left: 5%;
+background-color: transparent;
+width: 16%;
+float: left;
+margin-left: 5%;
 }
-  
+
 #submitNO{
-  width: 100%;
-  padding: 2.5%;
-  background: #2B58A7;
-  color: white;
-  font-weight: bold;
+width: 100%;
+padding: 2.5%;
+background: #2B58A7;
+color: white;
+font-weight: bold;
 }
