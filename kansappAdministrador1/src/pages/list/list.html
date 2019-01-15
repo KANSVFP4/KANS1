@@ -65,9 +65,19 @@
       <br>
       <br>
 
+      <h2 style="">
+        <b>Links to work</b>
+        <br>
+        <br>
+      </h2>
 
+      <div style=" font-size:80%;  ">
+        <textarea rows="10" cols="50">
+            {{ofertas.Links_to_work}}
+            </textarea>
+     </div>
 
-      <div style="margin-left:10%; ">
+      <div style="margin-left:40%; margin-top:-17% ">
         <h2>
           <b>Social Network</b>
           <br>
@@ -94,35 +104,27 @@
 
       </div>
 
-      <div style="margin-top:-16%">
-        <h2 style="margin-left: 40%">
+      <div style="margin-top:-14%">
+        <h2 style="margin-left: 60%">
           <b>Category</b>
           <br>
           <br>
         </h2>
-        <h2 style="margin-left: 60%; margin-top:-3%">
-            <b>Links to work</b>
-            <br>
-            <br>
-          </h2>
+        
 
         
 
-        <div style="margin-left: 40%; margin-top: 0%" *ngFor="let cadenas of ofertas.Categoria.split(',')">
+        <div style="margin-left: 60%; margin-top: 0%" *ngFor="let cadenas of ofertas.Categoria.split(',')">
           <label class="checkbox-inline"><input type="checkbox" value="{{cadenas}}" checked>{{cadenas}}</label>
           <br>
           <br>
 
         </div>
 
-        <label style="margin-left: 40%" class="checkbox-inline"><input type="checkbox" checked value="">Otra:{{ofertas.OtraCategoria}}</label>
+        <label style="margin-left: 60%" class="checkbox-inline"><input type="checkbox" checked value="">Otra:{{ofertas.OtraCategoria}}</label>
 
 
-        <div style="margin-left:60%; ">
-            <textarea rows="4" cols="40">
-                {{ofertas.Links_to_work}}
-                </textarea>
-         </div>
+        
       </div>
       <!-- socila networks-->
 
