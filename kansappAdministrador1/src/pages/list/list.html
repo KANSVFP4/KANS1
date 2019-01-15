@@ -35,15 +35,16 @@
 
   </ion-navbar>
 </ion-header>
-<h1 style="text-align: center">New Oferts</h1>
+
 <ion-content style="background-image: url('assets/imgs/fondoPaginaPrincipal.png');background-size: cover;">
+  <h1 style="text-align: center">New Oferts</h1>
 
 
 
-
-  <ion-card *ngFor=" let ofertas of  vectorOfertas">
+  <ion-card *ngFor=" let ofertas of  vectorOfertas"  style="width: 90%; margin-left: 5%">
     <ion-item>
-      <img style="width: 5%;  padding: 0%" src="../../assets/imgs/user.png">
+      <div  style="margin-left:5% ">
+      <img style="width: 5%; " src="../../assets/imgs/user.png">
       <h2 align="center" style="margin-top: -3%; margin-left:-70%">{{ofertas.emitter.nombre}},{{ofertas.emitter.apellido}}</h2>
 
       <div>
@@ -60,9 +61,11 @@
           <img src="../../assets/imgs/group.png" style="width: 10%; height: 10%;">
           <p align="center" style=" margin-top:-8%; margin-left:-50%; font-size: 15pt"> {{ofertas.Alcance}} </p>
         </div>
+      </div>
 
       </div>
-      <br> <br> <br> <br>
+      
+      <div  style="padding-top:3%;margin-left: 5%">
 
       <h2 style="">
         <b>Links to work</b>
@@ -76,7 +79,7 @@
             </textarea>
      </div>
 
-      <div style="margin-left:40%; margin-top:-17% ">
+      <div style="margin-left:42%; margin-top:-20% ">
         <h2>
           <b>Social Network</b>
           <br>
@@ -103,8 +106,8 @@
 
       </div>
 
-      <div style="margin-top:-14%">
-        <h2 style="margin-left: 60%">
+      <div style="margin-top:-18%">
+        <h2 style="margin-left: 67%">
           <b>Category</b>
           <br>
           <br>
@@ -113,50 +116,34 @@
 
         
 
-        <div style="margin-left: 60%; margin-top: 0%" *ngFor="let cadenas of ofertas.Categoria.split(',')">
+        <div style="margin-left: 67%; margin-top: 0%" *ngFor="let cadenas of ofertas.Categoria.split(',')">
           <label class="checkbox-inline"><input type="checkbox" value="{{cadenas}}" checked>{{cadenas}}</label>
           <br>
           <br>
 
         </div>
 
-        <label style="margin-left: 60%" class="checkbox-inline"><input type="checkbox" checked value="">Otra:{{ofertas.OtraCategoria}}</label>
+        <label style="margin-left: 67%" class="checkbox-inline"><input type="checkbox" checked value="">Otra:{{ofertas.OtraCategoria}}</label>
 
 
         
       </div>
-      <!-- socila networks-->
+
+    </div>
+     
 
       <br>
       <br>
-      <br>
-      <br>
-      <br>
-
-  
-<br>
-<br>
-<br>
-<br>
-<br>
+     <br>
 
 
     </ion-item>
    
  
-    <div style="margin-left:55%; margin-top:-25%; float: inherit">
- 
-      <textarea  rows="5" style="resize: both;  width: 80%;" value={{ofertas.Links_to_work}}>{{ofertas.Links_to_work}}</textarea >
-    </div>
- 
-<br>
-<br>
-<br>
-<br>
+<button> Aceptar y Aprobar</button>
 
 
    
-
   </ion-card>
 
 
