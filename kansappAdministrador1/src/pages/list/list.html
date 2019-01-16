@@ -39,11 +39,15 @@
 <ion-content style="background-image: url('assets/imgs/fondoPaginaPrincipal.png');background-size: cover;">
   <h1 style="text-align: center">New Oferts</h1>
 
+ <!-- Build your select: -->
 
+    
 
   <ion-card *ngFor=" let ofertas of  vectorOfertas"  style="width: 90%; margin-left: 5%">
     <ion-item>
-      <div  style="margin-left:5% ">
+
+        
+       <div   style="margin-left:5% ">
       <img style="width: 5%; " src="../../assets/imgs/user.png">
       <h2 align="center" style="margin-top: -3%; margin-left:-70%">{{ofertas.emitter.nombre}},{{ofertas.emitter.apellido}}</h2>
 
@@ -64,10 +68,28 @@
       </div>
 
       </div>
-      
-      <div  style="padding-top:3%;margin-left: 5%">
 
-      <h2 style="">
+      <div  style="margin-left: 85%; margin-top: 5%">
+          <h2>
+              <b>Extra Information</b>
+              <br>
+              <br>
+            </h2>
+      <p>{{ofertas.Inf_extra}}</p>
+      <br><br>
+      <br> <br>     
+          </div>
+
+      <div class=”row”>  
+
+ 
+      
+      <div  style="margin-top:-12% ;margin-left: 5%">
+
+         
+
+
+      <h2>
         <b>Links to work</b>
         <br>
         <br>
@@ -82,9 +104,10 @@
       <div style="margin-left:42%; margin-top:-20% ">
         <h2>
           <b>Social Network</b>
-          <br>
-          <br>
+          
         </h2>
+        <br>
+        <br>
 
 
         <img src="../../assets/imgs/btnFaceboockAct.png" style="width: 3%; height: 3%; padding: 0; margin: 0">
@@ -106,7 +129,7 @@
 
       </div>
 
-      <div style="margin-top:-18%">
+      <div style="margin-top:-19%; padding-bottom: 10% ">
         <h2 style="margin-left: 67%">
           <b>Category</b>
           <br>
@@ -117,7 +140,7 @@
         
 
         <div style="margin-left: 67%; margin-top: 0%" *ngFor="let cadenas of ofertas.Categoria.split(',')">
-          <label class="checkbox-inline"><input type="checkbox" value="{{cadenas}}" checked>{{cadenas}}</label>
+          <label class="checkbox-inline"><input  type="checkbox"  value="{{cadenas}}" checked>{{cadenas}}</label>
           <br>
           <br>
 
@@ -125,29 +148,45 @@
 
         <label style="margin-left: 67%" class="checkbox-inline"><input type="checkbox" checked value="">Otra:{{ofertas.OtraCategoria}}</label>
 
-
+        
         
       </div>
 
+        
+
+      
+
     </div>
+
+  
+
+  
+  </div>
+
      
-
-      <br>
-      <br>
-     <br>
-
 
     </ion-item>
    
+
  
-<button> Aceptar y Aprobar</button>
+    <ion-select  multiple="true" required class="css-select"  id="selectCategoria" placeholder="Modify Category" #categoria="ngModel"
+    [(ngModel)]="Categoria" name="categoria" (ionChange)="activarOtro();" required>
+    <ion-label>Category</ion-label>
+    <ion-option value="{{cadenas}}" *ngFor="let cadenas of ofertas.Categoria.split(',')">{{cadenas}}</ion-option>
+  </ion-select>
+
+
+
+    <button style="font-size: 80%" (click)="AceptarOfertaNueva(ofertas, 1)" class="btn btn-primary"> Approve and Accept</button>
+    
+<button class="btn btn-danger"> Denny</button>
 
 
    
   </ion-card>
 
 
-
+  
 
 
 
