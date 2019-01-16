@@ -31,6 +31,12 @@ export class ListPage {
     emitter: null
   };
 
+  public objDenegar=
+  {
+    _id:null,
+    estado:null
+  }
+
 
   constructor(public loadingCtrl: LoadingController, public alertCtrl: AlertController, public _administradorService: AdministradorService, public _solicitudesService: SolicitudesService, public navCtrl: NavController, public navParams: NavParams) {
 
@@ -112,16 +118,18 @@ export class ListPage {
     this._solicitudesService.update_Solicitudes(this.objUpdateOferta, this._administradorService.getToken()).subscribe(
       response => {
         if (!response.user) {
-          var errorMessage = "La solicitud no ha sido habilitada";
+          var errorMessage = "the request has not been executed";
         } else {
+         
           setTimeout(() => {
             this.showAlertCorrecto(
-              "La solicitud se ha habilitado"
+              "the offer has been accepted"
             );
           }, 3000);
 
-
-this.NuevasSolicitudes();
+          this.vectorOfertas=null;
+          this.NuevasSolicitudes();
+          
 
         }
       },
@@ -134,7 +142,7 @@ this.NuevasSolicitudes();
             var body = JSON.parse(err._body);
             errorMessage = body.message;
           } catch {
-            errorMessage = "No hay conexión intentelo más tarde";
+            errorMessage = "No connection try it later";
           }
           setTimeout(() => {
             this.showAlert(errorMessage);
@@ -147,6 +155,48 @@ this.NuevasSolicitudes();
   }
 
 
+  Denegar(Vector, estado) {
+    this.verificarSolicitud();
+    this.objDenegar._id=Vector._id;
+    this.objDenegar.estado=estado;
+
+    this._solicitudesService.update_Solicitudes(this.objDenegar, this._administradorService.getToken()).subscribe(
+      response => {
+        if (!response.user) {
+          var errorMessage = "the request has not been executed ";
+        } else {
+          
+          setTimeout(() => {
+            this.showAlertCorrecto(
+              "the offer has been denied"
+            );
+          }, 3000);
+          this.vectorOfertas=null;
+          this.NuevasSolicitudes();
+
+          this.NuevasSolicitudes();
+
+        }
+      },
+      err => {
+        var errorMessage = <any>err;
+        if (errorMessage) {
+          console.log(errorMessage);
+
+          try {
+            var body = JSON.parse(err._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No connection try it later";
+          }
+          setTimeout(() => {
+            this.showAlert(errorMessage);
+          }, 3000);
+        }
+      }
+    );
+
+  }
 
 
 
