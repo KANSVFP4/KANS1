@@ -30,7 +30,7 @@ public cont =0;
 getOfertas(token)
 {
     let headers = new Headers({ "Content-type": "application/json","Authorization":token });
-    return this._http.get(this.url +"nuevasOfertas", { headers: headers })
+    return this._http.get(this.url +"nuevasOfertas/1", { headers: headers })
       .map(res => res.json());
       
 

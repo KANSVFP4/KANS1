@@ -13,14 +13,17 @@
 <ion-content class="cards-bg social-cards">
 
 
-  <h1 *ngIf="banderMyOffert"  style="margin-left:10%"> My Offers</h1>
+  <h1 *ngIf="banderMyOffert" style="margin-left:10%"> My Offers</h1>
   <h1 *ngIf="banderNewOffert" style="margin-left:10%"> New Offers</h1>
 
 
-  <ion-card   *ngFor=" let ofertas of  vectorOfertas">
+  <ion-card *ngFor=" let ofertas of  vectorOfertas">
     <ion-item>
+      
+        
+      
+     
 
-    
       <img style="width: 20%;  padding: 0%" src="../../assets/imgs/user.png">
       <h2 align="center" style="margin-top: -12%; margin-left:18%">{{ofertas.emitter.nombre}},{{ofertas.emitter.apellido}}</h2>
 
@@ -31,7 +34,7 @@
         <br>
       </h3>
       <p flex>{{ofertas.Categoria}}</p>
-      <p>Another: {{ofertas.OtraCategoria}}</p>
+
       <br>
 
       <h3>
@@ -63,87 +66,89 @@
       </button>
 
 
-     
+
 
     </ion-item>
 
-   
-    <div *ngIf="banderLinks">
-        <h3><b>Links to Work</b></h3>
-        <ion-textarea value={{ofertas.Links_to_work}}> </ion-textarea>
-      </div>
 
-    
+    <div *ngIf="banderLinks">
+      <h3><b>Links to Work</b></h3>
+      <ion-textarea value={{ofertas.Links_to_work}}> </ion-textarea>
+    </div>
+
+
 
 
 
   </ion-card>
 
 
-<!-- carta de my  nuevas ofertas-->
+  <!-- carta de my  nuevas ofertas-->
 
-<ion-card   *ngFor=" let ofertas of  vectorMyOfertas">
-  <ion-item>
-
-   
-
-    <img style="width: 20%;  padding: 0%" src="../../assets/imgs/user.png">
-    <h2 align="center" style="margin-top: -12%; margin-left:18%">Yo</h2>
+  <ion-card *ngFor=" let ofertas of  vectorMyOfertas">
+    <ion-item>
 
 
-    <br>
-    <h3>
-      <b>Category</b>
+      <p  style="text-align: center; color: blue" *ngIf="ofertas.estado == 1"><b>Estado:</b>Aprobada</p>
+      <p  style="text-align: center; color: red" *ngIf="ofertas.estado == 2"><b>Estado:</b>Denegada</p>
+      <p  style="text-align: center; color: green" *ngIf="ofertas.estado == 0"><b>Estado:</b>Denegada</p>
+      <img style="width: 20%;  padding: 0%" src="../../assets/imgs/user.png">
+      <h2 align="center" style="margin-top: -12%; margin-left:18%">Yo</h2>
+
+
       <br>
-    </h3>
-    <p flex>{{ofertas.Categoria}}</p>
-    <p>Another: {{ofertas.OtraCategoria}}</p>
-    <br>
+      <h3>
+        <b>Category</b>
+        <br>
+      </h3>
+      <p flex>{{ofertas.Categoria}}</p>
 
-    <h3>
-      <b>Social Network</b>
       <br>
-    </h3>
-    <p> <b>Faceboock:</b> {{ofertas.Faceboock}}, <b>Instagram:</b>{{ofertas.Instagram}}, <b>Twiter:</b>{{ofertas.Twiter}},
-      <b>Another
-        :</b>{{ofertas.OtraRed}}</p>
 
-    <br>
+      <h3>
+        <b>Social Network</b>
+        <br>
+      </h3>
+      <p> <b>Faceboock:</b> {{ofertas.Faceboock}}, <b>Instagram:</b>{{ofertas.Instagram}}, <b>Twiter:</b>{{ofertas.Twiter}},
+      </p>
+      <p><b>Another:</b>{{ofertas.OtraRed}}</p>
 
-    <div style=" margin-top:-1% ">
-      <img src="../../assets/imgs/time.png" style="width: 10%; height: 10%;">
-      <p align="center" style="margin-top: -10%; margin-left:-65%; font-size: 15pt"> {{ofertas.Tiempo}} H</p>
-    </div>
+      <br>
 
-    <div style="margin-left:30%; margin-top:-10% ">
-      <img src="../../assets/imgs/bills.png" style="width: 18%; height: 18%;">
-      <p align="center" style="margin-top: -15%; margin-left:-40%; font-size: 15pt"> {{ofertas.Precio}} $ </p>
-    </div>
-    <div style="margin-left:65%; margin-top:-10% ">
-      <img src="../../assets/imgs/group.png" style="width: 35%; height: 35%;">
-      <p align="center" style="margin-top: -30%; margin-left:30%; font-size: 15pt"> {{ofertas.Alcance}} </p>
-    </div>
-    <hr>
-    <button style="margin-left:45%; background: none" (click)="mostrarLinks()">
-      <ion-icon name="md-arrow-dropdown"></ion-icon>
-    </button>
+      <div style=" margin-top:-1% ">
+        <img src="../../assets/imgs/time.png" style="width: 10%; height: 10%;">
+        <p align="center" style="margin-top: -10%; margin-left:-65%; font-size: 15pt"> {{ofertas.Tiempo}} H</p>
+      </div>
+
+      <div style="margin-left:30%; margin-top:-10% ">
+        <img src="../../assets/imgs/bills.png" style="width: 18%; height: 18%;">
+        <p align="center" style="margin-top: -15%; margin-left:-40%; font-size: 15pt"> {{ofertas.Precio}} $ </p>
+      </div>
+      <div style="margin-left:65%; margin-top:-10% ">
+        <img src="../../assets/imgs/group.png" style="width: 35%; height: 35%;">
+        <p align="center" style="margin-top: -30%; margin-left:30%; font-size: 15pt"> {{ofertas.Alcance}} </p>
+      </div>
+      <hr>
+      <button style="margin-left:45%; background: none" (click)="mostrarLinks()">
+        <ion-icon name="md-arrow-dropdown"></ion-icon>
+      </button>
 
 
-   
 
-  </ion-item>
 
- 
-  <div *ngIf="banderLinks">
+    </ion-item>
+
+
+    <div *ngIf="banderLinks">
       <h3><b>Links to Work</b></h3>
       <ion-textarea value={{ofertas.Links_to_work}}> </ion-textarea>
     </div>
 
-  
 
 
 
-</ion-card>
+
+  </ion-card>
 
 
 
@@ -152,7 +157,7 @@
 
 <ion-footer>
   <ion-segment [(ngModel)]="mymodel">
-    <ion-segment-button  (click)="getMyNuevasOfertas()" value="segment1">
+    <ion-segment-button (click)="getMyNuevasOfertas()" value="segment1">
       <ion-icon name="ios-albums">
 
       </ion-icon>

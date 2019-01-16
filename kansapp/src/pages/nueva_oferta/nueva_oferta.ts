@@ -52,7 +52,7 @@ export class NuevaOfertaPage {
   { "categoria": "Cultura" },
   { "categoria": "Gastronomia" },
   { "categoria": "Medicina" },
-  { "categoria": "Otro" },
+  { "categoria": "Varios" },
   ];
 
 

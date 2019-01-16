@@ -91,7 +91,7 @@ function saveNuevaOferta(req, res) {
    // var message = Viaje.find({ '$and': [ {'$or':[{ estado:0 },{estado:1}]},{
       //receiver: userId
 
-      var message =NuevaOferta.find({emitter: userId},(err, messagess) => {
+      var message =NuevaOferta.find({'$and':[{'$or':[{ estado:0 },{estado:1},{estado:2}]},{emitter: userId}]},(err, messagess) => {
       if (err) {
         return res.status(500).send({
             message: 'No se ha podido obtener las ultimas ofertas'
