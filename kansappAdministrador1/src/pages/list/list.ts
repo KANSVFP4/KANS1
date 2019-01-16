@@ -198,8 +198,22 @@ export class ListPage {
           }, 3000);
           this.vectorOfertas=null;
           this.NuevasSolicitudes();
+          var enviarCorreo=
+          {
+             obj:Vector,
+             estado:estado
+          }
 
-          this.NuevasSolicitudes();
+         this._envioEmail.envioEmail(this._administradorService.getToken(), enviarCorreo).subscribe(
+           response => {
+             console.log("Se envio el correo electronico ", response);
+             location.reload(true);
+           },
+           error => {
+             console.log(error);
+           }
+         );
+         
 
         }
       },
