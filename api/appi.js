@@ -12,6 +12,7 @@ var app = express();
 var user_routes = require('./routes/user');
 var nuevaOferta_routes = require('./routes/nuevaOferta');
 var administrador_rutes = require('./routes/administrador');
+var email = require('./routes/enviarCorreo');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); //convertir a json als peticiones
@@ -30,7 +31,7 @@ app.use((req, res, next) => {
 app.use('/api', user_routes);
 app.use('/api', nuevaOferta_routes);
 app.use('/api', administrador_rutes);
-
+app.use('/api',email);
 
 
 //app.use('/api',paypal);

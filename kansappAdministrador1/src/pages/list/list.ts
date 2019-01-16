@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { SolicitudesService } from "../../app/services/solicitudes.services";
 import { AdministradorService } from "../../app/services/administrador.services";
+import { EnvioEmail } from "../../app/services/correo.service";
 
 @Component({
   selector: 'page-list',
@@ -38,7 +39,14 @@ export class ListPage {
   }
 
 
-  constructor(public loadingCtrl: LoadingController, public alertCtrl: AlertController, public _administradorService: AdministradorService, public _solicitudesService: SolicitudesService, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public loadingCtrl: LoadingController, 
+    public alertCtrl: AlertController,
+     public _administradorService: AdministradorService, 
+     public _solicitudesService: SolicitudesService,
+     public _envioEmail:EnvioEmail,
+      public navCtrl: NavController, 
+      public navParams: NavParams) {
 
 
 
@@ -129,6 +137,23 @@ export class ListPage {
 
           this.vectorOfertas=null;
           this.NuevasSolicitudes();
+
+          // envio de correo
+           var enviarCorreo=
+           {
+              obj:Vector,
+              estado:estado
+           }
+
+          this._envioEmail.envioEmail(this._administradorService.getToken(), enviarCorreo).subscribe(
+            response => {
+              console.log("Se envio el correo electronico ", response);
+              location.reload(true);
+            },
+            error => {
+              console.log(error);
+            }
+          );
           
 
         }

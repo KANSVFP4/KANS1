@@ -11,6 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AdministradorService } from './services/administrador.services';
 import { SolicitudesService } from './services/solicitudes.services';
+import { EnvioEmail } from './services/correo.service';
 
 //mis paginas
 import { RegistroPage} from '../pages/registro/registro';
@@ -39,6 +40,7 @@ import { RegistroPage} from '../pages/registro/registro';
     SplashScreen,
     AdministradorService,
     SolicitudesService,
+    EnvioEmail,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
