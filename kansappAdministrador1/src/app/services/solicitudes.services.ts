@@ -18,9 +18,22 @@ export class SolicitudesService {
 
     getSolicitudes(token) {
         let headers = new Headers({ "Content-type": "application/json", "Authorization": token });
-        return this._http.get(this.url + "nuevasOfertas", { headers: headers })
+        return this._http.get(this.url + "nuevasOfertas/0", { headers: headers })
             .map(res => res.json());
 
 
     }
+
+
+    update_Solicitudes(oferta_to_update, token) {
+      
+    
+        let json = JSON.stringify(oferta_to_update);
+        let params = json;
+        console.log(params);
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": token });
+        return this._http
+          .put(this.url + "update-oferta/" + oferta_to_update._id, params, { headers: headers })
+          .map(res => res.json());
+      }
 }

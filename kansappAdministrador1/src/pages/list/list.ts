@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { SolicitudesService } from "../../app/services/solicitudes.services";
 import { AdministradorService } from "../../app/services/administrador.services";
 
@@ -21,27 +21,52 @@ export class ListPage {
   public Categoria;
 
   public objUpdateOferta = {
-    estado:null,
+    _id: null,
+    estado: null,
     Links_to_work: null,
     Categoria: null,
-    OtraCategoria: null,
-    Faceboock: null,
-    Instagram: null,
-    Twiter: null,
-    OtraRed: null,
-    Tiempo: null,
-    Precio: null,
-    Alcance: null,
+
+
     Inf_extra: null,
-    emitter:null
+    emitter: null
   };
 
-  
-  constructor(public _administradorService: AdministradorService, public _solicitudesService: SolicitudesService, public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(public loadingCtrl: LoadingController, public alertCtrl: AlertController, public _administradorService: AdministradorService, public _solicitudesService: SolicitudesService, public navCtrl: NavController, public navParams: NavParams) {
 
 
 
 
+  }
+
+  verificarSolicitud() {
+    let loading = this.loadingCtrl.create({
+      content: "Processing"
+    });
+    loading.present();
+    setTimeout(() => {
+      loading.dismiss();
+    }, 3000);
+
+  }
+
+  showAlertCorrecto(corec) {
+    let alert = this.alertCtrl.create({
+      title: "Correcto",
+      subTitle: corec,
+      buttons: ["OK"]
+    });
+    alert.present();
+  }
+
+
+  showAlert(errorr) {
+    let alert = this.alertCtrl.create({
+      subTitle: "Error",
+      message: errorr,
+      buttons: ["OK"]
+    });
+    alert.present();
   }
 
   activarOtro() {
@@ -72,24 +97,58 @@ export class ListPage {
     );
   }
 
-  AceptarOfertaNueva(Vector,estado)
-  {
+  AceptarOfertaNueva(Vector, estado) {
+    this.verificarSolicitud()
+    console.log("vector ofertas deve venir al que di click" + JSON.stringify(Vector));
 
-console.log("vector ofertas deve venir al que di click"+JSON.stringify(Vector));
-this.objUpdateOferta.estado=estado;
-this.objUpdateOferta.Links_to_work=Vector.Links_to_work;
-this.objUpdateOferta.Categoria =this.Categoria;
-this.objUpdateOferta.Inf_extra=Vector.Inf_extra;
-this.objUpdateOferta.emitter=Vector.emitter._id;
-   
+    this.objUpdateOferta._id = Vector._id;
+    this.objUpdateOferta.estado = estado;
+    this.objUpdateOferta.Links_to_work = Vector.Links_to_work;
+    this.objUpdateOferta.Categoria = this.Categoria;
+    this.objUpdateOferta.Inf_extra = Vector.Inf_extra;
+    this.objUpdateOferta.emitter = Vector.emitter._id;
 
-   
-  
-    
+
+    this._solicitudesService.update_Solicitudes(this.objUpdateOferta, this._administradorService.getToken()).subscribe(
+      response => {
+        if (!response.user) {
+          var errorMessage = "La solicitud no ha sido habilitada";
+        } else {
+          setTimeout(() => {
+            this.showAlertCorrecto(
+              "La solicitud se ha habilitado"
+            );
+          }, 3000);
+
+
+this.NuevasSolicitudes();
+
+        }
+      },
+      err => {
+        var errorMessage = <any>err;
+        if (errorMessage) {
+          console.log(errorMessage);
+
+          try {
+            var body = JSON.parse(err._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+          }
+          setTimeout(() => {
+            this.showAlert(errorMessage);
+          }, 3000);
+        }
+      }
+    );
+
+
   }
 
- 
-  
+
+
+
 
 }
 

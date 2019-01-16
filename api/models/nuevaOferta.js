@@ -21,6 +21,7 @@ var NuevaOfertaSchema = Schema({
     Precio: String,
     Alcance: String,
     Inf_extra: String,
+    estado:String,
     emitter: { type: Schema.ObjectId, ref: "User" },
 });
 

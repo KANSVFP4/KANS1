@@ -35,6 +35,7 @@ function saveNuevaOferta(req, res) {
      nuevaOferta.Precio=params.Precio;
      nuevaOferta.Alcance = params.Alcance;
      nuevaOferta.Inf_extra = params.Inf_extra;
+     nuevaOferta.estado=0;
  
      console.log("encominda" + nuevaOferta);
  
@@ -61,8 +62,8 @@ function saveNuevaOferta(req, res) {
   
    // var message = Viaje.find({ '$and': [ {'$or':[{ estado:0 },{estado:1}]},{
       //receiver: userId
-
-      var message =NuevaOferta.find().populate({ path: 'emitter'}).exec((err, messagess) => {
+      var estado = req.params.estado;
+      var message =NuevaOferta.find({ estado: estado }).populate({ path: 'emitter'}).exec((err, messagess) => {
       if (err) {
         return res.status(500).send({
             message: 'No se ha podido obtener las ultimas ofertas'
@@ -108,11 +109,46 @@ function saveNuevaOferta(req, res) {
       });
     });
   }
+
+
+  function updateOferta(req, res){
+
+    var userId = req.params.id;
+    var update = req.body;
+
+    console.log("recisemos si es el mismo"+userId);
+
+
+    NuevaOferta.findByIdAndUpdate(userId, update, (err, userUpdate) => {
+
+      if (err) {
+          res.status(500).send({
+              message: "Error al actualizar Usuario."
+          });
+
+      } else {
+          if (!userUpdate) {
+              res.status(404).send({
+                  message: "El usuario no ha podido actualizarse."
+              });
+          } else {
+              res.status(200).send({
+                  user: userUpdate
+              });
+          }
+      }
+
+  });
+
+  }
+
+
  module.exports = { // para exportar todas las funcoones 
 
     saveNuevaOferta,
     getAllNuevasOfertas,
-    getMyOfertas
+    getMyOfertas,
+    updateOferta
     
    
     
