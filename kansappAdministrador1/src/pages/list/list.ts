@@ -21,6 +21,8 @@ export class ListPage {
 
   public Categoria;
 
+  public varNewOffer= false;
+
   public objUpdateOferta = {
     _id: null,
     estado: null,
@@ -97,6 +99,7 @@ export class ListPage {
     this.vectorMyOfertas = null;
     this.banderNewOffert = true;
     this.banderMyOffert = false;
+    this.varNewOffer=true;
 
     this._solicitudesService.getSolicitudes(this._administradorService.getToken()).subscribe(response => {
 

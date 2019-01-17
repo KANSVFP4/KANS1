@@ -13,7 +13,7 @@ function saveAdministrador(req, res) {
     // console.log(params);
 
     Administrador.findOne({
-        '$and': [{ estado: '0' }, { correo: params.correo }]
+        '$and': [{ correo: params.correo }]
     }, (err, users) => {
         if (err) {
             res.status(500).send({
