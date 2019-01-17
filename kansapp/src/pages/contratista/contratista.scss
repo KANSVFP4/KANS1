@@ -1,0 +1,194 @@
+ion-navbar[hidebackbutton] button[menutoggle] {
+  display: block !important;
+}
+ 
+.getstarPrincipal {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+.css-select {
+  font-size: 14px;
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: center;
+  border: solid 0px #cdced0;
+  justify-content: center;
+  border-radius: 4px;
+  color: rgb(96, 96, 96);
+  margin-left: auto;
+  margin-right: auto;
+  background-color: transparent;
+}
+
+.css-datetime {
+  text-align: center;
+  font-size: 14px;
+}
+
+.css-text {
+  font-size: 14px;
+  float: left;
+  max-width: 49% !important;
+  justify-content: center;
+  border: solid 1px #cdced0;
+  border-radius: 4px;
+  color: rgb(96, 96, 96);
+  height: 0px;
+  padding: 0;
+  background-color: transparent;
+  margin-right: 1%;
+}
+
+.picker {
+  margin: 0;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.list_2,
+.list_1,
+.list_3,
+.list_Exp,
+#buttm,
+.list_E {
+  height: 90px;
+  white-space: normal;
+  display: block;
+  padding-left: 10%;
+  padding-right: 15%;
+}
+
+.css-itemSelec {
+  max-width: 100% !important;
+  justify-content: center;
+  border: solid 1px #cdced0;
+  border-radius: 4px;
+  color: rgb(96, 96, 96);
+  height: 0px;
+  background-color: transparent;
+  text-align: center;
+  font-size: 14px;
+}
+
+.rutasGeol {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
+
+.rutasGeol:focus {
+  outline: none;
+}
+
+.form_princi {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12pt;
+  padding-left: 5%;
+}
+
+.title_menu {
+  color: rgb(126, 126, 126);
+}
+
+#buttm {
+  text-align: center;
+  border-radius: 4px;
+  height: 48px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.list_Etex1 {
+  height: 90px;
+  white-space: normal;
+  display: block;
+  padding-left: 10%;
+  padding-right: 15%;
+}
+
+.textare::placeholder {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 6pt;
+}
+
+#page_principal {
+  height: 100px;
+  white-space: normal;
+  display: block;
+  padding-left: 10%;
+  padding-right: 15%;
+}
+
+.css-btn {
+  max-width: 100% !important;
+  justify-content: center; //border: solid 1px #cdced0;
+  border-radius: 4px;
+  color: rgb(96, 96, 96);
+  height: 0px;
+  background-color: transparent;
+  text-align: center;
+  height: 50%;
+  margin-top: 15%;
+}
+
+.btn1 {
+  background: transparent;
+  text-align: center;
+  height: 48px;
+  width: 100%;
+  margin: 0 auto;
+  border: 0px;
+  color: rgb(96, 96, 96);
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.css-TextArea {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: solid 1px #cdced0;
+  border-radius: 4px;
+  height: 100px;
+}
+
+.textare {
+  // background: darkgray;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  text-align: justify;
+  font-size: 12px;
+  color: rgb(96, 96, 96);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.DetalleEnc {
+  height: 90px;
+  white-space: normal;
+  display: block;
+  padding-left: 10%;
+  padding-right: 15%;
+  padding-bottom: 135px;
+}
+
+.alert-sub-title {
+  color: #595959;
+  text-align: justify;
+  padding: 0;
+}
+
+.alert-head {
+  color: #333333;
+  width: 100%;
+}
+
+.alert-message p {
+  color: #949696;;
+}

@@ -9,12 +9,16 @@ import { HomePage } from '../pages/home/home';
 import { CustomFormsModule } from 'ng2-validation';
 import { UserService } from './services/user.services';
 import { NuevaOfertaService } from './services/ofertas.services';
+import { PayPalService } from './services/paypal.service';
 import { FormsModule } from '@angular/forms';
 import { RegistroPage } from '../pages/registro/registro';
 import { PrincipalPage } from '../pages/principal/principal';
 import { MiCuenta } from '../pages/mi_cuenta/mi_cuenta';
 import { PublicistaPage } from '../pages/publicista/publicista';
 import { NuevaOfertaPage } from '../pages/nueva_oferta/nueva_oferta';
+
+import { ContratistaPage } from '../pages/contratista/contratista';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 @NgModule({
@@ -25,7 +29,8 @@ import { NuevaOfertaPage } from '../pages/nueva_oferta/nueva_oferta';
     PrincipalPage,
     MiCuenta,
     PublicistaPage,
-    NuevaOfertaPage
+    NuevaOfertaPage,
+    ContratistaPage
   ],
   imports: [
 
@@ -43,13 +48,17 @@ import { NuevaOfertaPage } from '../pages/nueva_oferta/nueva_oferta';
     PrincipalPage,
     MiCuenta,
     PublicistaPage,
-    NuevaOfertaPage
+    NuevaOfertaPage,
+    ContratistaPage,
+    
   ],
   providers: [
     StatusBar,
     SplashScreen,
     UserService,
     NuevaOfertaService,
+    PayPalService,
+    InAppBrowser,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

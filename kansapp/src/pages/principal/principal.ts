@@ -3,6 +3,7 @@ import { Platform, Nav,  } from 'ionic-angular';
 import { NavController, AlertController } from "ionic-angular";
 import { UserService } from "../../app/services/user.services";
 import { PublicistaPage } from '../publicista/publicista';
+import { ContratistaPage } from '../contratista/contratista';
 
 import { Observable } from "rxjs";
 
@@ -23,6 +24,11 @@ export class PrincipalPage {
 
   goToPublicistaPage() {
     this.navCtrl.push(PublicistaPage);
+  }
+
+  goToContratistaPage()
+  {
+    this.navCtrl.push(ContratistaPage);
   }
 
   
