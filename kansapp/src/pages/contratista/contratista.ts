@@ -60,32 +60,13 @@ export class ContratistaPage {
   }
 
   
-  getMyNuevasOfertas()
-  {
-  this.vectorOfertas=null;
-  this.banderNewOffert= false;
-  this.banderMyOffert=true;
-    this._nuevaOfertaService.getMyOfertas(this._userService.getToken()).subscribe(response => {
-
-      console.log("esto iene de la peticion"+ JSON.stringify(response));
-      if (response.messagess[0] != undefined) {
-        this.vectorMyOfertas = response.messagess;
-        //this.darvuelta();
-        console.log("viajes mios", this.vectorMyOfertas);
-        //localStorage.setItem("vectorViajesMios", JSON.stringify(this.vectorViajes));
-
-
-      }
-    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
-    );
-
-  }
-
+  
 
   pago(vector) {
 
     let data =
     {
+      contratista: this._userService.getIdentity(),
       amount: vector.Precio,
       idViaje: vector._id,
       pagoDe: 'advertising service'
@@ -129,6 +110,27 @@ export class ContratistaPage {
     confirm.present();
   }
   
+
+  getMyOfertasPendientes()
+  {
+  this.vectorOfertas=null;
+  this.banderNewOffert= false;
+  this.banderMyOffert=true;
+    this._nuevaOfertaService.getMyOfertasPendientes(this._userService.getToken()).subscribe(response => {
+
+      console.log("esto iene de la peticion"+ JSON.stringify(response));
+      if (response.messagess[0] != undefined) {
+        this.vectorMyOfertas = response.messagess;
+        //this.darvuelta();
+        console.log("viajes mios", this.vectorMyOfertas);
+        //localStorage.setItem("vectorViajesMios", JSON.stringify(this.vectorViajes));
+
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+  }
 }
 
 

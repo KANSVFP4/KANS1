@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 var app = require('./appi');
 var port = process.env.PORT || 3977;
 
-//var Viaje = require('./models/viaje');
+var Oferta = require('./models/nuevaOferta');
 
 mongoose.connect('mongodb://localhost:27017/kansdb', (err, res) => {
     if (err) {
@@ -35,6 +35,7 @@ app.globalTipoPago = '';
 app.globalTipoSolicitud = "";
 app.post('/api/createPayment', function (req, res) {
     console.log('iquenomas viene', req.body);
+    app.Idcontratista=req.body.contratista._id;
     app.globalId = req.body.idViaje;
     app.globalAmount = req.body.amount;
     var create_payment_json = {
@@ -80,6 +81,7 @@ app.post('/api/createPayment', function (req, res) {
 
 app.get('/executePayment', function (req, res) {
     console.log("entre ejecurte es es el valor"+app.globalAmount);
+   
     var payment_Id = req.query.paymentId;
     var payer_id = req.query.PayerID;
     var execute_payment_json = {
@@ -101,10 +103,29 @@ app.get('/executePayment', function (req, res) {
         } else {
             console.log("Get Payment Response");
             console.log(JSON.stringify(payment));
-            res.send("Transaccion Completa");
+           // res.send("Transaccion Completa");
+
 
 
             // de aqui borre el if
+            console.log("ide de contratis",app.Idcontratista)
+
+            Oferta.updateMany({ _id: app.globalId }, { '$set': { estadoPago: "0" }, '$set':{contratista:app.Idcontratista} }, (err, solicitudViajeUpdate) => {
+
+                if (err) {
+                    res.status(500).send({ message: "Error al actualizar estado paggo oferta" });
+
+                } else {
+                    if (!solicitudViajeUpdate) {
+                        res.status(404).send({ message: "La oferta no se ha apagado" });
+                    } else {
+                        //console.log(solicitudViajeUpdate);
+                        res.status(200).send("transaction Completed...Close this window to continue");
+
+                    }
+                }
+
+            });
            
 
 

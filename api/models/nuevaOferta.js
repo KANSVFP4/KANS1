@@ -22,7 +22,9 @@ var NuevaOfertaSchema = Schema({
     Alcance: String,
     Inf_extra: String,
     estado:String,
+    estadoPago:String,
     emitter: { type: Schema.ObjectId, ref: "User" },
+    contratista: { type: Schema.ObjectId, ref: "User" }
 });
 
 module.exports = mongoose.model('NuevaOferta', NuevaOfertaSchema); 

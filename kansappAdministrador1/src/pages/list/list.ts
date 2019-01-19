@@ -17,6 +17,7 @@ export class ListPage {
   public banderNewOffert: any;
   public banderMyOffert: any;
   public vectorOfertas: any;
+  public vectorOfertasPorPagar: any;
   public arrayDeCadenas: any;
 
   public Categoria;
@@ -151,7 +152,7 @@ export class ListPage {
           this._envioEmail.envioEmail(this._administradorService.getToken(), enviarCorreo).subscribe(
             response => {
               console.log("Se envio el correo electronico ", response);
-              location.reload(true);
+         
             },
             error => {
               console.log(error);
@@ -242,6 +243,25 @@ export class ListPage {
 
 
 
+
+  TrabajosPorPagar() {
+    this.vectorMyOfertas = null;
+    this.banderNewOffert = true;
+    this.banderMyOffert = false;
+    this.varNewOffer=true;
+
+    this._solicitudesService.getSolicitudesPorPagar(this._administradorService.getToken()).subscribe(response => {
+
+      console.log("esto iene de la peticion" + JSON.stringify(response));
+      if (response.messagess[0] != undefined) {
+        this.vectorOfertasPorPagar = response.messagess;
+
+        console.log("trayendo solicitudes de viajes", this.vectorOfertasPorPagar);
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+  }
 }
 
 

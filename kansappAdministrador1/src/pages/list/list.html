@@ -7,13 +7,26 @@
       Menú Principal
 
 
+      <button (click)="NuevasSolicitudes()" style="background: transparent; left:0; right:0; max-width:3%; float: right; margin-right: 2%; display: block; max-height:100%;">
+        <ion-icon item-left>
+          <img src="assets/imgs/check.png">
+        </ion-icon>
+      </button>
 
-      <button (click)="NuevasSolicitudes()" style="background: transparent; left:0; right:0; max-width:3%; float: right; margin-right: 5%; display: block; max-height:100%;">
+      <button (click)="TrabajosPorPagar()" style="background: transparent; left:0; right:0; max-width:3.5%; float: right; margin-right: 2%; display: block; max-height:100%;">
+        <ion-icon item-left>
+          <img src="assets/imgs/money.png">
+        </ion-icon>
+      </button>
+
+
+      <button (click)="NuevasSolicitudes()" style="background: transparent; left:0; right:0; max-width:3%; float: right; margin-right: 2%; display: block; max-height:100%;">
         <ion-icon item-left>
           <img src="assets/imgs/notification.png">
         </ion-icon>
       </button>
 
+      
 
       <li class="nav-item" style="margin-left:15%; margin-top:-5%;">
 
@@ -186,6 +199,40 @@
   </ion-card>
 
 
+  <ion-list  class="list-ios-margin-to" *ngFor=" let ofertas of  vectorOfertasPorPagar"  >
+      <ion-item>
+          <div   style="margin-left:5% ">
+              <img style="width: 3%; " src="../../assets/imgs/user.png">
+              <h2 align="center" style="margin-top: -1%; margin-left:-80%; font-size: 7pt">{{ofertas.emitter.nombre}},{{ofertas.emitter.apellido}}</h2>
+
+              <div>
+                  <div style=" margin-top:-2.5%; margin-left: 20% ">
+                    <img src="../../assets/imgs/time.png" style="width: 3%; height: 3%;">
+                    <p align="center" style="margin-top:-1.5%; margin-left:-85%; font-size: 10pt"> {{ofertas.Tiempo}} H</p>
+                  </div>
+          
+                  <div style="margin-left:33%; margin-top:-2.5% ">
+                    <img src="../../assets/imgs/bills.png" style="width: 4%; height: 4%;">
+                    <p align="center" style="margin-top: -2.5%; margin-left:-75%; font-size: 10pt"> {{ofertas.Precio}} $ </p>
+                  </div>
+                  <div style="margin-left:48%; margin-top:-2.5% ">
+                    <img src="../../assets/imgs/group.png" style="width: 6%; height: 6%;">
+                    <p align="center" style=" margin-top:-4%; margin-left:-70%; font-size: 10pt"> {{ofertas.Alcance}} </p>
+                  </div>
+
+                  <div style="margin-left:65%; margin-top:-2.5% ">
+                      <img src="../../assets/imgs/paypal.png" style="width: 6%; height: 6%;">
+                      <p align="center" style=" margin-top:-4%; margin-left:-70%; font-size: 10pt"> {{ofertas.Alcance}} </p>
+                    </div>
+                </div>
+                <button  class="btn btn-primary"  style="margin-top:-5%; margin-left:80%">Payed </button>
+        <hr>
+              
+    </div>
+    </ion-item>
+
+
+  </ion-list>
   
 
 

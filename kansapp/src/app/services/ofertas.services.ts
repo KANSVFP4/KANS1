@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Http, Headers } from "@angular/http";
 import "rxjs/add/operator/map";
 import { GLOBAL } from "./global";
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 
 @Injectable()
@@ -10,8 +10,8 @@ export class NuevaOfertaService {
   public url: String;
   public identity;
   public token;
-public cont =0;
-  constructor(private _http: Http ) {
+  public cont = 0;
+  constructor(private _http: Http) {
     this.url = GLOBAL.url;
   }
 
@@ -23,25 +23,31 @@ public cont =0;
     let headers = new Headers({ "Content-type": "application/json", "Authorization": token });
     return this._http.post(this.url + "saveNuevaOferta", params, { headers: headers });
 
-}
+  }
 
 
 
-getOfertas(token)
-{
-    let headers = new Headers({ "Content-type": "application/json","Authorization":token });
-    return this._http.get(this.url +"nuevasOfertas/1", { headers: headers })
+  getOfertas(token) {
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": token });
+    return this._http.get(this.url + "nuevasOfertas/1", { headers: headers })
       .map(res => res.json());
-      
 
-}
 
-getMyOfertas(token)
-{
-    let headers = new Headers({ "Content-type": "application/json","Authorization":token });
-    return this._http.get(this.url +"MynuevasOfertas", { headers: headers })
+  }
+
+  getMyOfertas(token) {
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": token });
+    return this._http.get(this.url + "MynuevasOfertas", { headers: headers })
       .map(res => res.json());
-      
 
-}
+
+  }
+
+
+  getMyOfertasPendientes(token) {
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": token });
+    return this._http.get(this.url + "MyOfertasPendientes", { headers: headers })
+      .map(res => res.json());
+
+  }
 }

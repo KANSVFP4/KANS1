@@ -83,7 +83,32 @@ function saveNuevaOferta(req, res) {
   }
  
 
-
+  function getAllOfertasPorPagar(req, res) {
+    //console.log("estoy trayedo mensajes");
+    //var userId = req.user.sub;
+  
+   // var message = Viaje.find({ '$and': [ {'$or':[{ estado:0 },{estado:1}]},{
+      //receiver: userId
+      var estado = req.params.estado;
+      var message =NuevaOferta.find({ estadoPago: estado }).populate({ path: 'emitter'}).exec((err, messagess) => {
+      if (err) {
+        return res.status(500).send({
+            message: 'No se ha podido obtener las ultimas ofertas'
+        });
+      }
+  
+      if (!messagess) {
+        return res.status(200).send({
+          message: 'No tiene ofertas'
+        });
+      }
+  
+      return res.status(200).send({
+        messagess
+      });
+    });
+  }
+ 
   function getMyOfertas(req, res) {
     //console.log("estoy trayedo mensajes");
     var userId = req.user.sub;
@@ -110,6 +135,32 @@ function saveNuevaOferta(req, res) {
     });
   }
 
+
+  function getMyOfertasPendientes(req, res) {
+    //console.log("estoy trayedo mensajes");
+    var userId = req.user.sub;
+      console.log(userId);
+   // var message = Viaje.find({ '$and': [ {'$or':[{ estado:0 },{estado:1}]},{
+      //receiver: userId
+
+      var message =NuevaOferta.find({'$and':[{'$or':[{ estadoPago:0 }]},{contratista: userId}]}).populate({ path: 'emitter'}).populate({ path: 'contratista'}).exec((err, messagess) => {
+      if (err) {
+        return res.status(500).send({
+            message: 'No se ha podido obtener las ultimas ofertas'
+        });
+      }
+  
+      if (!messagess) {
+        return res.status(200).send({
+          message: 'No tiene ofertas'
+        });
+      }
+  
+      return res.status(200).send({
+        messagess
+      });
+    });
+  }
 
   function updateOferta(req, res){
 
@@ -148,7 +199,9 @@ function saveNuevaOferta(req, res) {
     saveNuevaOferta,
     getAllNuevasOfertas,
     getMyOfertas,
-    updateOferta
+    updateOferta,
+    getAllOfertasPorPagar,
+    getMyOfertasPendientes
     
    
     
