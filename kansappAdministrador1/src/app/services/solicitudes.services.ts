@@ -27,12 +27,15 @@ export class SolicitudesService {
 
     getSolicitudesPorPagar(token) {
         let headers = new Headers({ "Content-type": "application/json", "Authorization": token });
-        return this._http.get(this.url + "ofertasPorPagar/0", { headers: headers })
+        return this._http.get(this.url + "ofertasPorPagar/1", { headers: headers })
             .map(res => res.json());
 
 
     }
 
+
+
+    
     update_Solicitudes(oferta_to_update, token) {
       
     

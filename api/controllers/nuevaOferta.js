@@ -162,6 +162,33 @@ function saveNuevaOferta(req, res) {
     });
   }
 
+
+
+  function getMyOfertasRealizadas(req, res) {
+    //console.log("estoy trayedo mensajes");
+    var userId = req.user.sub;
+      console.log(userId);
+   // var message = Viaje.find({ '$and': [ {'$or':[{ estado:0 },{estado:1}]},{
+      //receiver: userId
+
+      var message =NuevaOferta.find({'$and':[{'$or':[{ estadoPago:1 }]},{contratista: userId}]}).populate({ path: 'emitter'}).populate({ path: 'contratista'}).exec((err, messagess) => {
+      if (err) {
+        return res.status(500).send({
+            message: 'No se ha podido obtener las ultimas ofertas'
+        });
+      }
+  
+      if (!messagess) {
+        return res.status(200).send({
+          message: 'No tiene ofertas'
+        });
+      }
+  
+      return res.status(200).send({
+        messagess
+      });
+    });
+  }
   function updateOferta(req, res){
 
     var userId = req.params.id;
@@ -194,6 +221,28 @@ function saveNuevaOferta(req, res) {
   }
 
 
+  function ofertaCumplida(req, res)
+  {
+    var params = req.body._id;
+    console.log("el ide"+params);
+    NuevaOferta.updateMany({ _id: params }, { '$set': { estadoPago: "1" } }, (err, ofertaCumplida) => {
+
+        if (err) {
+            res.status(500).send({ message: "Error al actualizar estado paggo oferta" });
+
+        } else {
+            if (!ofertaCumplida) {
+                res.status(404).send({ message: "La oferta no se ha apagado" });
+            } else {
+                //console.log(solicitudViajeUpdate);
+                res.status(200).send(ofertaCumplida);
+
+            }
+        }
+
+    });
+  }
+
  module.exports = { // para exportar todas las funcoones 
 
     saveNuevaOferta,
@@ -201,7 +250,9 @@ function saveNuevaOferta(req, res) {
     getMyOfertas,
     updateOferta,
     getAllOfertasPorPagar,
-    getMyOfertasPendientes
+    getMyOfertasPendientes,
+    ofertaCumplida,
+    getMyOfertasRealizadas
     
    
     

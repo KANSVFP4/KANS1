@@ -50,4 +50,31 @@ export class NuevaOfertaService {
       .map(res => res.json());
 
   }
+  
+  getMyOfertasRealizadas(token) {
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": token });
+    return this._http.get(this.url + "MyOfertasRealizadas", { headers: headers })
+      .map(res => res.json());
+
+  }
+
+
+
+  OfertaCumplida(data, token)
+  {
+    console.log("el ide que va a ir", data._id)
+   
+    let json = JSON.stringify(data);
+    let params = json;
+    console.log(params);
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": token });
+    return this._http
+      .put(this.url + "ofertaCumplida/" + data._id, params, { headers: headers })
+      .map(res => res.json());
+  }
+
+
+
+
+
 }
