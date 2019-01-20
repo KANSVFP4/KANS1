@@ -18,11 +18,12 @@ export class ListPage {
   public banderMyOffert: any;
   public vectorOfertas: any;
   public vectorOfertasPorPagar: any;
+  public vectorOfertasPagadas: any;
   public arrayDeCadenas: any;
 
   public Categoria;
 
-  public varNewOffer= false;
+  public varNewOffer = false;
 
   public objUpdateOferta = {
     _id: null,
@@ -35,21 +36,21 @@ export class ListPage {
     emitter: null
   };
 
-  public objDenegar=
-  {
-    _id:null,
-    estado:null
-  }
+  public objDenegar =
+    {
+      _id: null,
+      estado: null
+    }
 
 
   constructor(
-    public loadingCtrl: LoadingController, 
+    public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-     public _administradorService: AdministradorService, 
-     public _solicitudesService: SolicitudesService,
-     public _envioEmail:EnvioEmail,
-      public navCtrl: NavController, 
-      public navParams: NavParams) {
+    public _administradorService: AdministradorService,
+    public _solicitudesService: SolicitudesService,
+    public _envioEmail: EnvioEmail,
+    public navCtrl: NavController,
+    public navParams: NavParams) {
 
 
 
@@ -97,10 +98,12 @@ export class ListPage {
   }
 
   NuevasSolicitudes() {
-    this.vectorMyOfertas = null;
+    this.vectorOfertas = null;
+    this.vectorOfertasPorPagar = null;
+    this.vectorOfertasPagadas = null;
     this.banderNewOffert = true;
     this.banderMyOffert = false;
-    this.varNewOffer=true;
+    this.varNewOffer = true;
 
     this._solicitudesService.getSolicitudes(this._administradorService.getToken()).subscribe(response => {
 
@@ -132,33 +135,33 @@ export class ListPage {
         if (!response.user) {
           var errorMessage = "the request has not been executed";
         } else {
-         
+
           setTimeout(() => {
             this.showAlertCorrecto(
               "the offer has been accepted"
             );
           }, 3000);
 
-          this.vectorOfertas=null;
+          this.vectorOfertas = null;
           this.NuevasSolicitudes();
 
           // envio de correo
-           var enviarCorreo=
-           {
-              obj:Vector,
-              estado:estado
-           }
+          var enviarCorreo =
+          {
+            obj: Vector,
+            estado: estado
+          }
 
           this._envioEmail.envioEmail(this._administradorService.getToken(), enviarCorreo).subscribe(
             response => {
               console.log("Se envio el correo electronico ", response);
-         
+
             },
             error => {
               console.log(error);
             }
           );
-          
+
 
         }
       },
@@ -186,38 +189,38 @@ export class ListPage {
 
   Denegar(Vector, estado) {
     this.verificarSolicitud();
-    this.objDenegar._id=Vector._id;
-    this.objDenegar.estado=estado;
+    this.objDenegar._id = Vector._id;
+    this.objDenegar.estado = estado;
 
     this._solicitudesService.update_Solicitudes(this.objDenegar, this._administradorService.getToken()).subscribe(
       response => {
         if (!response.user) {
           var errorMessage = "the request has not been executed ";
         } else {
-          
+
           setTimeout(() => {
             this.showAlertCorrecto(
               "the offer has been denied"
             );
           }, 3000);
-          this.vectorOfertas=null;
+          this.vectorOfertas = null;
           this.NuevasSolicitudes();
-          var enviarCorreo=
+          var enviarCorreo =
           {
-             obj:Vector,
-             estado:estado
+            obj: Vector,
+            estado: estado
           }
 
-         this._envioEmail.envioEmail(this._administradorService.getToken(), enviarCorreo).subscribe(
-           response => {
-             console.log("Se envio el correo electronico ", response);
-             location.reload(true);
-           },
-           error => {
-             console.log(error);
-           }
-         );
-         
+          this._envioEmail.envioEmail(this._administradorService.getToken(), enviarCorreo).subscribe(
+            response => {
+              console.log("Se envio el correo electronico ", response);
+              location.reload(true);
+            },
+            error => {
+              console.log(error);
+            }
+          );
+
 
         }
       },
@@ -245,10 +248,12 @@ export class ListPage {
 
 
   TrabajosPorPagar() {
-    this.vectorMyOfertas = null;
+    this.vectorOfertas = null;
+    this.vectorOfertasPorPagar = null;
+    this.vectorOfertasPagadas = null;
     this.banderNewOffert = true;
     this.banderMyOffert = false;
-    this.varNewOffer=true;
+    this.varNewOffer = true;
 
     this._solicitudesService.getSolicitudesPorPagar(this._administradorService.getToken()).subscribe(response => {
 
@@ -262,6 +267,100 @@ export class ListPage {
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
   }
+
+
+
+  Pagado(vector) {
+    let data =
+    {
+      _id: vector._id,
+      estado: '2'
+    }
+
+
+    this._solicitudesService.OfertaPagada(data, this._administradorService.getToken()).subscribe(
+      response => {
+        
+        this.vectorOfertasPorPagar=null;
+
+
+        this.TrabajosPorPagar();
+
+        if (!response.ofertaPagada) {
+          var errorMessage = "La oferta no se actualizo";
+        } else {
+
+          console.log("entre a la oferta cumplida");
+
+        }
+      },
+      err => {
+        var errorMessage = <any>err;
+        if (errorMessage) {
+          console.log(errorMessage);
+
+          try {
+            var body = JSON.parse(err._body);
+            errorMessage = body.message;
+          } catch {
+            errorMessage = "No hay conexión intentelo más tarde";
+          }
+
+        }
+      }
+    );
+
+
+  }
+
+  OfertaPagada(vector) {
+    console.log("este vector pase al pago" + JSON.stringify(vector));
+    const confirm = this.alertCtrl.create({
+      title: 'Atention',
+      message: 'You want to confirm the payment',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Boton cancelar');
+          }
+        },
+        {
+          text: 'Ok',
+          handler: () => {
+            console.log('Boton continuar');
+            this.Pagado(vector);
+
+
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  TrabajosPagados() {
+    this.vectorOfertas = null;
+    this.vectorOfertasPorPagar = null;
+    this.vectorOfertasPagadas = null;
+    this.banderNewOffert = true;
+    this.banderMyOffert = false;
+    this.varNewOffer = true;
+
+    this._solicitudesService.getOfertasPagadas(this._administradorService.getToken()).subscribe(response => {
+
+      console.log("esto iene de la peticion" + JSON.stringify(response));
+      if (response.messagess[0] != undefined) {
+        this.vectorOfertasPagadas = response.messagess;
+
+        console.log("trayendo ofertas pagadas", this.vectorOfertasPagadas);
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+  }
+
+  
 }
 
 

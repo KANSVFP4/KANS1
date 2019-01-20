@@ -7,7 +7,7 @@
       Menú Principal
 
 
-      <button (click)="NuevasSolicitudes()" style="background: transparent; left:0; right:0; max-width:3%; float: right; margin-right: 2%; display: block; max-height:100%;">
+      <button (click)="TrabajosPagados()" style="background: transparent; left:0; right:0; max-width:3%; float: right; margin-right: 2%; display: block; max-height:100%;">
         <ion-icon item-left>
           <img src="assets/imgs/check.png">
         </ion-icon>
@@ -225,7 +225,7 @@
                       <p align="center" style=" margin-top:-4%; margin-left:-70%; font-size: 10pt"> {{ofertas.Alcance}} </p>
                     </div>
                 </div>
-                <button  class="btn btn-primary"  style="margin-top:-5%; margin-left:80%">Payed </button>
+                <button (click)="OfertaPagada(ofertas)" class="btn btn-primary"  style="margin-top:-5%; margin-left:80%">Payed </button>
         <hr>
               
     </div>
@@ -234,6 +234,126 @@
 
   </ion-list>
   
+
+
+<!-- ofertas pagadas-->
+
+<ion-card *ngFor=" let ofertas of  vectorOfertasPagadas"  style="width: 90%; margin-left: 5%">
+    <ion-item>
+
+        
+       <div   style="margin-left:5% ">
+      <img style="width: 5%; " src="../../assets/imgs/user.png">
+      <h2 align="center" style="margin-top: -3%; margin-left:-65%">{{ofertas.emitter.nombre}},{{ofertas.emitter.apellido}}</h2>
+
+      <div>
+        <div style=" margin-top:-2.5%; margin-left: 42% ">
+          <img src="../../assets/imgs/time.png" style="width: 4%; height: 4%;">
+          <p align="center" style="margin-top:-3.5%; margin-left:-75%; font-size: 15pt"> {{ofertas.Tiempo}} H</p>
+        </div>
+
+        <div style="margin-left:58%; margin-top:-3% ">
+          <img src="../../assets/imgs/bills.png" style="width: 6%; height: 6%;">
+          <p align="center" style="margin-top: -5%; margin-left:-70%; font-size: 15pt"> {{ofertas.Precio}} $ </p>
+        </div>
+        <div style="margin-left:72%; margin-top:-3% ">
+          <img src="../../assets/imgs/group.png" style="width: 10%; height: 10%;">
+          <p align="center" style=" margin-top:-8%; margin-left:-50%; font-size: 15pt"> {{ofertas.Alcance}} </p>
+        </div>
+      </div>
+
+      </div>
+
+      <div  style="margin-left: 85%; margin-top: 6%">
+          <h2>
+              <b>Extra Information</b>
+              <br>
+              <br>
+            </h2>
+      <p>{{ofertas.Inf_extra}}</p>
+      <br><br>
+      <br> <br>     
+          </div>
+
+      <div class=”row”>  
+
+ 
+      
+      <div  style="margin-top:-12% ;margin-left: 5%">
+
+         
+
+<div  style="margin-top:-18%">
+      <h2>
+        <b>Links to work</b>
+        <br>
+        <br>
+      </h2>
+
+      <div style=" font-size:80%; padding-bottom:10%  ">
+        <textarea  rows="5" cols="50">
+            {{ofertas.Links_to_work}}
+            </textarea>
+     </div>
+<br>
+<br>
+    </div>
+
+      <div style="margin-left:42%; margin-top:-25% ">
+        <h3>
+          <b>Social Network</b>
+          
+        </h3>
+        <br>
+        <br>
+
+
+     
+        <p style="margin-top: -5%"><b>Faceboock:</b>{{ofertas.Faceboock}}, 
+          <b>Instagram:</b>{{ofertas.Instagram}}, <b>Twiter:</b>{{ofertas.Twiter}},
+          <b>Another:</b>{{ofertas.OtraRed}}  </p>
+
+        
+    
+       
+      
+
+        
+
+
+      </div>
+<br>
+      <div style="margin-left:42%">
+        <h3 >
+          <b>Category</b>
+          <br>
+       
+        </h3>
+      <p>{{ofertas.Categoria}}, <b>Otra:</b>{{ofertas.OtraCategoria}}</p>
+
+        
+
+      
+
+        
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <br>
+  
+     
+    </ion-item>
+   
+
+
+
+   
+  </ion-card>
 
 
 

@@ -24,7 +24,8 @@ var NuevaOfertaSchema = Schema({
     estado:String,
     estadoPago:String,
     emitter: { type: Schema.ObjectId, ref: "User" },
-    contratista: { type: Schema.ObjectId, ref: "User" }
+    contratista: { type: Schema.ObjectId, ref: "User" },
+    AdministradorPago:{ type: Schema.ObjectId, ref: "Administrador" },
 });
 
 module.exports = mongoose.model('NuevaOferta', NuevaOfertaSchema); 
