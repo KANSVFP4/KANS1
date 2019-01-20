@@ -273,7 +273,7 @@ function saveNuevaOferta(req, res) {
    // var message = Viaje.find({ '$and': [ {'$or':[{ estado:0 },{estado:1}]},{
       //receiver: userId
 
-      var message =NuevaOferta.find({'$and':[{'$or':[{ estadoPago:2 }]}]}).populate({ path: 'emitter'}).populate({ path: 'contratista'}).exec((err, messagess) => {
+      var message =NuevaOferta.find({ estadoPago:2 }).populate({ path: 'emitter'}).populate({ path: 'contratista'}).exec((err, messagess) => {
       if (err) {
         return res.status(500).send({
             message: 'No se ha podido obtener las ultimas ofertas'
@@ -292,7 +292,31 @@ function saveNuevaOferta(req, res) {
     });
   }
 
+ function getOfertasPerfil(req, res)
+ {
+   
+  var userId = req.params.id;
+      console.log(userId);
+ 
 
+      var message =NuevaOferta.find({'$and':[{ estado:1 },{emitter: userId}]}).populate({ path: 'emitter'}).populate({ path: 'contratista'}).exec((err, messagess) => {
+      if (err) {
+        return res.status(500).send({
+            message: 'No se ha podido obtener las ultimas ofertas'
+        });
+      }
+  
+      if (!messagess) {
+        return res.status(200).send({
+          message: 'No tiene ofertas'
+        });
+      }
+  
+      return res.status(200).send({
+        messagess
+      });
+    });
+ }
  module.exports = { // para exportar todas las funcoones 
 
     saveNuevaOferta,
@@ -304,7 +328,8 @@ function saveNuevaOferta(req, res) {
     ofertaCumplida,
     getMyOfertasRealizadas,
     ofertaPagada,
-    getOfertasPagadas
+    getOfertasPagadas,
+    getOfertasPerfil
     
    
     

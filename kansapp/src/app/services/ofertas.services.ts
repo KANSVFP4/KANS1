@@ -44,6 +44,18 @@ export class NuevaOfertaService {
   }
 
 
+  getOfertasPerfil(token, id) {
+
+    console.log("ide entre al perfil"+id);
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": token });
+    return this._http.get(this.url + "MyOfertasPerfil/"+id, { headers: headers })
+      .map(res => res.json());
+
+
+  }
+
+
+
   getMyOfertasPendientes(token) {
     let headers = new Headers({ "Content-type": "application/json", "Authorization": token });
     return this._http.get(this.url + "MyOfertasPendientes", { headers: headers })
