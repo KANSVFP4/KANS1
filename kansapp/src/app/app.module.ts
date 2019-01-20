@@ -16,7 +16,7 @@ import { PrincipalPage } from '../pages/principal/principal';
 import { MiCuenta } from '../pages/mi_cuenta/mi_cuenta';
 import { PublicistaPage } from '../pages/publicista/publicista';
 import { NuevaOfertaPage } from '../pages/nueva_oferta/nueva_oferta';
-
+import { VerPerfil } from '../pages/ver_perfil/ver_perfil';
 import { ContratistaPage } from '../pages/contratista/contratista';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
@@ -30,7 +30,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     MiCuenta,
     PublicistaPage,
     NuevaOfertaPage,
-    ContratistaPage
+    ContratistaPage,
+    VerPerfil
   ],
   imports: [
 
@@ -50,6 +51,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     PublicistaPage,
     NuevaOfertaPage,
     ContratistaPage,
+    VerPerfil
     
   ],
   providers: [

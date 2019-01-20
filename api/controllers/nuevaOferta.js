@@ -171,7 +171,7 @@ function saveNuevaOferta(req, res) {
    // var message = Viaje.find({ '$and': [ {'$or':[{ estado:0 },{estado:1}]},{
       //receiver: userId
 
-      var message =NuevaOferta.find({'$and':[{'$or':[{ estadoPago:1 }]},{contratista: userId}]}).populate({ path: 'emitter'}).populate({ path: 'contratista'}).exec((err, messagess) => {
+      var message =NuevaOferta.find({'$and':[{'$or':[{ estadoPago:1 },{estadoPago:2}]},{contratista: userId}]}).populate({ path: 'emitter'}).populate({ path: 'contratista'}).exec((err, messagess) => {
       if (err) {
         return res.status(500).send({
             message: 'No se ha podido obtener las ultimas ofertas'

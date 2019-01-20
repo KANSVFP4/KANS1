@@ -8,6 +8,9 @@ import { Observable } from "rxjs";
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { NuevaOfertaPage } from '../nueva_oferta/nueva_oferta';
+import { VerPerfil } from '../ver_perfil/ver_perfil';
+
+
 @Component({
   selector: "page-contratista",
   templateUrl: "contratista.html"
@@ -231,6 +234,17 @@ export class ContratistaPage {
     confirm.present();
   }
 
+
+
+  verPerfil(perfil)
+  {
+    console.log("este es el perfil que voy a mostrar"+ JSON.stringify(perfil));
+    localStorage.setItem("ver_perfil",JSON.stringify(perfil));
+    this.navCtrl.push(VerPerfil);
+  
+  }
+
+  
 }
 
 
