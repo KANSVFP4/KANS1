@@ -7,7 +7,8 @@ export class User {
         public correo: String,
         public contrasena: String,
         public tel_celular: String,
-        public estado: String
+        public estado: String,
+        public paypal:String
     ) { 
 
 

@@ -14,7 +14,8 @@ var UserSchema = Schema({
     correo: String,
     contrasena: String,
     tel_celular: String,
-    estado: String
+    estado: String,
+    paypal:String
 });
 
 module.exports = mongoose.model('User', UserSchema); //de esta forma al exportar se podra utilizar el 

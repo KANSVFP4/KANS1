@@ -23,6 +23,7 @@ export class VerPerfil {
   ) {
     // this.identity = _userService.getIdentity();
     //console.log(this.identity);
+    this.identity=null;
     this.identity = JSON.parse(localStorage.getItem("ver_perfil"));
     console.log("perfil a mostrar" + this.identity.nombre);
     this.getMyNuevasOfertas();

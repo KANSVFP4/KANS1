@@ -239,6 +239,7 @@ export class ContratistaPage {
   verPerfil(perfil)
   {
     console.log("este es el perfil que voy a mostrar"+ JSON.stringify(perfil));
+    localStorage.removeItem("ver_perfil");
     localStorage.setItem("ver_perfil",JSON.stringify(perfil));
     this.navCtrl.push(VerPerfil);
   

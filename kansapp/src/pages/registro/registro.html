@@ -125,11 +125,30 @@
                 <p ion-text color="danger" [hidden]="!telefonoCel.errors.required">Campo requerido</p>
               </ion-item>
             </ion-row>
-  
+
+           
             
           </ion-grid>
         </div>
-        <br>
+      
+
+
+    
+          <ion-item no-lines  >
+            <p  style="color:blue">Increase your confidence level by adding</p>
+              <p  style="color:blue"> a paypal account</p>
+            
+
+            <input id="nameR" placeholder="Paypal" #paypal="ngModel" [(ngModel)]="user_register.paypal" name="paypal" email pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+          </ion-item >
+          <ion-item *ngIf="paypal.errors && (paypal.dirty || paypal.touched)">
+            <ion-icon name="alert" item-start color="danger"></ion-icon>
+            <p ion-text color="danger" [hidden]="!paypal.errors.required">Campo requerido &nbsp;</p>
+            <p ion-text color="danger" [hidden]="!paypal.errors.email">Correo inválido</p>
+            <p ion-text color="danger" [hidden]="!paypal.errors.pattern">Caracteres invalidos</p>
+          </ion-item>
+      
+<br>
     <button (click)="onRegister()" style="width: 100%; padding: 0%; position:relative; background: transparent"><img src="assets/imgs/btnRegistro.png"
           /></button>  
 

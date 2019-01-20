@@ -36,6 +36,7 @@ function saveUser(req, res) {
                 user.correo = params.correo;
                 user.contrasena = params.contrasena;
                 user.tel_celular = params.tel_celular;
+                user.paypal=params.paypal;
 
                 if (params.contrasena) {
 

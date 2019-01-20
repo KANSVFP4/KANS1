@@ -108,9 +108,10 @@ app.get('/executePayment', function (req, res) {
 
 
             // de aqui borre el if
-            console.log("ide de contratis",app.Idcontratista)
+            console.log("ide de contratis",app.Idcontratista);
+            console.log("ide de l aoferta"+ app.globalId);
 
-            Oferta.updateMany({ _id: app.globalId }, { '$set': { estadoPago: "0" }, '$set':{contratista:app.Idcontratista} }, (err, solicitudViajeUpdate) => {
+            Oferta.updateMany({ _id: app.globalId }, { '$set': { estadoPago: "0" ,contratista: app.Idcontratista} }, (err, solicitudViajeUpdate) => {
 
                 if (err) {
                     res.status(500).send({ message: "Error al actualizar estado paggo oferta" });

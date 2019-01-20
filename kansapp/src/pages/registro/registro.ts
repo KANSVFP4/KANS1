@@ -29,7 +29,7 @@ export class RegistroPage {
     public loadingCtrl: LoadingController
   ) {
     this.miModelo = {};
-    this.user_register = new User("", "", "", "", "", "", "");
+    this.user_register = new User("", "", "", "", "", "", "","");
   }
 
   public verificarContrasenas() {
