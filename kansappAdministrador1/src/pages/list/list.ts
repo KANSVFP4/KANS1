@@ -3,6 +3,7 @@ import { NavController, NavParams, AlertController, LoadingController } from 'io
 import { SolicitudesService } from "../../app/services/solicitudes.services";
 import { AdministradorService } from "../../app/services/administrador.services";
 import { EnvioEmail } from "../../app/services/correo.service";
+import { ReportePage } from '../reporte/reporte';
 
 @Component({
   selector: 'page-list',
@@ -360,6 +361,11 @@ export class ListPage {
     );
   }
 
+
+  reportes()
+  {
+    this.navCtrl.push(ReportePage);
+  }
   
 }
 

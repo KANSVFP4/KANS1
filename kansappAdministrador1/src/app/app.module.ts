@@ -15,13 +15,15 @@ import { EnvioEmail } from './services/correo.service';
 
 //mis paginas
 import { RegistroPage} from '../pages/registro/registro';
+import { ReportePage} from '../pages/reporte/reporte';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    RegistroPage
+    RegistroPage,
+    ReportePage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { RegistroPage} from '../pages/registro/registro';
     MyApp,
     HomePage,
     ListPage,
-    RegistroPage
+    RegistroPage,
+    ReportePage
   ],
   providers: [
     StatusBar,
