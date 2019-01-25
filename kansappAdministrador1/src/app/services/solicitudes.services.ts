@@ -70,6 +70,14 @@ export class SolicitudesService {
 
     }
 
+    getSolicitudesPagadasFecha(token, fechaBusqueda) {
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": token });
+        return this._http.get(this.url + "OfertasPagadasFecha/"+fechaBusqueda, { headers: headers })
+            .map(res => res.json());
+
+
+    }
+
 
 
 }

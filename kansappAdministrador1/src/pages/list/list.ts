@@ -4,6 +4,7 @@ import { SolicitudesService } from "../../app/services/solicitudes.services";
 import { AdministradorService } from "../../app/services/administrador.services";
 import { EnvioEmail } from "../../app/services/correo.service";
 import { ReportePage } from '../reporte/reporte';
+import { IMyDpOptions } from 'mydatepicker';
 
 @Component({
   selector: 'page-list',
@@ -13,14 +14,31 @@ export class ListPage {
   selectedItem: any;
   icons: string[];
   items: Array<{ title: string, note: string, icon: string }>;
+  public displayMont = new Date().getMonth();
+  public displayDay = new Date().getDate();
+  public displayYear = new Date().getFullYear();
 
+  public myDatePickerOptions: IMyDpOptions = {
+    dateFormat: 'dd/mm/yyyy',
+    dayLabels: { su: "Do", mo: "Lu", tu: "Ma", we: "Mi", th: "Ju", fr: "Vi", sa: "Sa" },
+    monthLabels: { 1: "Ene", 2: "Feb", 3: "Mar", 4: "Abr", 5: "May", 6: "Jun", 7: "Jul", 8: "Ago", 9: "Sep", 10: "Oct", 11: "Nov", 12: "Dic" },
+    todayBtnTxt: "Hoy",
+    firstDayOfWeek: "mo",
+    sunHighlight: false,
+    markCurrentDay: true,
+    minYear: this.displayYear - 1,
+    height: '40px',
+   // disableUntil: { year: this.displayYear, month: this.displayMont + 1, day: this.displayDay - 1 }
+  };
   public vectorMyOfertas: any;
   public banderNewOffert: any;
   public banderMyOffert: any;
   public vectorOfertas: any;
   public vectorOfertasPorPagar: any;
   public vectorOfertasPagadas: any;
+  public vectorOfertasPagadasFecha;
   public arrayDeCadenas: any;
+  public fechaBusqueda;
 
   public Categoria;
 
@@ -43,6 +61,7 @@ export class ListPage {
       estado: null
     }
 
+banderActivado=false;
 
   constructor(
     public loadingCtrl: LoadingController,
@@ -315,6 +334,7 @@ export class ListPage {
   }
 
   OfertaPagada(vector) {
+   
     console.log("este vector pase al pago" + JSON.stringify(vector));
     const confirm = this.alertCtrl.create({
       title: 'Atention',
@@ -341,6 +361,8 @@ export class ListPage {
   }
 
   TrabajosPagados() {
+
+    this.ActivarCalendario();
     this.vectorOfertas = null;
     this.vectorOfertasPorPagar = null;
     this.vectorOfertasPagadas = null;
@@ -365,6 +387,45 @@ export class ListPage {
   reportes()
   {
     this.navCtrl.push(ReportePage);
+  }
+
+  ActivarCalendario()
+  {
+    this.banderActivado=!this.banderActivado;
+    
+  }
+
+  buscarPorFecha()
+  {
+    this.vectorOfertas = null;
+    this.vectorOfertasPorPagar = null;
+    this.vectorOfertasPagadas = null;
+    this.banderNewOffert = true;
+    this.banderMyOffert = false;
+    this.varNewOffer = true;
+    var fehcaEnviar;
+    if(this.fechaBusqueda.date.month<10)
+    {
+       fehcaEnviar ='0'+this.fechaBusqueda.date.month+'-'+this.fechaBusqueda.date.day+'-'+this.fechaBusqueda.date.year;
+    }else
+    {
+      fehcaEnviar =this.fechaBusqueda.date.month+'-'+this.fechaBusqueda.date.day+'-'+this.fechaBusqueda.date.year;
+    }
+   
+    console.log(fehcaEnviar);
+
+    this._solicitudesService.getSolicitudesPagadasFecha(this._administradorService.getToken(), fehcaEnviar).subscribe(response => {
+
+      console.log("esto iene de la peticion" + JSON.stringify(response));
+      if (response.messagess[0] != undefined) {
+        this.vectorOfertasPagadas = response.messagess;
+
+        console.log("trayendo ofertas pagadaspor fecha", this.vectorOfertasPagadas);
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+    
   }
   
 }

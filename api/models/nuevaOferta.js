@@ -23,6 +23,7 @@ var NuevaOfertaSchema = Schema({
     Inf_extra: String,
     estado:String,
     estadoPago:String,
+    fechaAceptado:String,
     emitter: { type: Schema.ObjectId, ref: "User" },
     contratista: { type: Schema.ObjectId, ref: "User" },
     AdministradorPago:{ type: Schema.ObjectId, ref: "Administrador" },

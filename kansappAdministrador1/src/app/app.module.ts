@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { HttpModule } from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { MyDatePickerModule } from 'mydatepicker';
 
 import { AdministradorService } from './services/administrador.services';
 import { SolicitudesService } from './services/solicitudes.services';
@@ -29,6 +30,7 @@ import { ReportePage} from '../pages/reporte/reporte';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    MyDatePickerModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

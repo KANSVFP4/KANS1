@@ -14,8 +14,11 @@ api.get('/MyOfertasPendientes', md_auth.ensureAuth, NuevaOfertaController.getMyO
 api.get('/MyOfertasRealizadas', md_auth.ensureAuth, NuevaOfertaController.getMyOfertasRealizadas);
 api.get('/OfertasPagadas', md_auth.ensureAuth, NuevaOfertaController.getOfertasPagadas);
 api.get('/MyOfertasPerfil/:id', md_auth.ensureAuth, NuevaOfertaController.getOfertasPerfil);
+api.get('/OfertasPagadasFecha/:fecha', md_auth.ensureAuth, NuevaOfertaController.getOfertasPagadasFecha);
 
 api.put('/update-oferta/:id',md_auth.ensureAuth,NuevaOfertaController.updateOferta);
 api.put('/ofertaCumplida/:id',md_auth.ensureAuth,NuevaOfertaController.ofertaCumplida);
 api.put('/ofertaPagada/:id',md_auth.ensureAuth,NuevaOfertaController.ofertaPagada);
+
+
 module.exports = api;// exportamos el router de express para que las routas funcionen por todo el back end
