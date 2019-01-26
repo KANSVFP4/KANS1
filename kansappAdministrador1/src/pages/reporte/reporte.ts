@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavParams, NavController, LoadingController, AlertController, MenuController } from "ionic-angular";
 import { Administrador } from "../../app/models/administrador";
 import { AdministradorService } from "../../app/services/administrador.services";
-
+import { SolicitudesService } from "../../app/services/solicitudes.services";
 import chartJs from 'chart.js'
 @Component({
   selector: 'page-reporte',
@@ -11,6 +11,9 @@ import chartJs from 'chart.js'
 export class ReportePage {
 
   public vectorUsuarios;
+  public vectorPagados;
+  public vectorPorPagar;
+  public vectorPendientes;
 
   public ContJanuary: any;
   public ContFebruary;
@@ -26,7 +29,10 @@ export class ReportePage {
   public ContDecember;
   public ano=2019;
   public mes='January';
-
+  public ContPorPagar;
+  public ContPagadas;
+  public ContPendientes;
+  
   @ViewChild('barCanvas') barCanvas = null;
   @ViewChild('lineCanvas') lineCanvas: any;
   @ViewChild('pieCanvas') pieCanvas = null;
@@ -72,10 +78,12 @@ export class ReportePage {
     public menuCtrl: MenuController,
     private _administradorService: AdministradorService,
     public navCtrl: NavController,
+    public _solicitudesService: SolicitudesService,
 
     public navParams: NavParams,
   ) {
     this.getUsuariosRegistrados();
+    this.getAllOfertas();
 
   }
 
@@ -83,12 +91,12 @@ export class ReportePage {
   dibujar() {
     setTimeout(() => {
       this.barChart = this.getBarChart();
-      this.lineChart = this.getLineChart();
+     // this.lineChart = this.getLineChart();
     }, 150)
 
     setTimeout(() => {
       this.pieChart = this.getPieChart();
-      this.doughnutChart = this.getDoughnutChart();
+      //this.doughnutChart = this.getDoughnutChart();
     }, 250)
   }
 
@@ -177,9 +185,9 @@ export class ReportePage {
   getPieChart() {
     const data =
     {
-      labels: ['Vermelho', 'Azuk', 'Marelo'],
+      labels: ['Payed', 'To Pay', 'Slopes'],
       datasets: [{
-        data: [300, 75, 224],
+        data: [this.ContPagadas, this.ContPorPagar, this.ContPendientes],
         backgroundColor: ['rgb(200,6,0)', 'rgb(36,0,255)', 'rgb(242, 255,0)']
       }]
     }
@@ -205,6 +213,7 @@ export class ReportePage {
   }
 
   getUsuariosRegistrados() {
+    this.getAllOfertas();
     console.log("entre");
     this.ContJanuary = 0 ;
     this.ContFebruary = 0;
@@ -294,6 +303,77 @@ export class ReportePage {
     );
 
   }
+
+  getAllOfertas()
+  {
+
+    this.ContPorPagar=0;
+    this.ContPagadas=0;
+    this.ContPendientes=0;
+    
+    var ContPorPagar=0;
+    var ContPagadas=0;
+    var ContPendientes=0;
+ 
+
+    this._solicitudesService.getOfertasPagadas(this._administradorService.getToken()).subscribe(response => {
+
+      console.log("esto iene de la peticion" + JSON.stringify(response));
+      if (response.messagess[0] != undefined) {
+       this.vectorPagados = response.messagess;
+       this.vectorPagados.forEach(function (value) {
+        ContPagadas++;
+        
+       
+      });
+
+      this.ContPagadas=ContPagadas;
+      console.log("ContPagadas"+this.ContPagadas);
+    
+    }
+  
+      
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+  
+    this._solicitudesService.getSolicitudesPorPagar(this._administradorService.getToken()).subscribe(response => {
+
+      console.log("esto iene de la peticion" + JSON.stringify(response));
+      if (response.messagess[0] != undefined) {
+        this.vectorPorPagar = response.messagess;
+        this.vectorPorPagar.forEach(function (value) {
+          ContPorPagar++;
+                  
+        });
+  
+        this.ContPorPagar=ContPorPagar;
+        console.log("COnt por pagar"+this.ContPorPagar);
+        
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+
+    this._solicitudesService.getAllOfertasPendientes(this._administradorService.getToken()).subscribe(response => {
+
+      console.log("esto iene de la peticion" + JSON.stringify(response));
+      if (response.messagess[0] != undefined) {
+        this.vectorPendientes = response.messagess;
+        this.vectorPendientes.forEach(function (value) {
+          ContPendientes++;
+                  
+        });
+  
+        this.ContPendientes=ContPendientes;
+        console.log("Cont pendientes"+this.ContPendientes);
+       
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+  }
+
 
 
 }

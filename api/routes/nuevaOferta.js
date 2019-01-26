@@ -15,7 +15,7 @@ api.get('/MyOfertasRealizadas', md_auth.ensureAuth, NuevaOfertaController.getMyO
 api.get('/OfertasPagadas', md_auth.ensureAuth, NuevaOfertaController.getOfertasPagadas);
 api.get('/MyOfertasPerfil/:id', md_auth.ensureAuth, NuevaOfertaController.getOfertasPerfil);
 api.get('/OfertasPagadasFecha/:fecha', md_auth.ensureAuth, NuevaOfertaController.getOfertasPagadasFecha);
-
+api.get('/AllOfertasPendientes', md_auth.ensureAuth, NuevaOfertaController.getAllOfertasPendientes);
 api.put('/update-oferta/:id',md_auth.ensureAuth,NuevaOfertaController.updateOferta);
 api.put('/ofertaCumplida/:id',md_auth.ensureAuth,NuevaOfertaController.ofertaCumplida);
 api.put('/ofertaPagada/:id',md_auth.ensureAuth,NuevaOfertaController.ofertaPagada);

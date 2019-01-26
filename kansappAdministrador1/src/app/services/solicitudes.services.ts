@@ -78,7 +78,15 @@ export class SolicitudesService {
 
     }
 
+    getAllOfertasPendientes(token) {
+        let headers = new Headers({ "Content-type": "application/json", "Authorization": token });
+        return this._http.get(this.url + "AllOfertasPendientes", { headers: headers })
+            .map(res => res.json());
 
+
+    }
+
+    
 // aqui saco lo del usuario
 
 

@@ -3,38 +3,44 @@
         <button ion-button menuToggle icon-only>
             <ion-icon name='menu'></ion-icon>
         </button>
-       
+
         <ion-title>
-            Report
+                Reports offered by kans
             <div class="container">
-               
-                    <ion-select required class="css-select" placeholder="Select Year" #rutaE="ngModel" [(ngModel)]="ano" name="rutaE"
-                    (ionChange)="getUsuariosRegistrados();">
+
+                <ion-select required class="css-select" placeholder="Select Year" #rutaE="ngModel" [(ngModel)]="ano"
+                    name="rutaE" (ionChange)="getUsuariosRegistrados();">
                     <ion-label>Year</ion-label>
                     <ion-option value="{{ ruta.ruta }}" *ngFor="let ruta of viaje">{{ ruta.ruta }}</ion-option>
-                  </ion-select>
-                </div>
+                </ion-select>
+            </div>
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content style="background-image: url('assets/imgs/fondoPaginaPrincipal.png');background-size: cover;">
-   
-<ion-card style="width:75%;max-height: 100%" class="container">
-<ion-card-header>
-        Number of users for month
-</ion-card-header>
 
-<ion-card-content >
-    <canvas #barCanvas></canvas>
-</ion-card-content>
-<h2  style="text-align:center"> This bar graph shows how many users have registered per month during the chosen year</h2>
-</ion-card>
-<br>
-<br>
-<br>
-<br>
-<!--<ion-card>
+    <div style="width: 100%; margin-left: 0%; margin-top: 0%">
+        <img id="imganeTitulo" src="assets/imgs/logokans.png" style="width: 20%;">
+       
+    </div>
+    
+    <ion-card style="width:75%;max-height: 100%" class="container">
+        <ion-card-header>
+            Number of users register for month
+        </ion-card-header>
+
+        <ion-card-content>
+            <canvas #barCanvas></canvas>
+        </ion-card-content>
+        <h2 style="text-align:center"> This bar graph shows how many users have registered per month during the chosen
+            year</h2>
+    </ion-card>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!--<ion-card>
     <ion-card-header>
     Line Chart
     </ion-card-header>
@@ -43,35 +49,28 @@
     </ion-card-content>
     </ion-card>-->
 
-    <h3 style="margin-left:13%" >For this report apart from the year you must select a month</h3>
+    <h3 style="margin-left:13%">This Moment</h3>
     <br>
     <br>
-    <div class="container">
-               
-            <ion-select required class="css-select2" placeholder="Select Month" #rutaE="ngModel" [(ngModel)]="mes" name="rutaE"
-            (ionChange)="getUsuariosRegistrados();">
-            <ion-label>Year</ion-label>
-            <ion-option value="{{ ruta.ruta }}" *ngFor="let ruta of meses">{{ ruta.ruta }}</ion-option>
-          </ion-select>
-        </div>
+
     <ion-card style="width:75%;max-height: 100%" class="container">
         <ion-card-header>
-        Line PieChart
+            Estatus Oferts
         </ion-card-header>
         <ion-card-content>
             <canvas #pieCanvas></canvas>
         </ion-card-content>
-      
-        </ion-card>
 
-        <ion-card>
+    </ion-card>
+
+    <!-- <ion-card>
             <ion-card-header>
             Dona
             </ion-card-header>
             <ion-card-content>
                 <canvas #doughnutCanvas></canvas>
             </ion-card-content>
-            </ion-card>
-    
-        
+            </ion-card>-->
+
+
 </ion-content>
