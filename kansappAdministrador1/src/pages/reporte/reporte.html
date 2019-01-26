@@ -3,7 +3,11 @@
         <button ion-button menuToggle icon-only>
             <ion-icon name='menu'></ion-icon>
         </button>
-
+        <button onClick="window.print()" style="background: transparent; left:0; right:0; max-width:3%; float: right; margin-right: 2%; display: block; max-height:100%;">
+            <ion-icon item-left>
+              <img src="assets/imgs/printer-.png">
+            </ion-icon>
+          </button>
         <ion-title>
                 Reports offered by kans
             <div class="container">
@@ -18,14 +22,14 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content style="background-image: url('assets/imgs/fondoPaginaPrincipal.png');background-size: cover;">
+<ion-content style="background-image: url('assets/imgs/fondoPaginaPrincipal.png');background-size: cover;" #content>
 
     <div style="width: 100%; margin-left: 0%; margin-top: 0%">
         <img id="imganeTitulo" src="assets/imgs/logokans.png" style="width: 20%;">
        
     </div>
     
-    <ion-card style="width:75%;max-height: 100%" class="container">
+    <ion-card style="width:70%;max-height: 100%" class="container">
         <ion-card-header>
             Number of users register for month
         </ion-card-header>
@@ -53,7 +57,7 @@
     <br>
     <br>
 
-    <ion-card style="width:75%;max-height: 100%" class="container">
+    <ion-card style="width:70%;max-height: 100%" class="container">
         <ion-card-header>
             Estatus Oferts
         </ion-card-header>

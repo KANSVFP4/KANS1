@@ -1,9 +1,12 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavParams, NavController, LoadingController, AlertController, MenuController } from "ionic-angular";
 import { Administrador } from "../../app/models/administrador";
 import { AdministradorService } from "../../app/services/administrador.services";
 import { SolicitudesService } from "../../app/services/solicitudes.services";
-import chartJs from 'chart.js'
+
+
+import chartJs from 'chart.js';
+//import jsPDF from 'jspdf';
 @Component({
   selector: 'page-reporte',
   templateUrl: 'reporte.html'
@@ -38,6 +41,7 @@ export class ReportePage {
   @ViewChild('pieCanvas') pieCanvas = null;
   @ViewChild('doughnutCanvas') doughnutCanvas = null;
 
+  @ViewChild('content') content: ElementRef;
 
   barChart: any;
   lineChart: any;
@@ -374,6 +378,26 @@ export class ReportePage {
     );
   }
 
+  imprimirpdf()
+  {
+    //let doc = new jsPDF();
 
+    /*let specialElementHandlers=
+    {
+      '#editor':function(elemnt,renderer)
+      {
+        return true;
+      }
+    };
+    let content = this.content.nativeElement;
 
+    doc.fromHTML(content.innerHtml,15,15,{
+      'width':190,
+      'elementHandlers':specialElementHandlers
+    });
+
+    doc.save('test.pdf');*/
+  }
+  
+  
 }

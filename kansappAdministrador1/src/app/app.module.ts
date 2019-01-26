@@ -46,7 +46,9 @@ import { ReportePage} from '../pages/reporte/reporte';
     AdministradorService,
     SolicitudesService,
     EnvioEmail,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+   
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+   
   ]
 })
 export class AppModule {}

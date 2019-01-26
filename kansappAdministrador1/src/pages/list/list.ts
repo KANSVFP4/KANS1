@@ -5,6 +5,7 @@ import { AdministradorService } from "../../app/services/administrador.services"
 import { EnvioEmail } from "../../app/services/correo.service";
 import { ReportePage } from '../reporte/reporte';
 import { IMyDpOptions } from 'mydatepicker';
+//import jsPDF from 'jspdf';
 
 @Component({
   selector: 'page-list',
@@ -427,6 +428,11 @@ banderActivado=false;
     );
     
   }
+  
+
+
+
+
   
 }
 

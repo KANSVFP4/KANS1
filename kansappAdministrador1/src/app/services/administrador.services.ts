@@ -4,7 +4,7 @@ import "rxjs/add/operator/map";
 import { GLOBAL } from "./global";
 import {Observable} from 'rxjs/Observable';
 
-
+//import jsPDF from 'jspdf';
 @Injectable()
 export class AdministradorService {
   public url: String;
