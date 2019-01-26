@@ -86,4 +86,11 @@ public cont =0;
     this.identity = null;
     this.token = null;
   }
+
+  getUsuariosRegistrados(token)
+{
+    let headers = new Headers({ "Content-type": "application/json", "Authorization": token });
+    return this._http.get(this.url + "todosUsuarios", { headers: headers })
+        .map(res => res.json());
+}
 }

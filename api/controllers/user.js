@@ -263,11 +263,37 @@ function updateUser(req, res) {
 }
 
 
+function countUsers(req, res)
+{
+   
+    console.log("entre");
+  
+    var message =User.find((err, messagess) => {
+        if (err) {
+          return res.status(500).send({
+            message: 'No se ha podido obtener las ultimas ofertas'
+          });
+        }
+    
+        if (!messagess) {
+          return res.status(200).send({
+            message: 'No tiene ofertas'
+          });
+        }
+    
+        return res.status(200).send({
+          messagess
+        });
+      });  
+
+}
+
 module.exports = {          // para exportar todas las funciones de este modulo
     pruebas,
     saveUser,
     loginUser,
-    updateUser
+    updateUser,
+    countUsers
 
 
 };

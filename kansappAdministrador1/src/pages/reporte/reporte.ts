@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavParams, NavController, LoadingController, AlertController, MenuController } from "ionic-angular";
 import { Administrador } from "../../app/models/administrador";
 import { AdministradorService } from "../../app/services/administrador.services";
+
 import chartJs from 'chart.js'
 @Component({
   selector: 'page-reporte',
@@ -9,11 +10,27 @@ import chartJs from 'chart.js'
 })
 export class ReportePage {
 
+  public vectorUsuarios;
 
-  @ViewChild('barCanvas') barCanvas= null;
-  @ViewChild('lineCanvas') lineCanvas:any;
+  public ContJanuary: any;
+  public ContFebruary;
+  public ContMarch;
+  public ContApril;
+  public ContMay;
+  public ContJun;
+  public ContJuly;
+  public ContAugust;
+  public ContSeptember;
+  public ContOctober;
+  public ContNov;
+  public ContDecember;
+  public ano=2019;
+  public mes='January';
+
+  @ViewChild('barCanvas') barCanvas = null;
+  @ViewChild('lineCanvas') lineCanvas: any;
   @ViewChild('pieCanvas') pieCanvas = null;
-  @ViewChild('doughnutCanvas') doughnutCanvas= null;
+  @ViewChild('doughnutCanvas') doughnutCanvas = null;
 
 
   barChart: any;
@@ -21,17 +38,49 @@ export class ReportePage {
   pieChart: any;
   doughnutChart: any;
 
+
+  public viaje: any[] = [{ "ruta": "2018" },
+  { "ruta": "2019" },
+  { "ruta": "2020" },
+  { "ruta": "2021" },
+  { "ruta": "2022" },
+  { "ruta": "2023" },
+  { "ruta": "2024" },
+  { "ruta": "2025" },
+  { "ruta": "2026" },
+  { "ruta": "2027" },
+  { "ruta": "2028" },
+  { "ruta": "2030" }];
+
+  
+  public meses: any[] = [{ "ruta": "January" },
+  { "ruta": "February" },
+  { "ruta": "March" },
+  { "ruta": "April" },
+  { "ruta": "May" },
+  { "ruta": "June" },
+  { "ruta": "July" },
+  { "ruta": "August" },
+  { "ruta": "September" },
+  { "ruta": "October" },
+  { "ruta": "November" },
+  { "ruta": "December" }];
+
+
   constructor(public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     public menuCtrl: MenuController,
     private _administradorService: AdministradorService,
     public navCtrl: NavController,
-    public navParams: NavParams) {
+
+    public navParams: NavParams,
+  ) {
+    this.getUsuariosRegistrados();
 
   }
 
-  
-  ngAfterViewInit() {
+
+  dibujar() {
     setTimeout(() => {
       this.barChart = this.getBarChart();
       this.lineChart = this.getLineChart();
@@ -53,11 +102,13 @@ export class ReportePage {
   }
 
   getBarChart() {
+    
     const data = {
-      labels: ['Vermelho', 'Azul', 'Amarelo', 'Verde', 'Roxo'],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       datasets: [{
-        label: 'numero de votos',
-        data: [12, 13, 15, 90, 5],
+        label: 'Number of Users',
+        data: [this.ContJanuary, this.ContFebruary, this.ContMarch, this.ContApril,this.ContMay,this.ContJun,
+        this.ContJuly, this.ContAugust, this.ContSeptember,this.ContOctober,this.ContNov,this.ContDecember],
         backgroundColor: [
           'rgb(255,0,0)',
           'rgb(20,0,255)',
@@ -114,14 +165,13 @@ export class ReportePage {
 
       }]
     };
-  
-    try{
-    return this.getChart(this.lineCanvas.nativeElement, 'line', data);
-  }catch(e)
-  {
-    console.log(e);
-  }
-  
+
+    try {
+      return this.getChart(this.lineCanvas.nativeElement, 'line', data);
+    } catch (e) {
+      console.log(e);
+    }
+
   }
 
   getPieChart() {
@@ -153,5 +203,97 @@ export class ReportePage {
 
     return this.getChart(this.doughnutCanvas.nativeElement, 'doughnut', data);
   }
+
+  getUsuariosRegistrados() {
+    console.log("entre");
+    this.ContJanuary = 0 ;
+    this.ContFebruary = 0;
+    this.ContMarch =0;
+    this.ContApril =0;
+    this.ContMay=0;
+    this.ContJun =0;
+    this.ContJuly = 0;
+    this.ContAugust = 0;
+    this.ContSeptember = 0;
+    this.ContOctober =  0;
+    this.ContNov = 0;
+    this.ContDecember =0;
+    var ContJanuary = 0;
+    var ContFebruary = 0;
+    var ContMarch=0;
+    var ContApril=0;
+    var ContMay=0;
+    var ContJun=0;
+    var ContJuly=0;
+    var ContAugust=0;
+    var ContSeptember=0;
+    var ContOctober=0;
+    var ContNov=0;
+    var ContDecember=0;
+
+  
+
+
+    this._administradorService.getUsuariosRegistrados(this._administradorService.getToken()).subscribe(response => {
+
+      console.log("esto iene de la peticion" + JSON.stringify(response));
+      if (response.messagess[0] != undefined) {
+        this.vectorUsuarios = response.messagess;
+        console.log("mijin0" + this.vectorUsuarios);
+        var nos= this.ano;
+        console.log("ano empatadpo"+nos);
+        this.vectorUsuarios.forEach(function (value) {
+
+          var res = value.fechaRegistro.split("-");
+          
+
+          if ((res[0] == "01" && res[2]==nos.toString())) {
+            console.log("entre"+nos.toString());
+            console.log(ContJanuary);
+            ContJanuary++;}
+
+          if ((res[0] == "02" && res[2]==nos.toString())) {ContFebruary++;}
+
+          if ((res[0] == "03" && res[2]==nos.toString())) {ContMarch++;}
+
+          if ((res[0] == "04" && res[2]==nos.toString())) {ContApril++;}
+          
+          if ((res[0] == "05" && res[2]==nos.toString())) {ContMay++;}
+
+          if ((res[0] == "06" && res[2]==nos.toString())) { ContJun++;}
+          
+          if ((res[0] == "07" && res[2]==nos.toString())) {ContJuly++;}
+
+          if ((res[0] == "08" && res[2]==nos.toString())) {ContAugust++;}
+
+          if ((res[0] == "09" && res[2]==nos.toString())) { ContSeptember++;}
+
+          if ((res[0] == "10" && res[2]==nos.toString())) {ContOctober++;}
+
+          if ((res[0] == "11" && res[2]==nos.toString())) {ContNov++;}
+
+          if ((res[0] == "12" && res[2]==nos.toString())) {ContDecember++;}
+        });
+        this.ContJanuary = ContJanuary ;
+        this.ContFebruary = ContFebruary;
+        this.ContMarch =ContMarch;
+        this.ContApril =ContApril;
+        this.ContMay=ContMay;
+        this.ContJun =ContJun;
+        this.ContJuly = ContJuly;
+        this.ContAugust = ContAugust;
+        this.ContSeptember = ContSeptember;
+        this.ContOctober =  ContOctober;
+        this.ContNov = ContNov;
+        this.ContDecember =ContDecember;
+       this.dibujar();
+
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+  }
+
 
 }
