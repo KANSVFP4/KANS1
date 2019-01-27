@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { NavController, AlertController, LoadingController } from "ionic-angular";
 import { UserService } from "../../app/services/user.services";
 
@@ -9,9 +9,13 @@ import { UserService } from "../../app/services/user.services";
 })
 
 export class MiCuenta {
+
+ 
+
   public identity;
   public estadoContrasena = '0';
-
+  public banderPaypal= false;
+  public banderPaypal2= true;
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -19,14 +23,21 @@ export class MiCuenta {
     public loadingCtrl: LoadingController
   ) {
     this.identity = _userService.getIdentity();
+    if(this.identity.paypal==null)
+    {
+      this.banderPaypal=true;
+      this.banderPaypal2=false;
+    }
     console.log(this.identity);
   }
 
   disableTextbox = true;
   disableCedula = true;
+  disableBoton = false;
 
   toggleDisable() {
     this.disableTextbox = !this.disableTextbox;
+    this.disableBoton=!this.disableBoton;
   }
 
 
@@ -81,11 +92,11 @@ export class MiCuenta {
           response => {
 
             if (!response.user) {
-              var errorMessage = "El usuario no se actualizo";
+              var errorMessage = "The user did not update";
             } else {
               setTimeout(() => {
                 this.showAlertCorrecto(
-                  "Sus datos han sido actualizados correctamente"
+                  "Your data has been updated correctly"
                 );
               }, 3000);
               localStorage.setItem('identity', JSON.stringify(this.identity))
@@ -100,7 +111,7 @@ export class MiCuenta {
                 var body = JSON.parse(err._body);
                 errorMessage = body.message;
               } catch {
-                errorMessage = "No hay conexión intentelo más tarde";
+                errorMessage = "No connection, try later";
               }
               setTimeout(() => {
                 this.showAlert(errorMessage);
@@ -116,9 +127,9 @@ export class MiCuenta {
 
   presentAlert() {
     let alert = this.alertCtrl.create({
-      title: "Atención",
-      subTitle: "Verifique que la información sea correcta antes de continuar",
-      buttons: ["Aceptar"]
+      title: "Warning",
+      subTitle: "Verify that the information is correct before continuing",
+      buttons: ["Ok"]
     });
     alert.present();
   }
@@ -180,7 +191,7 @@ export class MiCuenta {
 
   showAlertCorrecto(corec) {
     let alert = this.alertCtrl.create({
-      title: "Correcto",
+      title: "Right",
       subTitle: corec,
       buttons: ["OK"]
     });
@@ -189,7 +200,7 @@ export class MiCuenta {
 
   verificarUpdate() {
     let loading = this.loadingCtrl.create({
-      content: "Verficando sus datos"
+      content: "Verifying "
     });
     loading.present();
     setTimeout(() => {

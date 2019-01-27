@@ -1,0 +1,59 @@
+.getstarContactos {
+    display: block;
+    margin: 0 auto;
+    width: 100%; //height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .Aligner-item {
+    max-width: 50%;
+  }
+  
+  .Aligner-item--top {
+    align-self: flex-start;
+  }
+  
+  .Aligner-item--bottom {
+    align-self: flex-end;
+  }
+
+input[placeholder] {
+    color: #020202;
+}
+
+#padre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+#imganeTitulo {
+    display: block;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    height: auto;
+  }
+
+    #btnIngresar1
+  {
+    padding: 2.5%;
+    display: block;
+   padding-left:18%;
+   padding-right: 18%; 
+  
+    margin-right: 10%;  
+    align-content: center;
+    width: 100%; 
+    border-radius: 58px 58px 58px 58px;
+    -moz-border-radius: 58px 58px 58px 58px;
+    -webkit-border-radius: 58px 58px 58px 58px;
+    border: 2px solid #000000;
+    background:none;
+    opacity: 0.8;
+    color: #000000;
+    font-weight: bold;
+
+    font-size: 80%;
+  }

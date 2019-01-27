@@ -11,7 +11,7 @@
     margin-left: 10%;
 }
 
-#submit{
+#Submit{
   width: 100%;
   padding: 2.5%;
   border-radius: 58px 58px 58px 58px;
@@ -20,4 +20,19 @@
   border: 2px solid #2B58A7;
   background:white;
   font-weight: bold;
+}
+
+#paypal
+{
+    padding: 2.5%;
+    width: 100%;
+    border: 0.05px  #2B58A7;
+    background: transparent;
+}
+
+#barra
+{
+    border: 0.5px solid #2B58A7;
+    width: 100%;
+    padding-right: 50%;
 }

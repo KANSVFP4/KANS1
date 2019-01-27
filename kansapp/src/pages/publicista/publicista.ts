@@ -3,7 +3,7 @@ import { Platform, Nav,  } from 'ionic-angular';
 import { NavController, AlertController,NavParams, ModalController,Tabs } from "ionic-angular";
 import { UserService } from "../../app/services/user.services";
 import { NuevaOfertaService } from "../../app/services/ofertas.services";
-
+import { VerPerfil } from '../ver_perfil/ver_perfil';
 import { Observable } from "rxjs";
 
 import { NuevaOfertaPage } from '../../pages/nueva_oferta/nueva_oferta';
@@ -26,6 +26,8 @@ export class PublicistaPage {
 
   constructor(public _userService: UserService, public _nuevaOfertaService : NuevaOfertaService , public navCtrl: NavController, public alertCtrl: AlertController,navParams: NavParams, public modalCtrl: ModalController) {
   this.getAllNuevasOfertas();
+  this.getAllNuevasOfertas();
+
   }
 
   mostrarLinks()
@@ -46,11 +48,13 @@ export class PublicistaPage {
   
     this._nuevaOfertaService.getOfertas(this._userService.getToken()).subscribe(response => {
 
-      console.log("esto iene de la peticion"+ JSON.stringify(response));
+      
       if (response.messagess[0] != undefined) {
-        this.vectorOfertas = response.messagess;
-        //this.darvuelta();
-        console.log("todos los viajes", this.vectorOfertas);
+       // this.vectorOfertas=null;
+        this.vectorOfertas = this.darvueltaNuevasOfertas(response.messagess);
+        console.log("dado la vuelta", this.vectorOfertas);
+       
+        
         //localStorage.setItem("vectorViajesMios", JSON.stringify(this.vectorViajes));
 
 
@@ -70,8 +74,9 @@ export class PublicistaPage {
 
       console.log("esto iene de la peticion"+ JSON.stringify(response));
       if (response.messagess[0] != undefined) {
+        this.vectorMyOfertas=null;
         this.vectorMyOfertas = response.messagess;
-        //this.darvuelta();
+        this.darvueltaMyNuevasOfertas();
         console.log("viajes mios", this.vectorMyOfertas);
         //localStorage.setItem("vectorViajesMios", JSON.stringify(this.vectorViajes));
 
@@ -82,6 +87,54 @@ export class PublicistaPage {
 
   }
   
+  verPerfil(perfil)
+  {
+    console.log("este es el perfil que voy a mostrar"+ JSON.stringify(perfil));
+    localStorage.removeItem("ver_perfil");
+    localStorage.setItem("ver_perfil",JSON.stringify(perfil));
+    this.navCtrl.push(VerPerfil);
+  
+  }
+
+public aux;
+public c;
+public medio;
+public up
+
+  darvueltaNuevasOfertas(vector) {
+    this.aux;
+    vector.forEach(() => {
+      this.c += 1;
+    });
+    this.medio = (this.c) / 2;
+    this.up = (this.c) - 1;
+    for (var i = 0; i < this.medio; i++) {
+      this.aux = vector[i];
+      vector[i] = vector[this.up];
+      vector[this.up] = this.aux;
+      this.up--;
+      this.vectorOfertas=vector;
+    }
+    this.c = 0;
+    return vector;
+  }
+
+
+  darvueltaMyNuevasOfertas() {
+    this.aux;
+    this.vectorMyOfertas.forEach(() => {
+      this.c += 1;
+    });
+    this.medio = (this.c) / 2;
+    this.up = (this.c) - 1;
+    for (var i = 0; i < this.medio; i++) {
+      this.aux = this.vectorMyOfertas[i];
+      this.vectorMyOfertas[i] = this.vectorMyOfertas[this.up];
+      this.vectorMyOfertas[this.up] = this.aux;
+      this.up--;
+    }
+    this.c = 0;
+  }
 }
 
 

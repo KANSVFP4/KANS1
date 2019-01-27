@@ -4,7 +4,7 @@
       <ion-icon name='menu'></ion-icon>
     </button>
     <ion-title style="float: left;">
-      Mi Cuenta
+      My Account
     </ion-title>
     <button (click)="toggleDisable()" style="background: transparent; left:0; right:0; max-width:10%; float: right; margin-right: 5%; display: block; max-height:100%; display: flex;
       align-items: center; justify-content: center;">
@@ -18,8 +18,12 @@
 
   <img style="background: transparent; width: 150%;" src="assets/imgs/fondoMiCuentaVF.png" alt="">
 
-  <br>
-  <br>
+  <br><br>
+  <div class="container">  
+      <h4>Confidence level</h4>
+    <img style=" width:100%; height:200% ;" src="assets/imgs/barraLow.png" alt="">
+  </div>
+
   <br>
 
   <form #FormularioUpdate="ngForm" id="formUpdate">
@@ -28,55 +32,76 @@
     <ion-list>
 
       <ion-item>
-        <ion-label fixed>Nombres:</ion-label>
-        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -15%" #nombres="ngModel"
+        <ion-label fixed>Names:</ion-label>
+        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -10%" #nombres="ngModel"
           [(ngModel)]="identity.nombre" name="nombres" type="text" value="" pattern="[a-zA-Z ]*" required></ion-input>
       </ion-item>
       <ion-item *ngIf="nombres.errors && (nombres.dirty || nombres.touched)">
         <ion-icon name="alert" item-start color="danger"></ion-icon>
-        <p ion-text color="danger" [hidden]="!nombres.errors.pattern">Ingrese sólo caracteres alfabéticos</p>
-        <p ion-text color="danger" [hidden]="!nombres.errors.required">Campo requerido</p>
+        <p ion-text color="danger" [hidden]="!nombres.errors.pattern">Enter only alphabetic characters</p>
+        <p ion-text color="danger" [hidden]="!nombres.errors.required">Required field</p>
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>Apellidos:</ion-label>
-        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -15%" #apellidos="ngModel"
+        <ion-label fixed>Surname:</ion-label>
+        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -10%" #apellidos="ngModel"
           [(ngModel)]="identity.apellido" name="apellidos" type="text" value="" pattern="[a-zA-Z ]*" required></ion-input>
       </ion-item>
       <ion-item *ngIf="apellidos.errors && (apellidos.dirty || apellidos.touched)">
         <ion-icon name="alert" item-start color="danger"></ion-icon>
-        <p ion-text color="danger" [hidden]="!apellidos.errors.pattern">Ingrese sólo caracteres alfabéticos</p>
-        <p ion-text color="danger" [hidden]="!apellidos.errors.required">Campo requerido</p>
+        <p ion-text color="danger" [hidden]="!apellidos.errors.pattern">Enter only alphabetic characters</p>
+        <p ion-text color="danger" [hidden]="!apellidos.errors.required">Required field</p>
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>Correo:</ion-label>
-        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -15%" #correo="ngModel"
+        <ion-label fixed>Mail:</ion-label>
+        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -10%" #correo="ngModel"
           [(ngModel)]="identity.correo" name="correo" type="text" value="" required email></ion-input>
       </ion-item>
       <ion-item *ngIf="correo.errors && (correo.dirty || correo.touched)">
         <ion-icon name="alert" item-start color="danger"></ion-icon>
-        <p ion-text color="danger" [hidden]="!correo.errors.required">Campo requerido &nbsp;</p>
-        <p ion-text color="danger" [hidden]="!correo.errors.email">Correo invalido</p>
+        <p ion-text color="danger" [hidden]="!correo.errors.required">Required field &nbsp;</p>
+        <p ion-text color="danger" [hidden]="!correo.errors.email">Invalid mail</p>
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>Celular:</ion-label>
-        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -15%" #celular="ngModel"
+        <ion-label fixed>Cel Phone:</ion-label>
+        <ion-input [disabled]='disableTextbox' style="text-align: left; margin-left: -10%" #celular="ngModel"
           [(ngModel)]="identity.tel_celular" name="celular" type="text" value="" required digits pattern="[0-9]*"
           minlength="10" maxlength="10"></ion-input>
       </ion-item>
       <ion-item *ngIf="celular.errors && (celular.dirty || celular.touched)">
         <ion-icon name="alert" item-start color="danger"></ion-icon>
-        <p ion-text color="danger" [hidden]="!celular.errors.pattern">Ingrese sólo números</p>
-        <p ion-text color="danger" [hidden]="!celular.errors.minlength">Ingrese una número válido</p>
-        <p ion-text color="danger" [hidden]="!celular.errors.required">Campo requerido</p>
+        <p ion-text color="danger" [hidden]="!celular.errors.pattern">Only Numbers</p>
+        <p ion-text color="danger" [hidden]="!celular.errors.minlength">Required field</p>
+        <p ion-text color="danger" [hidden]="!celular.errors.required">Required field</p>
       </ion-item>
 
+      
+
+
+      <ion-item no-lines  >
+        <p   *ngIf="banderPaypal" style="color:blue">Increase your confidence level by adding</p>
+          <p  *ngIf="banderPaypal"  style="color:blue"> a paypal account</p>
+          <p  *ngIf="banderPaypal2"  style="color:blue">Paypal account</p>
+        
+
+        <input [disabled]='disableTextbox' id="paypal" placeholder="Paypal" #paypal="ngModel" [(ngModel)]="identity.paypal" name="paypal" email pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+        <hr>
+      </ion-item >
+     
+        
+          <ion-item *ngIf="paypal.errors && (paypal.dirty || paypal.touched)">
+            <ion-icon name="alert" item-start color="danger"></ion-icon>
+            <p ion-text color="danger" [hidden]="!paypal.errors.required">Campo requerido &nbsp;</p>
+            <p ion-text color="danger" [hidden]="!paypal.errors.email">Correo inválido</p>
+            <p ion-text color="danger" [hidden]="!paypal.errors.pattern">Caracteres invalidos</p>
+           
+          </ion-item>
     </ion-list>
 
-    <br>
-    <br>
-    <input (click)="onUpdate()" type="submit" id="submit">
+    
+  
+    <button [disabled]='disableTextbox' (click)="onUpdate()" id="Submit" >Update</button>
   </form>
 </ion-content>

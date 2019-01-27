@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import "rxjs/add/operator/map";
 
 import { GLOBAL } from "./global";
-import jsPDF from 'jspdf';
+//import jsPDF from 'jspdf';
 
 import { Observable } from 'rxjs/Observable';
 

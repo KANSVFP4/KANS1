@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-navbar color="colorapp">
+        <button ion-button menuToggle icon-only>
+            <ion-icon name='menu'></ion-icon>
+        </button>
+        <ion-title style="text-align: center;">Change Password</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content style="background-image: url('assets/imgs/Registro.png')" class="getstarContactos">
+    <form #FormularioRegistro="ngForm" id="formRegistro">
+        <div class="container" id="padre">
+            <div style="padding: 10%;" id="hijo">
+                <!-- srsrtfsgsfs -->
+                <div class="Aligner-item Aligner-item--top"></div>
+                <img id="imganeTitulo" src="assets/imgs/logokans.png" style="width: 80%;">
+                <div style="margin-top: 40px;" class="Aligner-item Aligner-item--bottom"></div>
+                <ion-row>
+                    <ion-item>
+                        <ion-icon item-left style="  max-width:10%; margin-top:3%; margin-bottom:0; margin-right:0% ">
+                            <img style=" max-width:90%;left: 0;right: 0; " src="assets/imgs/contrasenaRegistro.png">
+                        </ion-icon>
+                        <ion-input [type]="getType()" #ContrasenaNueva="ngModel" [(ngModel)]="contrasenaNueva" type="password"
+                            placeholder="New Password" name="contrasena" required minlength="6"></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="ContrasenaNueva.errors && (ContrasenaNueva.dirty || ContrasenaNueva.touched)">
+                        <ion-icon name="alert" item-start color="danger"></ion-icon>
+                        <p ion-text color="danger" [hidden]="!ContrasenaNueva.errors.required">Campo requerido &nbsp;</p>
+                        <p ion-text color="danger" [hidden]="!ContrasenaNueva.errors.minlength">Contraseña minima de 6
+                            caracteres</p>
+                    </ion-item>
+                </ion-row>
+                <ion-row>
+                    <ion-item>
+                        <ion-icon item-left style="  max-width:10%; margin-top:3%; margin-bottom:0; margin-right:0% ">
+                            <img style=" max-width:90%;left: 0;right: 0; " src="assets/imgs/contrasenaRegistro.png">
+                        </ion-icon>
+                        <ion-input type="password" placeholder="Confirm New Password" name="confirmarContrasena"
+                            #ConfirmarContrasenaNueva="ngModel" [(ngModel)]="confirmarContrasenaNueva" required
+                            [equalTo]="ContrasenaNueva"></ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="ConfirmarContrasenaNueva.errors && (ConfirmarContrasenaNueva.dirty || ConfirmarContrasenaNueva.touched)">
+                        <ion-icon name="alert" item-start color="danger"></ion-icon>
+                        <p ion-text color="danger" [hidden]="!ConfirmarContrasenaNueva.errors.required">Campo requerido
+                            &nbsp;</p>
+                        <p ion-text color="danger" [hidden]="!ConfirmarContrasenaNueva.errors.equalTo">La contraseña no
+                            coincide</p>
+                    </ion-item>
+                </ion-row>
+                <div class="checkbox">
+                    <label style="margin-top: 30px;">
+                        <input type="checkbox" (click)="toggleTextPassword()"> Show Password
+                    </label>
+                   
+                </div>
+                <br>
+                <br>
+                
+                <button class="form-control" id="btnIngresar1" (click)="onUpdate()" type="submit" >Change Password</button>
+            </div>
+            
+        </div>
+    </form>
+</ion-content>

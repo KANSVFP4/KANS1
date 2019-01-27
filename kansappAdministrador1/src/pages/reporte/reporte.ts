@@ -189,7 +189,7 @@ export class ReportePage {
   getPieChart() {
     const data =
     {
-      labels: ['Payed', 'To Pay', 'Slopes'],
+      labels: ['Paid', 'To Pay', 'Slopes'],
       datasets: [{
         data: [this.ContPagadas, this.ContPorPagar, this.ContPendientes],
         backgroundColor: ['rgb(200,6,0)', 'rgb(36,0,255)', 'rgb(242, 255,0)']

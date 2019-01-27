@@ -7,6 +7,8 @@ import { UserService } from './services/user.services';
 import { PrincipalPage } from '../pages/principal/principal';
 import { HomePage } from '../pages/home/home';
 import { MiCuenta } from '../pages/mi_cuenta/mi_cuenta';
+import { ContrasenaPage } from '../pages/contrasena/contrasena';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -33,12 +35,18 @@ export class MyApp {
 
   ngOnInit() {
     this.pages = [
-      { titulo: 'Menú Principal', component: PrincipalPage, icon: 'iconoMenuPrincipal.png' },
-      { titulo: 'Mi Cuenta', component: MiCuenta, icon: 'iconoMiCuenta.png' }
+      { titulo: 'Home', component: PrincipalPage, icon: 'iconoMenuPrincipal.png' },
+      { titulo: 'My Account', component: MiCuenta, icon: 'iconoMiCuenta.png' },
+      { titulo: 'Password', component: ContrasenaPage, icon: 'iconoMiCuenta.png' }
     ];
   }
 
   goToPage(page) {
     this.nav.setRoot(page);
+  }
+
+  Logout() {
+    this._userService.logout();
+    this.nav.setRoot(HomePage);
   }
 }

@@ -18,6 +18,7 @@ import { PublicistaPage } from '../pages/publicista/publicista';
 import { NuevaOfertaPage } from '../pages/nueva_oferta/nueva_oferta';
 import { VerPerfil } from '../pages/ver_perfil/ver_perfil';
 import { ContratistaPage } from '../pages/contratista/contratista';
+import { ContrasenaPage } from '../pages/contrasena/contrasena';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
@@ -31,7 +32,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     PublicistaPage,
     NuevaOfertaPage,
     ContratistaPage,
-    VerPerfil
+    VerPerfil,
+    ContrasenaPage
   ],
   imports: [
 
@@ -51,7 +53,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
     PublicistaPage,
     NuevaOfertaPage,
     ContratistaPage,
-    VerPerfil
+    VerPerfil,
+    ContrasenaPage
     
   ],
   providers: [

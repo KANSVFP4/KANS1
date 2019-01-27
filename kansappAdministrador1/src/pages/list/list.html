@@ -4,7 +4,7 @@
       <ion-icon name='menu'></ion-icon>
     </button>
     <ion-title>
-      Menú Principal
+      Home
 
       
 
@@ -37,7 +37,7 @@
 
       <li class="nav-item" style="margin-left:15%; margin-top:-5%;">
 
-        <div class="input-group" style="width:65% ">
+        <!--<div class="input-group" style="width:65% ">
           <input style="font-size: 60%" title="Buscardor de usuarios" class="form-control" type="text" placeholder="Buscar"
             #Buscar="ngModel" [(ngModel)]="buscar" name="buscar">
           <span class="input-group-append">
@@ -45,7 +45,7 @@
               <ion-icon style="width: 150%" name="search"></ion-icon>
             </button>
           </span>
-        </div>
+        </div>-->
 
       </li>
 
@@ -61,16 +61,20 @@
 </ion-header>
 
 <ion-content style="background-image: url('assets/imgs/fondoPaginaPrincipal.png');background-size: cover;">
-  <h1 *ngIf="varNewOffer" style="text-align: center">New Oferts</h1>
+  <h1 *ngIf="varNewOffer" style="text-align: center">New Offerts</h1>
+  <h1 *ngIf="varO" style="text-align: center">Offers to pay</h1>
+  <h1 *ngIf="varP" style="text-align: center">Paid offers</h1>
 
  <!-- Build your select: -->
  <div class="calendar" *ngIf="banderActivado" >
-      
-  <div class="picker">
-    <my-date-picker required placeholder="works paid" [options]="myDatePickerOptions" #mydateE="ngModel" [(ngModel)]="fechaBusqueda"
+      <br>
+  <div class="picker container" style="width: 80%" >
+    <my-date-picker required placeholder="works paid"   [options]="myDatePickerOptions" #mydateE="ngModel" [(ngModel)]="fechaBusqueda"
       name="mydateE" required></my-date-picker>
-      <button class="btn btn-primary"(click)="buscarPorFecha()">Busqueda</button>
+     
   </div>
+  <button class="btn btn-info" style="margin-left:89%; font-size: 100%; margin-top: -6.5%; padding: 0.75%" (click)="buscarPorFecha()">
+    <ion-icon name="search"></ion-icon></button>
 </div>
 
     

@@ -40,8 +40,8 @@
               </ion-item>
               <ion-item *ngIf="nombres.errors && (nombres.dirty || nombres.touched)">
                 <ion-icon name="alert" item-start color="danger"></ion-icon>
-                <p ion-text color="danger" [hidden]="!nombres.errors.pattern">Ingrese sólo caracteres alfabéticos</p>
-                <p ion-text color="danger" [hidden]="!nombres.errors.required">Campo requerido</p>
+                <p ion-text color="danger" [hidden]="!nombres.errors.pattern">Enter only alphabetic characters</p>
+                <p ion-text color="danger" [hidden]="!nombres.errors.required">Required field</p>
               </ion-item>
             </ion-row>
             <ion-row>
@@ -55,8 +55,8 @@
               </ion-item>
               <ion-item *ngIf="apellidos.errors && (apellidos.dirty || apellidos.touched)">
                 <ion-icon name="alert" item-start color="danger"></ion-icon>
-                <p ion-text color="danger" [hidden]="!apellidos.errors.pattern">Ingrese sólo caracteres alfabéticos</p>
-                <p ion-text color="danger" [hidden]="!apellidos.errors.required">Campo requerido</p>
+                <p ion-text color="danger" [hidden]="!apellidos.errors.pattern">Enter only alphabetic characters</p>
+                <p ion-text color="danger" [hidden]="!apellidos.errors.required">Required field</p>
               </ion-item>
             </ion-row>
   
@@ -73,9 +73,9 @@
               </ion-item >
               <ion-item *ngIf="correo.errors && (correo.dirty || correo.touched)">
                 <ion-icon name="alert" item-start color="danger"></ion-icon>
-                <p ion-text color="danger" [hidden]="!correo.errors.required">Campo requerido &nbsp;</p>
-                <p ion-text color="danger" [hidden]="!correo.errors.email">Correo inválido</p>
-                <p ion-text color="danger" [hidden]="!correo.errors.pattern">Caracteres invalidos</p>
+                <p ion-text color="danger" [hidden]="!correo.errors.required">Required field &nbsp;</p>
+                <p ion-text color="danger" [hidden]="!correo.errors.email">Invalid email</p>
+                <p ion-text color="danger" [hidden]="!correo.errors.pattern">Invalid characters</p>
               </ion-item>
             </ion-row>
   
@@ -90,8 +90,8 @@
               </ion-item>
               <ion-item *ngIf="contrasena.errors && (contrasena.dirty || contrasena.touched)">
                 <ion-icon name="alert" item-start color="danger"></ion-icon>
-                <p ion-text color="danger" [hidden]="!contrasena.errors.required">Campo requerido &nbsp;</p>
-                <p ion-text color="danger" [hidden]="!contrasena.errors.minlength">Contraseña minima de 6 caracteres</p>
+                <p ion-text color="danger" [hidden]="!contrasena.errors.required">Required field&nbsp;</p>
+                <p ion-text color="danger" [hidden]="!contrasena.errors.minlength">Minimum password of 6 characters</p>
               </ion-item>
             </ion-row>
   
@@ -105,8 +105,8 @@
               </ion-item>
               <ion-item *ngIf="confirmContrasena.errors && (confirmContrasena.dirty || confirmContrasena.touched)">
                 <ion-icon name="alert" item-start color="danger"></ion-icon>
-                <p ion-text color="danger" [hidden]="!confirmContrasena.errors.required">Campo requerido &nbsp;</p>
-                <p ion-text color="danger" [hidden]="!confirmContrasena.errors.equalTo">La contraseña no coincide</p>
+                <p ion-text color="danger" [hidden]="!confirmContrasena.errors.required">Required field &nbsp;</p>
+                <p ion-text color="danger" [hidden]="!confirmContrasena.errors.equalTo">Password does not match</p>
               </ion-item>
             </ion-row>
   
@@ -120,9 +120,9 @@
               </ion-item>
               <ion-item *ngIf="telefonoCel.errors && (telefonoCel.dirty || telefonoCel.touched)">
                 <ion-icon name="alert" item-start color="danger"></ion-icon>
-                <p ion-text color="danger" [hidden]="!telefonoCel.errors.pattern">Ingrese sólo números</p>
-                <p ion-text color="danger" [hidden]="!telefonoCel.errors.minlength">Ingrese una número válido</p>
-                <p ion-text color="danger" [hidden]="!telefonoCel.errors.required">Campo requerido</p>
+                <p ion-text color="danger" [hidden]="!telefonoCel.errors.pattern">Enter only numbers</p>
+                <p ion-text color="danger" [hidden]="!telefonoCel.errors.minlength">Enter a valid number</p>
+                <p ion-text color="danger" [hidden]="!telefonoCel.errors.required">Required field</p>
               </ion-item>
             </ion-row>
 
@@ -143,9 +143,9 @@
           </ion-item >
           <ion-item *ngIf="paypal.errors && (paypal.dirty || paypal.touched)">
             <ion-icon name="alert" item-start color="danger"></ion-icon>
-            <p ion-text color="danger" [hidden]="!paypal.errors.required">Campo requerido &nbsp;</p>
-            <p ion-text color="danger" [hidden]="!paypal.errors.email">Correo inválido</p>
-            <p ion-text color="danger" [hidden]="!paypal.errors.pattern">Caracteres invalidos</p>
+            <p ion-text color="danger" [hidden]="!paypal.errors.required">Required field&nbsp;</p>
+            <p ion-text color="danger" [hidden]="!paypal.errors.email">Invalid email</p>
+            <p ion-text color="danger" [hidden]="!paypal.errors.pattern">Invalid characters</p>
           </ion-item>
       
 <br>

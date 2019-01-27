@@ -43,16 +43,16 @@ export class NuevaOfertaPage {
   public precioO;
   public alcanceO;
   public inf_adicional;
-  public OtraRed = "No";
+  public OtraRed ;
 
-  public categoriaV: any[] = [{ "categoria": "Educacion" },
-  { "categoria": "Ciencia" },
-  { "categoria": "Tecnologia" },
-  { "categoria": "Arte" },
-  { "categoria": "Cultura" },
-  { "categoria": "Gastronomia" },
-  { "categoria": "Medicina" },
-  { "categoria": "Varios" },
+  public categoriaV: any[] = [{ "categoria": "Education" },
+  { "categoria": "Science" },
+  { "categoria": "Tecnology" },
+  { "categoria": "Art" },
+  { "categoria": "Culture" },
+  { "categoria": "Gastronomy" },
+  { "categoria": "Medicine" },
+  { "categoria": "Various" },
   ];
 
 
@@ -171,14 +171,18 @@ export class NuevaOfertaPage {
   
 
   enviarNuevaOferta() {
+    var bander1=false;
+    var bander2=false;
+    var bander3=false;
     if (this.links_to_work != null && this.tiempoO && this.precioO && this.alcanceO) {
       this.objNuevaOferta.Links_to_work = this.links_to_work;
 
-      this.objNuevaOferta.OtraRed = this.OtraRed;
+      
       this.objNuevaOferta.Tiempo = this.tiempoO;
       this.objNuevaOferta.Precio = this.precioO;
       this.objNuevaOferta.Alcance = this.alcanceO;
       this.objNuevaOferta.Inf_extra = this.inf_adicional;
+      bander1=true;
     } else {
       this.presentToast("Complete all the necessary fields");
     }
@@ -186,39 +190,46 @@ export class NuevaOfertaPage {
     if (this.Categoria != null || this.OtraCategoria !== null) {
       this.objNuevaOferta.Categoria = this.Categoria;
       this.objNuevaOferta.OtraCategoria = this.OtraCategoria;
+      bander2=true;
     } else {
       this.presentToast("The categories  in which you are going to work is not clear yet");
     }
 
     if (this.btnFaceboock == true) {
-      this.objNuevaOferta.Faceboock = "Si";
+      this.objNuevaOferta.Faceboock = "Yes";
     } else {
       this.objNuevaOferta.Faceboock = "No";
     }
 
     if (this.btnInstagram == true) {
-      this.objNuevaOferta.Instagram = "Si";
+      this.objNuevaOferta.Instagram = "Yes";
     } else {
       this.objNuevaOferta.Instagram = "No";
     }
 
     if (this.btnTwiter == true) {
-      this.objNuevaOferta.Twiter = "Si";
+      this.objNuevaOferta.Twiter = "Yes";
     } else {
       this.objNuevaOferta.Twiter = "No";
     }
-
+console.log(this.btnFaceboock,this.btnInstagram, this.btnTwiter,this.OtraRed );
     if (this.btnFaceboock == false && this.btnInstagram == false && this.btnTwiter == false && this.OtraRed==null) {
       this.presentToast("the social network in which you are going to work is not clear yet");
     }else
     {
+      bander3=true;
+      if(this.OtraRed!=null){
       this.objNuevaOferta.OtraRed=this.OtraRed;
+    }else
+    {
+      this.objNuevaOferta.OtraRed= 'No';
+    }
     }
 
 
  console.log(this.objNuevaOferta);
 
-
+if(bander1 && bander2 && bander3){
  let alert = this.alertCtrl.create({
   title: '<center><h3>IMPORTANT</h3></center>',
   subTitle: '<center>¿WISH YOU TO CREATE A NEW OFFER?</center>',
@@ -252,7 +263,7 @@ export class NuevaOfertaPage {
   cssClass: 'customLoader'
 });
 alert.present();
-
+}
 
 
   }

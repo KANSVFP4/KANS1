@@ -32,6 +32,7 @@ export class ContratistaPage {
 
   constructor(private iab: InAppBrowser, public _paypalservice: PayPalService, public _userService: UserService, public _nuevaOfertaService: NuevaOfertaService, public navCtrl: NavController, public alertCtrl: AlertController, navParams: NavParams, public modalCtrl: ModalController) {
     this.getAllNuevasOfertas();
+    this.getAllNuevasOfertas();
   }
 
   mostrarLinks() {
@@ -53,7 +54,7 @@ export class ContratistaPage {
 
       console.log("esto iene de la peticion" + JSON.stringify(response));
       if (response.messagess[0] != undefined) {
-        this.vectorOfertas = response.messagess;
+        this.vectorOfertas = this.darvueltaOfertas(response.messagess);
         //this.darvuelta();
         console.log("todos los viajes", this.vectorOfertas);
         //localStorage.setItem("vectorViajesMios", JSON.stringify(this.vectorViajes));
@@ -95,8 +96,8 @@ export class ContratistaPage {
   confirmarPagoViaje(vector) {
     console.log("este vector pase al pago" + JSON.stringify(vector));
     const confirm = this.alertCtrl.create({
-      title: 'Atención',
-      message: 'Si elige esta opción podrá pagar por medio de la plataforma PAYPAL. Caso contrario cancele y espere pagar en efectivo al chofer',
+      title: 'Warning',
+      message: 'If you choose this option you can pay for If you choose this option you can pay through the PAYPAL platform. Otherwise cancel and wait to pay cash to the driver',
       buttons: [
         {
           text: 'Cancel',
@@ -128,7 +129,7 @@ export class ContratistaPage {
 
       console.log("esto iene de la peticion" + JSON.stringify(response));
       if (response.messagess[0] != undefined) {
-        this.vectorMyOfertas = response.messagess;
+        this.vectorMyOfertas = this.darvueltaOfertas(response.messagess);
         //this.darvuelta();
         console.log("viajes mios", this.vectorMyOfertas);
         //localStorage.setItem("vectorViajesMios", JSON.stringify(this.vectorViajes));
@@ -153,7 +154,7 @@ export class ContratistaPage {
 
       console.log("esto iene de la peticion" + JSON.stringify(response));
       if (response.messagess[0] != undefined) {
-        this.vectrOfertasRealizadas = response.messagess;
+        this.vectrOfertasRealizadas = this.darvueltaOfertas(response.messagess);
         //this.darvuelta();
         console.log("Vector ofertas realizados", this.vectorMyOfertas);
         //localStorage.setItem("vectorViajesMios", JSON.stringify(this.vectorViajes));
@@ -234,7 +235,28 @@ export class ContratistaPage {
     confirm.present();
   }
 
-
+  public aux;
+  public c;
+  public medio;
+  public up
+  
+    darvueltaOfertas(vector) {
+      this.aux;
+      vector.forEach(() => {
+        this.c += 1;
+      });
+      this.medio = (this.c) / 2;
+      this.up = (this.c) - 1;
+      for (var i = 0; i < this.medio; i++) {
+        this.aux = vector[i];
+        vector[i] = vector[this.up];
+        vector[this.up] = this.aux;
+        this.up--;
+        this.vectorOfertas=vector;
+      }
+      this.c = 0;
+      return vector;
+    }
 
   verPerfil(perfil)
   {

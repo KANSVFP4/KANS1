@@ -31,6 +31,10 @@ export class ListPage {
     height: '40px',
    // disableUntil: { year: this.displayYear, month: this.displayMont + 1, day: this.displayDay - 1 }
   };
+
+  public varO=false;
+  public varP=false;
+
   public vectorMyOfertas: any;
   public banderNewOffert: any;
   public banderMyOffert: any;
@@ -119,12 +123,15 @@ banderActivado=false;
   }
 
   NuevasSolicitudes() {
+
     this.vectorOfertas = null;
     this.vectorOfertasPorPagar = null;
     this.vectorOfertasPagadas = null;
     this.banderNewOffert = true;
     this.banderMyOffert = false;
     this.varNewOffer = true;
+    this.varO=false;
+    this.varP=false;
 
     this._solicitudesService.getSolicitudes(this._administradorService.getToken()).subscribe(response => {
 
@@ -274,7 +281,9 @@ banderActivado=false;
     this.vectorOfertasPagadas = null;
     this.banderNewOffert = true;
     this.banderMyOffert = false;
-    this.varNewOffer = true;
+    this.varNewOffer = false;
+    this.varO=true;
+    this.varP=false;
 
     this._solicitudesService.getSolicitudesPorPagar(this._administradorService.getToken()).subscribe(response => {
 
@@ -369,8 +378,9 @@ banderActivado=false;
     this.vectorOfertasPagadas = null;
     this.banderNewOffert = true;
     this.banderMyOffert = false;
-    this.varNewOffer = true;
-
+    this.varNewOffer = false;
+    this.varO=false;
+    this.varP=true;
     this._solicitudesService.getOfertasPagadas(this._administradorService.getToken()).subscribe(response => {
 
       console.log("esto iene de la peticion" + JSON.stringify(response));
@@ -403,8 +413,9 @@ banderActivado=false;
     this.vectorOfertasPagadas = null;
     this.banderNewOffert = true;
     this.banderMyOffert = false;
-    this.varNewOffer = true;
+    this.varNewOffer = false;
     var fehcaEnviar;
+    if(this.fechaBusqueda!=null){
     if(this.fechaBusqueda.date.month<10)
     {
        fehcaEnviar ='0'+this.fechaBusqueda.date.month+'-'+this.fechaBusqueda.date.day+'-'+this.fechaBusqueda.date.year;
@@ -426,7 +437,7 @@ banderActivado=false;
       }
     }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
     );
-    
+  }
   }
   
 

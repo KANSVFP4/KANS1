@@ -58,7 +58,7 @@ export class RegistroPage {
           response => {
             setTimeout(() => {
               this.showAlertCorrecto(
-                "El Usuario ha sido Registrado satisfactoriamente. Ingrese su correo y contraseña"
+                "The User has been successfully registered. Enter your email and password"
               );
             }, 3000);
             this.navCtrl.push(HomePage);
@@ -71,7 +71,7 @@ export class RegistroPage {
                 var body = JSON.parse(err._body);
                 errorMessage = body.message;
               } catch {
-                errorMessage = "No hay conexión intentelo más tarde";
+                errorMessage = "No connection try later";
               }
               setTimeout(() => {
                 this.showAlert(errorMessage);
@@ -82,7 +82,7 @@ export class RegistroPage {
         );
       }
     } catch (error) {
-      this.showAlert("Verifique que la información sea correcta, debe llenar toda la información.");
+      this.showAlert("Verify that the information is correct, you must fill out all the information.");
     }
   }
 
@@ -97,7 +97,7 @@ export class RegistroPage {
 
   showAlertCorrecto(corec) {
     let alert = this.alertCtrl.create({
-      title: "Correcto",
+      title: "Right",
       subTitle: corec,
       buttons: ["OK"]
     });
@@ -105,7 +105,7 @@ export class RegistroPage {
   }
   verificarUsuario() {
     let loading = this.loadingCtrl.create({
-      content: "Verficando sus datos"
+      content: "Verifying"
     });
     loading.present();
     setTimeout(() => {
@@ -115,26 +115,26 @@ export class RegistroPage {
 
   presentAlert() {
     let alert = this.alertCtrl.create({
-      title: "Atención",
-      subTitle: "Verifique que la información sea correcta antes de continuar",
-      buttons: ["Aceptar"]
+      title: "Warning",
+      subTitle: "Verify that the information is correct before continuing",
+      buttons: ["Ok"]
     });
     alert.present();
   }
 
   presentAlertCedula() {
     let alert = this.alertCtrl.create({
-      subTitle: "Atención",
-      message: "La cédula ingresada es incorrecta",
-      buttons: ["Aceptar"]
+      subTitle: "Warning",
+      message: "The card entered is incorrect",
+      buttons: ["Ok"]
     });
     alert.present();
   }
 
   presentAlertCaracteresEspeciales() {
     let alert = this.alertCtrl.create({
-      subTitle: "Atención",
-      message: "El campo posee caractéres especiales",
+      subTitle: "Warning",
+      message: "The field has special characters",
       buttons: ["Corregir"]
     });
     alert.present();
