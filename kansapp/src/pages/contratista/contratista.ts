@@ -20,8 +20,8 @@ import { VerPerfil } from '../ver_perfil/ver_perfil';
 
 export class ContratistaPage {
 
-  public vectorOfertas;
-  public vectorMyOfertas;
+  public vectorOfertas:any;
+  public vectorMyOfertas:any;
   public vectrOfertasRealizadas;
   public banderLinks = false;
   public banderMyOffert = false;
@@ -97,7 +97,7 @@ export class ContratistaPage {
     console.log("este vector pase al pago" + JSON.stringify(vector));
     const confirm = this.alertCtrl.create({
       title: 'Warning',
-      message: 'If you choose this option you can pay for If you choose this option you can pay through the PAYPAL platform. Otherwise cancel and wait to pay cash to the driver',
+      message: 'If you choose this option you can pay for If you choose this option you can pay through the PAYPAL platform.',
       buttons: [
         {
           text: 'Cancel',
@@ -129,9 +129,12 @@ export class ContratistaPage {
 
       console.log("esto iene de la peticion" + JSON.stringify(response));
       if (response.messagess[0] != undefined) {
+        
+    //    this.vectorOfertas = "";
         this.vectorMyOfertas = this.darvueltaOfertas(response.messagess);
+        this.vectorOfertas = null;
         //this.darvuelta();
-        console.log("viajes mios", this.vectorMyOfertas);
+        console.log("viajes mios de mios ofertas", this.vectorMyOfertas, "el otro"+JSON.stringify(this.vectorOfertas));
         //localStorage.setItem("vectorViajesMios", JSON.stringify(this.vectorViajes));
 
 
@@ -157,6 +160,7 @@ export class ContratistaPage {
         this.vectrOfertasRealizadas = this.darvueltaOfertas(response.messagess);
         //this.darvuelta();
         console.log("Vector ofertas realizados", this.vectorMyOfertas);
+        this.vectorOfertas = null;
         //localStorage.setItem("vectorViajesMios", JSON.stringify(this.vectorViajes));
 
 

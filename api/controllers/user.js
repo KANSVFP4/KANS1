@@ -1,6 +1,8 @@
 'use strcit'
 
 var bcrypt = require('bcrypt-nodejs');
+var moment = require('moment');
+
 
 var User = require('../models/user'); //importar el modelo del usuario  o lo que son las clases comunes
 var jwt = require('../services/jwt');
@@ -12,7 +14,17 @@ function pruebas(req, res) {
 
 }
 
+// Create a new moment object
+var now = moment();
+
+// Create a moment in the past, using a string date
+var m = moment("April 1st, 2005", "MMM-DD-YYYY");
+
+// Create a new moment using an array
+var m = moment([2005, 3, 1]);
+
 function saveUser(req, res) {
+    var fecha = now.format('MM-DD-YYYY');
     var user = new User();
     var params = req.body; // cuerpo de la peticion post de la direccion http por post
     // console.log(params);
@@ -37,6 +49,7 @@ function saveUser(req, res) {
                 user.contrasena = params.contrasena;
                 user.tel_celular = params.tel_celular;
                 user.paypal=params.paypal;
+                user.fechaRegistro=fecha;
 
                 if (params.contrasena) {
 

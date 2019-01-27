@@ -250,7 +250,7 @@ export class ReportePage {
     this._administradorService.getUsuariosRegistrados(this._administradorService.getToken()).subscribe(response => {
 
       console.log("esto iene de la peticion" + JSON.stringify(response));
-      if (response.messagess[0] != undefined) {
+      if (response.messagess[0] != undefined && response.messagess!=null &&  response.messagess!="") {
         this.vectorUsuarios = response.messagess;
         console.log("mijin0" + this.vectorUsuarios);
         var nos= this.ano;
@@ -323,7 +323,7 @@ export class ReportePage {
     this._solicitudesService.getOfertasPagadas(this._administradorService.getToken()).subscribe(response => {
 
       console.log("esto iene de la peticion" + JSON.stringify(response));
-      if (response.messagess[0] != undefined) {
+      if (response.messagess[0] != undefined ) {
        this.vectorPagados = response.messagess;
        this.vectorPagados.forEach(function (value) {
         ContPagadas++;

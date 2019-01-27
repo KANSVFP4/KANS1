@@ -114,14 +114,14 @@ app.get('/executePayment', function (req, res) {
             Oferta.updateMany({ _id: app.globalId }, { '$set': { estadoPago: "0" ,contratista: app.Idcontratista} }, (err, solicitudViajeUpdate) => {
 
                 if (err) {
-                    res.status(500).send({ message: "Error al actualizar estado paggo oferta" });
+                    res.status(500).send({ message: "Error updating status paggo offer" });
 
                 } else {
                     if (!solicitudViajeUpdate) {
-                        res.status(404).send({ message: "La oferta no se ha apagado" });
+                        res.status(404).send({ message: "The offer has not been turned off" });
                     } else {
                         //console.log(solicitudViajeUpdate);
-                        res.status(200).send("transaction Completed...Close this window to continue");
+                        res.status(200).send("Completed Transaction...Close this window to continue");
 
                     }
                 }
