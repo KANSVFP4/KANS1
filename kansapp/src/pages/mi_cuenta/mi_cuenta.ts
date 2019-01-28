@@ -10,12 +10,17 @@ import { UserService } from "../../app/services/user.services";
 
 export class MiCuenta {
 
- 
+
 
   public identity;
   public estadoContrasena = '0';
-  public banderPaypal= false;
-  public banderPaypal2= true;
+  public banderPaypal = false;
+  public banderPaypal2 = true;
+
+  public banderBarraHight = false;
+  public banderBarraLow = false;
+
+
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
@@ -23,11 +28,17 @@ export class MiCuenta {
     public loadingCtrl: LoadingController
   ) {
     this.identity = _userService.getIdentity();
-    if(this.identity.paypal==null)
-    {
-      this.banderPaypal=true;
-      this.banderPaypal2=false;
+    if (this.identity.paypal == null) {
+      this.banderPaypal = true;
+      this.banderPaypal2 = false;
+      this.banderBarraHight=false;
+      this.banderBarraLow = true;
+    } else {
+      this.banderBarraHight = true;
+      this.banderBarraLow=false;
     }
+
+
     console.log(this.identity);
   }
 
@@ -37,7 +48,7 @@ export class MiCuenta {
 
   toggleDisable() {
     this.disableTextbox = !this.disableTextbox;
-    this.disableBoton=!this.disableBoton;
+    this.disableBoton = !this.disableBoton;
   }
 
 
@@ -69,7 +80,7 @@ export class MiCuenta {
       }
     }
   }
-  
+
 
   presentAlertCedula() {
     let alert = this.alertCtrl.create({
@@ -81,7 +92,7 @@ export class MiCuenta {
   }
 
   onUpdate() {
-    console.log("mi JSON esta vacio");
+    console.log("mi JSON esta vacio", console.log(this.identity));
     try {
       if (!this.validarCampos()) {
         console.log("mi JSON esta vacio");
@@ -94,12 +105,25 @@ export class MiCuenta {
             if (!response.user) {
               var errorMessage = "The user did not update";
             } else {
+             
               setTimeout(() => {
                 this.showAlertCorrecto(
                   "Your data has been updated correctly"
                 );
               }, 3000);
-              localStorage.setItem('identity', JSON.stringify(this.identity))
+              localStorage.setItem('identity', JSON.stringify(this.identity));
+              this.identity =this. _userService.getIdentity();
+              if (this.identity.paypal == null) {
+                this.banderPaypal = true;
+                this.banderPaypal2 = false;
+                this.banderBarraLow = true;
+              } else {
+                this.banderBarraHight = true;
+                this.banderBarraLow=false;
+                this.banderPaypal = false;
+                this.banderPaypal2 = true;
+
+              }
             }
           },
           err => {
