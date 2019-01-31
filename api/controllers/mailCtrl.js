@@ -87,6 +87,31 @@ exports.sendEmail = function (req, res) {
 
     }
 
+    if (req.body.estado == '3') {
+       console.log("pilas ya acabas",req.body.obj);
+        var mailOptions = {
+            from: 'buzonkans@gmail.com',
+            to:req.body.obj.emitter.correo,
+            subject: ' You have a new payment on paypal',
+           text: 'A payment has been made to the paylpal account:'+'  ' + req.body.obj.emitter.paypal + '  '+'of the next offert:'+' '+'Category:'+req.body.obj.Categoria+
+            'Social Network:'+'  '+ 'Faceboock:'+'' + req.body.obj.Faceboock +'  '+ ' Instagram: ' + req.body.obj.Instagram
+             +' '+ ' Twiter:'+'  ' + req.body.obj.Twiter + '  '+ ' Another red:'+'  ' + req.body.obj.OtraRed + 
+             '  '+' Time:'+' '+ req.body.obj.Tiempo+ '    ' +'Price:'+req.body.obj.Precio+'  '+'Scope:'+req.body.obj.Alcance+
+             ' '+'Extra Information:'+'  '+req.body.obj.Inf_extra+'.........the payment was made by:'+req.body.obj.contratista.Nombre+''+req.body.obj.contratista.Apellido,
+        };
+        transporter.sendMail(mailOptions, function (error) {
+            if (error) {
+                console.log(error);
+                res.send(500, err.message);
+            } else {
+                console.log("Email sent");
+                res.status(200).jsonp(req.body);
+            }
+        });
+
+        
+
+    }
    
     // Enviamos el email
 

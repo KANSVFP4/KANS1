@@ -15,6 +15,12 @@
 
   <br>
   <br>
+  <div class="container">  
+    <h4>Confidence level</h4>
+  <img  *ngIf="banderBarraLow" style=" width:65%; height:80% ; margin-left: 36%; margin-top:-16%" src="assets/imgs/barraLow.png" alt="">
+  <img  *ngIf="banderBarraHight" style=" width:65%; height:80% ; margin-left: 36%; margin-top:-16%"  src="assets/imgs/barraHight.png" alt="">
+</div>
+  
    <h3 style="color:black;  font-weight: bold; text-align: center" >Personal Information</h3>
    <br>
 
@@ -108,7 +114,7 @@
         <ion-icon name="md-arrow-dropdown"></ion-icon>
       </button>
 
-
+      <button (click)="confirmarPagoViaje(ofertas)" style="float: right" class="btn btn-primary"> Contracting</button>
 
 
     </ion-item>

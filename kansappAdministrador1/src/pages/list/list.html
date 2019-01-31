@@ -203,11 +203,12 @@
 
     </ion-item>
    
-
+<br>
+<br>
  
-    <ion-select  multiple="true" required class="css-select"  id="selectCategoria" placeholder="Modify Category" #categoria="ngModel"
+    <ion-select  multiple="true" required class="css-select"  id="selectCategoria" style="font-size: 80%; width: 100%; padding-right:9% " placeholder="Modify Category" #categoria="ngModel"
     [(ngModel)]="Categoria" name="categoria" (ionChange)="activarOtro();" required>
-    <ion-label>Category</ion-label>
+    <ion-label >Category</ion-label>
     <ion-option value="{{cadenas}}" *ngFor="let cadenas of ofertas.Categoria.split(',')">{{cadenas}}</ion-option>
   </ion-select>
 

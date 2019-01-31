@@ -95,7 +95,7 @@ banderActivado=false;
 
   showAlertCorrecto(corec) {
     let alert = this.alertCtrl.create({
-      title: "Correcto",
+      title: "Right",
       subTitle: corec,
       buttons: ["OK"]
     });
@@ -315,6 +315,21 @@ banderActivado=false;
 
 
         this.TrabajosPorPagar();
+        var enviarCorreo =
+          {
+            obj: vector,
+            estado: '3'
+          }
+
+          this._envioEmail.envioEmail(this._administradorService.getToken(), enviarCorreo).subscribe(
+            response => {
+              console.log("Se envio el correo electronico ", response);
+              location.reload(true);
+            },
+            error => {
+              console.log(error);
+            }
+          );
 
         if (!response.ofertaPagada) {
           var errorMessage = "La oferta no se actualizo";

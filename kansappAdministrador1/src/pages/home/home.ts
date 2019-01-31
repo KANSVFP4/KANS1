@@ -103,7 +103,7 @@ export class HomePage implements OnInit {
                 try {
                   var body = JSON.parse(error._body);
                   errorMessage = body.message;
-                } catch{ errorMessage = "No hay conexión intentelo más tarde."; }
+                } catch{ errorMessage = "No conection try it later."; }
                 setTimeout(() => {
                   this.showAlert(errorMessage);
                 }, 2000);
@@ -118,9 +118,8 @@ export class HomePage implements OnInit {
         var errorMessage = <any>error;
         if (errorMessage) {
           try {
-            var body = JSON.parse(error._body);
-            errorMessage = body.message;
-          } catch{ errorMessage = "No hay conexión intentelo más tarde"; }
+            var body = JSON.parse(error._body);            errorMessage = body.message;
+          } catch{ errorMessage = "No conection try it later."; }
           setTimeout(() => {
             this.showAlert(errorMessage);
           }, 3000);
@@ -133,7 +132,7 @@ export class HomePage implements OnInit {
 
   verificarUsuario() {
     let loading = this.loadingCtrl.create({
-      content: "Verficando sus datos"
+      content: "Verifying your data"
     });
     loading.present();
     setTimeout(() => {

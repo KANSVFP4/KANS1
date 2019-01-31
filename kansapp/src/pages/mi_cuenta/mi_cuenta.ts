@@ -28,7 +28,8 @@ export class MiCuenta {
     public loadingCtrl: LoadingController
   ) {
     this.identity = _userService.getIdentity();
-    if (this.identity.paypal == null) {
+    console.log("como viene cuenta paypal"+this.identity.paypal);
+    if (this.identity.paypal == "") {
       this.banderPaypal = true;
       this.banderPaypal2 = false;
       this.banderBarraHight=false;

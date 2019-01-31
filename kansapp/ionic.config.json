@@ -1,5 +1,7 @@
 {
   "name": "kansapp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
