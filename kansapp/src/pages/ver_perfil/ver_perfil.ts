@@ -32,10 +32,10 @@ export class VerPerfil {
   ) {
     this.identity = _userService.getIdentity();
     console.log(this.identity);
-    
+  
     this.identityVP=null;
     this.identityVP = JSON.parse(localStorage.getItem("ver_perfil"));
-    console.log("perfil a mostrar" + this.identity.nombre);
+    console.log("perfil a mostrar" + this.identityVP);
     this.getMyNuevasOfertas();
 
     if (this.identityVP.paypal == null) {

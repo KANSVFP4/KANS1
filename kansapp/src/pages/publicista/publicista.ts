@@ -22,6 +22,8 @@ export class PublicistaPage {
   public banderLinks =false;
  public banderMyOffert =false;
  public banderNewOffert = false;
+ public banderJobs = false;
+ 
   
   @ViewChild('NAV') nav: Nav;
 
@@ -46,6 +48,7 @@ export class PublicistaPage {
     this.vectorMyOfertas=null;
     this.banderNewOffert= true;
     this.banderMyOffert=false;
+    this.banderJobs =false;
   
     this._nuevaOfertaService.getOfertas(this._userService.getToken()).subscribe(response => {
 
@@ -71,6 +74,7 @@ export class PublicistaPage {
   this.vectorOfertas=null;
   this.banderNewOffert= false;
   this.banderMyOffert=true;
+  this.banderJobs =false;
     this._nuevaOfertaService.getMyOfertas(this._userService.getToken()).subscribe(response => {
 
       console.log("esto iene de la peticion"+ JSON.stringify(response));
@@ -141,6 +145,9 @@ public up
     this.vectorMyOfertas = null;
     this.vectorOfertas=null;
 this.vectorMyOfertasPendientes=null;
+this.banderJobs =true;
+this.banderMyOffert =false;
+this.banderNewOffert = false;
 
     
     this._nuevaOfertaService.getMyOfertasPendientesPublicista(this._userService.getToken()).subscribe(response => {

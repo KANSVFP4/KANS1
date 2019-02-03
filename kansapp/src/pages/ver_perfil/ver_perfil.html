@@ -32,28 +32,28 @@
       <ion-item>
         <ion-label style="color:black;  font-weight: bold;" fixed>Nombres:</ion-label>
         <ion-input disabled style="text-align: left; margin-left: -15% ; font-weight: bold" #nombres="ngModel"
-          [(ngModel)]="identity.nombre" name="nombres" type="text" value="" pattern="[a-zA-Z ]*" required></ion-input>
+          [(ngModel)]="identityVP.nombre" name="nombres" type="text" value="" pattern="[a-zA-Z ]*" required></ion-input>
       </ion-item>
     
 
       <ion-item>
         <ion-label style="color:black;  font-weight: bold;" fixed>Apellidos:</ion-label>
         <ion-input disabled style="text-align: left; margin-left: -15%; font-weight: bold" #apellidos="ngModel"
-          [(ngModel)]="identity.apellido" name="apellidos" type="text" value="" pattern="[a-zA-Z ]*" required></ion-input>
+          [(ngModel)]="identityVP.apellido" name="apellidos" type="text" value="" pattern="[a-zA-Z ]*" required></ion-input>
       </ion-item>
      
 
       <ion-item   >
         <ion-label style="color:black;  font-weight: bold;" fixed>Correo:</ion-label>
         <ion-input disabled style="text-align: left; margin-left: -15%; font-weight: bold" #correo="ngModel"
-          [(ngModel)]="identity.correo" name="correo" type="text" value="" required email></ion-input>
+          [(ngModel)]="identityVP.correo" name="correo" type="text" value="" required email></ion-input>
       </ion-item>
      
 
       <ion-item>
         <ion-label  style="color:black;  font-weight: bold;" fixed>Celular:</ion-label>
         <ion-input disabled style="text-align: left; margin-left: -15%; font-weight: bold" #celular="ngModel"
-          [(ngModel)]="identity.tel_celular" name="celular" type="text" value="" required digits pattern="[0-9]*"
+          [(ngModel)]="identityVP.tel_celular" name="celular" type="text" value="" required digits pattern="[0-9]*"
           minlength="10" maxlength="10"></ion-input>
       </ion-item>
     
