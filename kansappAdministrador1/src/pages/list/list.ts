@@ -124,6 +124,7 @@ banderActivado=false;
 
   NuevasSolicitudes() {
 
+    this.banderActivado=false;
     this.vectorOfertas = null;
     this.vectorOfertasPorPagar = null;
     this.vectorOfertasPagadas = null;
@@ -276,6 +277,8 @@ banderActivado=false;
 
 
   TrabajosPorPagar() {
+    
+    this.banderActivado=false;
     this.vectorOfertas = null;
     this.vectorOfertasPorPagar = null;
     this.vectorOfertasPagadas = null;
@@ -359,6 +362,8 @@ banderActivado=false;
   }
 
   OfertaPagada(vector) {
+    
+    this.banderActivado=false;
    
     console.log("este vector pase al pago" + JSON.stringify(vector));
     const confirm = this.alertCtrl.create({
@@ -387,7 +392,7 @@ banderActivado=false;
 
   TrabajosPagados() {
 
-    this.ActivarCalendario();
+    this.banderActivado=true;
     this.vectorOfertas = null;
     this.vectorOfertasPorPagar = null;
     this.vectorOfertasPagadas = null;
@@ -415,11 +420,7 @@ banderActivado=false;
     this.navCtrl.push(ReportePage);
   }
 
-  ActivarCalendario()
-  {
-    this.banderActivado=!this.banderActivado;
-    
-  }
+
 
   buscarPorFecha()
   {
