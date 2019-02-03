@@ -1,5 +1,10 @@
 'use strict'
 
+var bcrypt = require('bcrypt-nodejs');
+var moment = require('moment');
+
+var NuevaOferta = require('./models/nuevaOferta'); //importar el modelo del usuario  o lo que son las clases comunes
+
 //pago tarjetad e credito
 var paypal = require('paypal-rest-sdk');
 
@@ -33,9 +38,16 @@ paypal.configure({
 app.globalAmount = 0;
 app.globalTipoPago = '';
 app.globalTipoSolicitud = "";
+app.globalNuevaOferta="";
+
+
+
 app.post('/api/createPayment', function (req, res) {
-    console.log('iquenomas viene', req.body);
-    app.Idcontratista=req.body.contratista._id;
+    app.nuevaOferta = new NuevaOferta();
+    app.globalNuevaOferta=req.body.todo;
+    console.log('iquenomas viene', req.body.todo);
+    app.globalCorreoEmitter = req.body.todo.emitter.correo;
+    app.Idcontratista = req.body.contratista._id;
     app.globalId = req.body.idViaje;
     app.globalAmount = req.body.amount;
     var create_payment_json = {
@@ -59,7 +71,7 @@ app.post('/api/createPayment', function (req, res) {
             },
             "amount": {
                 "currency": "USD",
-                "total":  Number(req.body.amount),
+                "total": Number(req.body.amount),
             },
             "description": "This is the payment description."
         }]
@@ -80,8 +92,8 @@ app.post('/api/createPayment', function (req, res) {
 
 
 app.get('/executePayment', function (req, res) {
-    console.log("entre ejecurte es es el valor"+app.globalAmount);
-   
+    console.log("entre ejecurte es es el valor" + app.globalAmount);
+
     var payment_Id = req.query.paymentId;
     var payer_id = req.query.PayerID;
     var execute_payment_json = {
@@ -89,7 +101,7 @@ app.get('/executePayment', function (req, res) {
         "transactions": [{
             "amount": {
                 "currency": "USD",
-                "total":  app.globalAmount 
+                "total": app.globalAmount
             }
         }]
     };
@@ -98,37 +110,60 @@ app.get('/executePayment', function (req, res) {
 
     paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
         if (error) {
-            console.log("este es tu herror"+JSON.stringify(error.response));
+            console.log("este es tu herror" + JSON.stringify(error.response));
             throw error;
         } else {
             console.log("Get Payment Response");
             console.log(JSON.stringify(payment));
-           // res.send("Transaccion Completa");
+            // res.send("Transaccion Completa");
 
 
 
             // de aqui borre el if
-            console.log("ide de contratis",app.Idcontratista);
-            console.log("ide de l aoferta"+ app.globalId);
+            console.log("ide de contratis", app.Idcontratista);
+            console.log("ide de l aoferta" + app.globalId);
 
-            Oferta.updateMany({ _id: app.globalId }, { '$set': { estadoPago: "0" ,contratista: app.Idcontratista} }, (err, solicitudViajeUpdate) => {
 
+
+            // aqui hay que crear en ves de modificar
+
+          // nuevaOferta = new NuevaOferta();
+           //var params = req.body;
+           // console.log("LO QUE VIENE" + req.user.sub);
+         
+            app.nuevaOferta.Links_to_work = app.globalNuevaOferta.Links_to_work;
+            //solicitudEncomienda.estado = params.estado;
+            app.nuevaOferta.emitter = app.globalNuevaOferta.emitter._id;
+            app.nuevaOferta.Categoria = app.globalNuevaOferta.Categoria;
+            app.nuevaOferta.OtraCategoria = app.globalNuevaOferta.OtraCategoria;
+            app.nuevaOferta.Faceboock = app.globalNuevaOferta.Faceboock;
+            app.nuevaOferta.Instagram = app.globalNuevaOferta.Instagram;
+            app.nuevaOferta.Twiter = app.globalNuevaOferta.Twiter;
+            app.nuevaOferta.OtraRed = app.globalNuevaOferta.OtraRed;
+            app.nuevaOferta.Tiempo = app.globalNuevaOferta.Tiempo;
+            app.nuevaOferta.Precio = app.globalNuevaOferta.Precio;
+            app.nuevaOferta.Alcance = app.globalNuevaOferta.Alcance;
+            app.nuevaOferta.Inf_extra = app.globalNuevaOferta.Inf_extra;
+            app.nuevaOferta.estado = 10;
+            app.nuevaOferta.estadoPago=0;
+            app.nuevaOferta.contratista=app.Idcontratista;
+
+
+
+          
+
+            app.nuevaOferta.save((err, nuevaOfertaStored) => {
                 if (err) {
-                    res.status(500).send({ message: "Error updating status paggo offer" });
+                    return res.status(500).send({ message: 'Error al crear la oferta' });
 
-                } else {
-                    if (!solicitudViajeUpdate) {
-                        res.status(404).send({ message: "The offer has not been turned off" });
-                    } else {
-                        //console.log(solicitudViajeUpdate);
-                        res.status(200).send("Completed Transaction...Close this window to continue");
-
-                    }
                 }
 
+                if (!nuevaOfertaStored) {
+                    return res.status(200).send({ message: 'No se ha podido realizar la creacion de la nueva oferta' });
+                }
+                //console.log("message guardado" + solicitudEncomiendaStored);
+                res.status(200).send("Completed Transaction..." + "Now you have to send all the information to advertise to the next mail:<h3>" + app.globalCorreoEmitter + "</h3>" + "<br>Close this window to continue..</br>");
             });
-           
-
 
         }
     });

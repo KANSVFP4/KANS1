@@ -18,6 +18,7 @@ export class PublicistaPage {
  
   public vectorOfertas;
   public vectorMyOfertas;
+  public vectorMyOfertasPendientes;
   public banderLinks =false;
  public banderMyOffert =false;
  public banderNewOffert = false;
@@ -135,6 +136,32 @@ public up
     }
     this.c = 0;
   }
+
+  MyOfertasPendientesPublicista() {
+    this.vectorMyOfertas = null;
+    this.vectorOfertas=null;
+this.vectorMyOfertasPendientes=null;
+
+    
+    this._nuevaOfertaService.getMyOfertasPendientesPublicista(this._userService.getToken()).subscribe(response => {
+
+      console.log("esto iene de la peticion  my ofertas pendientes" + JSON.stringify(response));
+      if (response.messagess[0] != undefined) {
+        
+       
+        this.vectorMyOfertasPendientes = response.messagess;
+       
+        //this.darvuelta();
+        console.log("mis pendientes soy publicista", this.vectorMyOfertasPendientes);
+        //localStorage.setItem("vectorViajesMios", JSON.stringify(this.vectorViajes));
+
+
+      }
+    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+    );
+
+  }
+  
 }
 
 

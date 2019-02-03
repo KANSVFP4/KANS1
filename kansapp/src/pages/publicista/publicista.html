@@ -5,7 +5,17 @@
     </button>
     <ion-title>
       Publicist
+
+
+      <button (click)="MyOfertasPendientesPublicista()" style="background: transparent; left:0; right:0; max-width:12%; float: right; margin-right: 2%; display: block; max-height:100%;">
+        <ion-icon item-left>
+          <img src="assets/imgs/notification.png">
+        </ion-icon>
+      </button>
     </ion-title>
+
+
+    
   </ion-navbar>
 </ion-header>
 
@@ -151,6 +161,72 @@
 
   </ion-card>
 
+<!--mys ofertas pendientes por realizar-->
+<ion-card *ngFor=" let ofertas of  vectorMyOfertasPendientes">
+  <ion-item>
+    
+      
+    
+   
+
+    <img style="width: 20%;  padding: 0%" src="../../assets/imgs/user.png">
+    <button  (click)="verPerfil(ofertas.emitter)" style="background:none; font-size: 80%; color:blue">View Profile</button>
+    <h2 align="center" style="margin-top: -12%; margin-left:18%">Hired by: {{ofertas.contratista.nombre}},{{ofertas.contratista.apellido}}</h2>
+
+
+    <br>
+    <h3>
+      <b>Category</b>
+      <br>
+    </h3>
+    <p flex>{{ofertas.Categoria}}</p>
+
+    <br>
+
+    <h3>
+      <b>Social Network</b>
+      <br>
+    </h3>
+    <p> <b>Faceboock:</b> {{ofertas.Faceboock}}, <b>Instagram:</b>{{ofertas.Instagram}}, <b>Twiter:</b>{{ofertas.Twiter}},
+      <b>Another
+        :</b>{{ofertas.OtraRed}}</p>
+
+    <br>
+
+    <div style=" margin-top:-1% ">
+      <img src="../../assets/imgs/time.png" style="width: 10%; height: 10%;">
+      <p align="center" style="margin-top: -10%; margin-left:-65%; font-size: 14pt"> {{ofertas.Tiempo}} H</p>
+    </div>
+
+    <div style="margin-left:30%; margin-top:-10% ">
+      <img src="../../assets/imgs/bills.png" style="width: 18%; height: 18%;">
+      <p align="center" style="margin-top: -15%; margin-left:-40%; font-size: 14pt"> {{ofertas.Precio}} $ </p>
+    </div>
+    <div style="margin-left:65%; margin-top:-10% ">
+      <img src="../../assets/imgs/group.png" style="width: 35%; height: 35%;">
+      <p align="center" style="margin-top: -30%; margin-left:30%; font-size: 14pt"> {{ofertas.Alcance}} </p>
+    </div>
+    <hr>
+    <button style="margin-left:45%; background: none" (click)="mostrarLinks()">
+      <ion-icon name="md-arrow-dropdown"></ion-icon>
+    </button>
+
+
+
+
+  </ion-item>
+
+
+  <div *ngIf="banderLinks">
+    <h3><b>Links to Work</b></h3>
+    <ion-textarea value={{ofertas.Links_to_work}}> </ion-textarea>
+  </div>
+
+
+
+
+
+</ion-card>
 
 
 

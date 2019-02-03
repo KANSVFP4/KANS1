@@ -68,15 +68,16 @@ export class ContratistaPage {
 
 
 
-
   pago(vector) {
 
+    var contvueltas=0;
     let data =
     {
       contratista: this._userService.getIdentity(),
       amount: vector.Precio,
       idViaje: vector._id,
-      pagoDe: 'advertising service'
+      pagoDe: 'advertising service',
+      todo:vector
     }
 
 
@@ -84,11 +85,34 @@ export class ContratistaPage {
 
     this._paypalservice.payment(data).subscribe(
       response => {
+     
+        contvueltas+=1;
+        console.log("contador vueltas"+contvueltas);
         console.log("response for server", response.links[1].href);
         var browser = this.iab.create(response.links[1].href);
+        
+        const confirm2 = this.alertCtrl.create({
+          title: 'Contract established',
+          message: 'Now you have to send all the information to advertise to the next mail.<h2>'+vector.emitter.correo+'</h2>',
+          buttons: [
+            
+            {
+              text: 'Ok',
+              handler: () => {
+                console.log('Boton continuar');
+                
+              }
+            }
+          ]
+        });
+        confirm2.present();
 
       }, error => { }
+
+      
     );
+
+   
     //this.navCtrl.push(PagoOnlinePage);
   }
 
@@ -115,6 +139,8 @@ export class ContratistaPage {
       ]
     });
     confirm.present();
+
+    
   }
 
 

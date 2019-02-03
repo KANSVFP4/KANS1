@@ -50,7 +50,7 @@ function saveNuevaOferta(req, res) {
   nuevaOferta.Inf_extra = params.Inf_extra;
   nuevaOferta.estado = 0;
   
-
+  nuevaOferta.estadoPago = 20;
 
 
   console.log("encominda" + nuevaOferta);
@@ -382,6 +382,33 @@ function getOfertasPagadasFecha(req, res)
     });
   });
 }
+
+
+function getMyOfertasPendientesPublicista(req, res) {
+  //console.log("estoy trayedo mensajes");
+  var userId = req.user.sub;
+  console.log(userId);
+  // var message = Viaje.find({ '$and': [ {'$or':[{ estado:0 },{estado:1}]},{
+  //receiver: userId
+
+  var message = NuevaOferta.find({ '$and': [{ '$or': [{ estadoPago: 0 }] }, { emitter: userId }] }).populate({ path: 'emitter' }).populate({ path: 'contratista' }).exec((err, messagess) => {
+    if (err) {
+      return res.status(500).send({
+        message: 'No se ha podido obtener las ultimas ofertas'
+      });
+    }
+
+    if (!messagess) {
+      return res.status(200).send({
+        message: 'No tiene ofertas'
+      });
+    }
+
+    return res.status(200).send({
+      messagess
+    });
+  });
+}
 module.exports = { // para exportar todas las funcoones 
 
   saveNuevaOferta,
@@ -396,7 +423,8 @@ module.exports = { // para exportar todas las funcoones
   getOfertasPagadas,
   getOfertasPerfil,
   getOfertasPagadasFecha,
-  getAllOfertasPendientes
+  getAllOfertasPendientes,
+  getMyOfertasPendientesPublicista
 
 
 };
