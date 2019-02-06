@@ -56,8 +56,8 @@ app.post('/api/createPayment', function (req, res) {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://localhost:3977/executePayment",
-            "cancel_url": "http://localhost:3977/cancelPayment"
+            "return_url": "http://142.93.201.26:3977/executePayment",
+            "cancel_url": "http://142.93.201.26:3977/cancelPayment"
         },
         "transactions": [{
             "item_list": {
