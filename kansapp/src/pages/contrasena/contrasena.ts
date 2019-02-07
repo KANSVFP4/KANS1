@@ -46,7 +46,7 @@ export class ContrasenaPage {
                         } else {
                             setTimeout(() => {
                                 this.showAlertCorrecto(
-                                    "Sus datos han sido actualizados correctamente"
+                                    "Your password has been changed"
                                 );
                             }, 3000);
                             localStorage.setItem('identity', JSON.stringify(response.user));
@@ -62,7 +62,7 @@ export class ContrasenaPage {
                                 var body = JSON.parse(err._body);
                                 errorMessage = body.message;
                             } catch {
-                                errorMessage = "No hay conexión intentelo más tarde";
+                                errorMessage = "No connection try later";
                             }
                             setTimeout(() => {
                                 this.showAlert(errorMessage);
@@ -75,7 +75,7 @@ export class ContrasenaPage {
                 //this.showAlert("Verifique que la información sea correcta");
             }
         } else {
-            this.showAlert('Verifique que los datos sean correctos');
+            this.showAlert('Verify that the data is correct');
         }
     }
 
@@ -83,7 +83,7 @@ export class ContrasenaPage {
 
     showAlertCorrecto(corec) {
         let alert = this.alertCtrl.create({
-            title: "Correcto",
+            title: "Right",
             subTitle: corec,
             buttons: ["OK"]
         });
@@ -92,7 +92,7 @@ export class ContrasenaPage {
 
     verificarUpdate() {
         let loading = this.loadingCtrl.create({
-            content: "Verficando sus datos"
+            content: "Verifying your data"
         });
         loading.present();
         setTimeout(() => {

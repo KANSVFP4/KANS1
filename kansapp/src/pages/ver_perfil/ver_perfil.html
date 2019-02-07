@@ -30,29 +30,29 @@
     <ion-list>
 
       <ion-item>
-        <ion-label style="color:black;  font-weight: bold;" fixed>Nombres:</ion-label>
-        <ion-input disabled style="text-align: left; margin-left: -15% ; font-weight: bold" #nombres="ngModel"
+        <ion-label style="color:black;  font-weight: bold;" fixed>Names:</ion-label>
+        <ion-input disabled style="text-align: left; margin-left: -10% ; font-weight: bold" #nombres="ngModel"
           [(ngModel)]="identityVP.nombre" name="nombres" type="text" value="" pattern="[a-zA-Z ]*" required></ion-input>
       </ion-item>
     
 
       <ion-item>
-        <ion-label style="color:black;  font-weight: bold;" fixed>Apellidos:</ion-label>
-        <ion-input disabled style="text-align: left; margin-left: -15%; font-weight: bold" #apellidos="ngModel"
+        <ion-label style="color:black;  font-weight: bold;" fixed>Surnames:</ion-label>
+        <ion-input disabled style="text-align: left; margin-left: -10%; font-weight: bold" #apellidos="ngModel"
           [(ngModel)]="identityVP.apellido" name="apellidos" type="text" value="" pattern="[a-zA-Z ]*" required></ion-input>
       </ion-item>
      
 
       <ion-item>
-        <ion-label style="color:black;  font-weight: bold;" fixed>Correo:</ion-label>
-        <ion-input disabled style="text-align: left; margin-left: -15%; font-weight: bold" #correo="ngModel"
+        <ion-label style="color:black;  font-weight: bold;" fixed>Email:</ion-label>
+        <ion-input disabled style="text-align: left; margin-left: -10%; font-weight: bold" #correo="ngModel"
           [(ngModel)]="identityVP.correo" name="correo" type="text" value="" required email></ion-input>
       </ion-item>
      
 
       <ion-item>
-        <ion-label  style="color:black;  font-weight: bold;" fixed>Celular:</ion-label>
-        <ion-input disabled style="text-align: left; margin-left: -15%; font-weight: bold" #celular="ngModel"
+        <ion-label  style="color:black;  font-weight: bold;" fixed>CelPhone:</ion-label>
+        <ion-input disabled style="text-align: left; margin-left: -10%; font-weight: bold" #celular="ngModel"
           [(ngModel)]="identityVP.tel_celular" name="celular" type="text" value="" required digits pattern="[0-9]*"
           minlength="10" maxlength="10"></ion-input>
       </ion-item>
