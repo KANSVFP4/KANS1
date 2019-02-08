@@ -29,11 +29,11 @@ export class ListPage {
     markCurrentDay: true,
     minYear: this.displayYear - 1,
     height: '40px',
-   // disableUntil: { year: this.displayYear, month: this.displayMont + 1, day: this.displayDay - 1 }
+    // disableUntil: { year: this.displayYear, month: this.displayMont + 1, day: this.displayDay - 1 }
   };
 
-  public varO=false;
-  public varP=false;
+  public varO = false;
+  public varP = false;
 
   public vectorMyOfertas: any;
   public banderNewOffert: any;
@@ -66,7 +66,7 @@ export class ListPage {
       estado: null
     }
 
-banderActivado=false;
+  banderActivado = false;
 
   constructor(
     public loadingCtrl: LoadingController,
@@ -124,15 +124,15 @@ banderActivado=false;
 
   NuevasSolicitudes() {
 
-    this.banderActivado=false;
+    this.banderActivado = false;
     this.vectorOfertas = null;
     this.vectorOfertasPorPagar = null;
     this.vectorOfertasPagadas = null;
     this.banderNewOffert = true;
     this.banderMyOffert = false;
     this.varNewOffer = true;
-    this.varO=false;
-    this.varP=false;
+    this.varO = false;
+    this.varP = false;
 
     this._solicitudesService.getSolicitudes(this._administradorService.getToken()).subscribe(response => {
 
@@ -277,16 +277,16 @@ banderActivado=false;
 
 
   TrabajosPorPagar() {
-    
-    this.banderActivado=false;
+
+    this.banderActivado = false;
     this.vectorOfertas = null;
     this.vectorOfertasPorPagar = null;
     this.vectorOfertasPagadas = null;
     this.banderNewOffert = true;
     this.banderMyOffert = false;
     this.varNewOffer = false;
-    this.varO=true;
-    this.varP=false;
+    this.varO = true;
+    this.varP = false;
 
     this._solicitudesService.getSolicitudesPorPagar(this._administradorService.getToken()).subscribe(response => {
 
@@ -313,26 +313,26 @@ banderActivado=false;
 
     this._solicitudesService.OfertaPagada(data, this._administradorService.getToken()).subscribe(
       response => {
-        
-        this.vectorOfertasPorPagar=null;
+
+        this.vectorOfertasPorPagar = null;
 
 
         this.TrabajosPorPagar();
         var enviarCorreo =
-          {
-            obj: vector,
-            estado: '3'
-          }
+        {
+          obj: vector,
+          estado: '3'
+        }
 
-          this._envioEmail.envioEmail(this._administradorService.getToken(), enviarCorreo).subscribe(
-            response => {
-              console.log("Se envio el correo electronico ", response);
-              location.reload(true);
-            },
-            error => {
-              console.log(error);
-            }
-          );
+        this._envioEmail.envioEmail(this._administradorService.getToken(), enviarCorreo).subscribe(
+          response => {
+            console.log("Se envio el correo electronico ", response);
+            location.reload(true);
+          },
+          error => {
+            console.log(error);
+          }
+        );
 
         if (!response.ofertaPagada) {
           var errorMessage = "La oferta no se actualizo";
@@ -362,9 +362,9 @@ banderActivado=false;
   }
 
   OfertaPagada(vector) {
-    
-    this.banderActivado=false;
-   
+
+    this.banderActivado = false;
+
     console.log("este vector pase al pago" + JSON.stringify(vector));
     const confirm = this.alertCtrl.create({
       title: 'Atention',
@@ -392,15 +392,15 @@ banderActivado=false;
 
   TrabajosPagados() {
 
-    this.banderActivado=true;
+    this.banderActivado = true;
     this.vectorOfertas = null;
     this.vectorOfertasPorPagar = null;
     this.vectorOfertasPagadas = null;
     this.banderNewOffert = true;
     this.banderMyOffert = false;
     this.varNewOffer = false;
-    this.varO=false;
-    this.varP=true;
+    this.varO = false;
+    this.varP = true;
     this._solicitudesService.getOfertasPagadas(this._administradorService.getToken()).subscribe(response => {
 
       console.log("esto iene de la peticion" + JSON.stringify(response));
@@ -415,15 +415,13 @@ banderActivado=false;
   }
 
 
-  reportes()
-  {
+  reportes() {
     this.navCtrl.push(ReportePage);
   }
 
 
 
-  buscarPorFecha()
-  {
+  buscarPorFecha() {
     this.vectorOfertas = null;
     this.vectorOfertasPorPagar = null;
     this.vectorOfertasPagadas = null;
@@ -431,36 +429,45 @@ banderActivado=false;
     this.banderMyOffert = false;
     this.varNewOffer = false;
     var fehcaEnviar;
-    if(this.fechaBusqueda!=null){
-    if(this.fechaBusqueda.date.month<10)
-    {
-       fehcaEnviar ='0'+this.fechaBusqueda.date.month+'-'+this.fechaBusqueda.date.day+'-'+this.fechaBusqueda.date.year;
-    }else
-    {
-      fehcaEnviar =this.fechaBusqueda.date.month+'-'+this.fechaBusqueda.date.day+'-'+this.fechaBusqueda.date.year;
-    }
-   
-    console.log(fehcaEnviar);
-
-    this._solicitudesService.getSolicitudesPagadasFecha(this._administradorService.getToken(), fehcaEnviar).subscribe(response => {
-
-      console.log("esto iene de la peticion" + JSON.stringify(response));
-      if (response.messagess[0] != undefined) {
-        this.vectorOfertasPagadas = response.messagess;
-
-        console.log("trayendo ofertas pagadaspor fecha", this.vectorOfertasPagadas);
-
+    var mes;
+    var day;
+    if (this.fechaBusqueda != null) {
+      if (this.fechaBusqueda.date.month < 10) {
+        mes = '0' + this.fechaBusqueda.date.month;
+        
+      } else {
+        mes= this.fechaBusqueda.date.month;
       }
-    }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
-    );
+
+      if (this.fechaBusqueda.date.day < 10) {
+        day ='0' +this.fechaBusqueda.date.day
+      } else {
+        day=this.fechaBusqueda.date.day;
+      }
+
+      fehcaEnviar = mes + '-' + day + '-' + this.fechaBusqueda.date.year;
+
+      console.log(fehcaEnviar);
+
+      this._solicitudesService.getSolicitudesPagadasFecha(this._administradorService.getToken(), fehcaEnviar).subscribe(response => {
+
+        console.log("esto iene de la peticion" + JSON.stringify(response));
+        if (response.messagess[0] != undefined) {
+          this.vectorOfertasPagadas = response.messagess;
+
+          console.log("trayendo ofertas pagadaspor fecha", this.vectorOfertasPagadas);
+
+        }
+      }, (err) => { console.log("Existen Complicaciones Intente mas tarde", err) }
+      );
+    }
   }
-  }
-  
 
 
 
 
-  
+
+
 }
 
 
